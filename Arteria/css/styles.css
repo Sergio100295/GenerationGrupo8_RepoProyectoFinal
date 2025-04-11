@@ -1,0 +1,27 @@
+:root {
+    /* Colores principales */
+    --color-principal-oscuro: #580303;
+    --color-principal: #a4161a;
+    --color-negro-suave: #161a1d;
+    --color-claro: #f5f3f4;
+    --color-gris: #d3d3d3;
+   
+    /* Tipografías */
+    --fuente-parrafo: 'Open Sans', sans-serif;
+    --fuente-titulo: 'Roboto', sans-serif;
+   
+    /* Tamaños de fuente base */
+    --font-size-base: 16px;
+    --font-size-titulo: 2rem;
+    --font-size-subtitulo: 1.5rem;
+    --font-size-parrafo: 1rem;
+   
+    /* Espaciados */
+    --espaciado-pequeno: 0.5rem;
+    --espaciado-mediano: 1rem;
+    --espaciado-grande: 2rem;
+   
+    /* Sombras y bordes */
+    --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --radio-borde: 0.5rem;
+  }
