@@ -1,0 +1,86 @@
+/* Top bar superior */
+.top-bar {
+    background-color: var(--color-negro-suave);
+    color: var(--color-claro);
+    text-align: center;
+    padding: var(--espaciado-pequeno);
+    font-family: var(--fuente-parrafo);
+    font-weight: bolder;
+  }
+  
+  /* Logo */
+  .brand-logo {
+    width: 75px;
+  }
+  
+  /* Área de búsqueda */
+  .search-bar {
+    max-width: 300px;
+    font-family: var(--fuente-parrafo);
+    font-size: var(--font-size-parrafo);
+  }
+  
+  /* Botones de íconos */
+  .icon-btn {
+    background: none;
+    border: none;
+    font-size: 35px;
+    color: var(--color-negro-suave);
+  }
+  
+  /* Estilos generales del header */
+  header {
+    font-family: var(--fuente-parrafo);
+    background-color: white;
+    padding: var(--espaciado-mediano) 0;
+  }
+  
+  /* Título del sitio */
+  header h1 {
+    font-family: var(--fuente-titulo);
+    font-size: var(--font-size-titulo);
+    margin: 0;
+    color: var(--color-principal);
+  }
+  
+  /* Subtítulo */
+  header p {
+    font-size: var(--font-size-parrafo);
+    margin: 0;
+    color: var(--color-principal);
+  }
+  
+  /* Navegación de categorías */
+  nav {
+    border-bottom: 1px solid var(--color-claro);
+    background-color: var(--color-claro);
+    padding: var(--espaciado-pequeno) 0;
+    font-family: var(--fuente-parrafo);
+  }
+  
+  /* Lista de navegación */
+  nav ul {
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  /* Ítems de lista */
+  nav ul li {
+    list-style: none;
+    margin-right: var(--espaciado-mediano);
+  }
+  
+  /* Enlaces de categorías */
+  nav ul li a {
+    text-decoration: none;
+    color: var(--color-negro-suave);
+    font-size: 21px;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    text-decoration:solid;
+    color: var(--color-principal);
+
+  }
+  
