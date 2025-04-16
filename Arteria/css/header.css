@@ -15,7 +15,7 @@
   
   /* Área de búsqueda */
   .search-bar {
-    max-width: 300px;
+    max-width: 325px;
     font-family: var(--fuente-parrafo);
     font-size: var(--font-size-parrafo);
   }
@@ -33,6 +33,8 @@
     font-family: var(--fuente-parrafo);
     background-color: white;
     padding: var(--espaciado-mediano) 0;
+    padding-top: 0.5rem;  /* Puedes ajustar estos valores */
+    padding-bottom: 0.5rem;
   }
   
   /* Título del sitio */
@@ -58,29 +60,54 @@
     font-family: var(--fuente-parrafo);
   }
   
-  /* Lista de navegación */
-  nav ul {
+  /* Lista de navegación  horizontal*/
+  nav ul.nav {
     padding-left: 0;
     margin: 0;
   }
   
   /* Ítems de lista */
-  nav ul li {
-    list-style: none;
-    margin-right: var(--espaciado-mediano);
-  }
-  
-  /* Enlaces de categorías */
-  nav ul li a {
-    text-decoration: none;
-    color: var(--color-negro-suave);
-    font-size: 21px;
-    font-weight: bold;
-  }
-  
-  nav ul li a:hover {
-    text-decoration:solid;
-    color: var(--color-principal);
+.nav-item {
+  margin-right: var(--espaciado-mediano);
+}
 
+/* Enlaces */
+.nav-link {
+  color: var(--color-negro-suave)!important;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  padding: 0; 
+}
+
+nav .nav-link:hover {
+  color: var(--color-principal)!important;
+}
+
+.nav-link:visited,
+.nav-link:active {
+  color: var(--color-negro-suave)!important;
+  text-decoration: none;
+}
+
+/* Agregado ultimo 
+/* Estilos para menú de categorías en móvil */
+@media (max-width: 768px) {
+  #menuCategorias {
+    display: none;
+    flex-direction: column;
+    gap: var(--espaciado-pequeno);
+    padding: var(--espaciado-mediano);
   }
-  
+
+  #menuCategorias.mostrar {
+    display: flex;
+  }
+
+  /* Opcional: puedes centrar o dar estilo diferente */
+  #menuCategorias.nav-link {
+    font-size: 18px;
+    padding: 0.5rem 0;
+  }
+}
