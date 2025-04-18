@@ -94,6 +94,30 @@ nav .nav-link:hover {
 /* Agregado ultimo 
 /* Estilos para menú de categorías en móvil */
 @media (max-width: 768px) {
+ /*  .icon-container .icon-btn,
+  #mobileSearchToggle  {
+    font-size: 1.5rem;      /* equivale a 24px 
+  }
+
+  .icon-container {
+    gap: 0.5rem;           
+  } 
+  */
+  .actions-container {
+    gap: 0.25rem;
+  }
+  .actions-container .icon-btn {
+    font-size: 1.5rem;
+  }
+
+  .mobile-search {
+    z-index: 1000;
+  }
+  .icon-container {
+    position: relative;
+    z-index: 1001;
+  }
+
   #menuCategorias {
     display: none;
     flex-direction: column;
@@ -110,4 +134,22 @@ nav .nav-link:hover {
     font-size: 18px;
     padding: 0.5rem 0;
   }
+
+  .mobile-search {
+    display: none;
+    position: absolute;
+    top: 55px; /* ajusta según altura de tu header */
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-claro);
+  }
+  
+  /* Mostrar cuando esté activa */
+  .mobile-search.activa {
+    display: block;
+  }
+
+
 }
