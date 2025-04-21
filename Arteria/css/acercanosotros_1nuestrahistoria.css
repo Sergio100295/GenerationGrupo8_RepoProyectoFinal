@@ -9,8 +9,10 @@
 }
 
 .carousel-inner img {
-  height: 50vh; /* Ajusta la altura del carrusel */
-  object-fit: cover; /* Asegura que las imágenes no se deformen */
+  height: 50vh;
+  /* Ajusta la altura del carrusel */
+  object-fit: cover;
+  /* Asegura que las imágenes no se deformen */
 }
 
 /* Contenedor del contenido sobrepuesto */
@@ -25,11 +27,13 @@
   padding: 0 5%;
   transform: translateY(-50%);
   z-index: 2;
-  pointer-events: none; /* Evita que el contenido bloquee los botones del carrusel */
+  pointer-events: none;
+  /* Evita que el contenido bloquee los botones del carrusel */
 }
 
-.contenido-superpuesto > * {
-  pointer-events: auto; /* Permite la interacción con los hijos como el video y el texto */
+.contenido-superpuesto>* {
+  pointer-events: auto;
+  /* Permite la interacción con los hijos como el video y el texto */
 }
 
 /* Estilo del video del logo */
