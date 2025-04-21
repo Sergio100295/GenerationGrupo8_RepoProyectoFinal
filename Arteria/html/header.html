@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arteria</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" >
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" >
+</head>
+
+<body>
+  <!-- Top bar -->
+  <aside class="top-bar">Anuncios</aside>
+
+  <!-- Header principal -->
+  <header class="container py-1">
+    <section class="d-flex justify-content-between align-items-center flex-nowrap flex-md-wrap">
+
+      <!-- Branding -->
+      <a href="#" class="d-flex align-items-center text-decoration-none text-dark mb-3 mb-md-0">
+        <img src="../multi/1.png" alt="Logo" class="brand-logo me-2">
+        <div>
+          <h1 class="h4 m-0">ARTERIA</h1>
+          <p class="m-0 small d-none d-md-block">Conectamos el pulso del arte local</p>
+        </div>
+      </a>
+
+      <!-- Buscador y acciones -->
+      <section class="d-flex align-items-center gap-1 actions-container">
+
+        <!-- Buscador para desktop -->
+        <form class="input-group search-bar d-none d-md-flex" role="search" onsubmit="return false;">
+          <button type="submit" class="input-group-text bg-white border-end-0 border" onclick="buscar()">
+            <i class="bi bi-search"></i>
+          </button>
+          <input type="search" class="form-control border-start-0" placeholder="Buscar arte o artista">
+        </form>
+
+        <!-- Botón lupa para mobile -->
+        <button class="icon-btn d-md-none" id="mobileSearchToggle" aria-label="Buscar">
+          <i class="bi bi-search"></i>
+        </button>
+
+        <!-- Buscador para mobile -->
+        <div class="mobile-search d-md-none" id="mobileSearchBar">
+          <form class="d-flex w-100 px-3 py-2" role="search" onsubmit="return false;">
+            <input type="search" class="form-control" placeholder="Buscar arte o artista">
+            <button type="submit" class="btn btn-link text-dark ms-2" onclick="buscar()">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Íconos de perfil y carrito -->
+        <div class="d-flex gap-1 icon-container">
+          <button class="icon-btn" aria-label="Perfil">
+            <i class="bi bi-person-add"></i>
+          </button>
+          <button class="icon-btn" aria-label="Carrito">
+            <i class="bi bi-bag"></i>
+          </button>
+
+          <!-- Ícono hamburguesa para mobile -->
+          <button class="icon-btn d-md-none" id="menuToggle" aria-label="Menú">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+
+      </section>
+    </section>
+  </header>
+
+  <!-- Barra de navegación por categorías -->
+  <nav class="border-bottom bg-white py-2 mt-3">
+    <div class="container">
+      <ul class="nav nav-underline flex-column flex-md-row gap-3 gap-md-0 justify-content-start" id="menuCategorias">
+        <li class="nav-item"><a class="nav-link" href="#">Pintura</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Escultura</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Fotografía</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Ilustración</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Artesanías</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Arte Textil</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
