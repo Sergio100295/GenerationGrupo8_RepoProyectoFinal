@@ -38,6 +38,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
+  btn.addEventListener('click', function () {
+    const expanded = this.nextElementSibling;
+    const isVisible = expanded.style.display === 'block';
+    expanded.style.display = isVisible ? 'none' : 'block';
+    this.textContent = isVisible ? 'Ver más' : 'Ver menos';
+  });
+});
   
 
 ///------- LÓGICA ANIMACIONES DEL HEADER  --------///
