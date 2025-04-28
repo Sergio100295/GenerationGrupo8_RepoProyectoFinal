@@ -23,7 +23,7 @@
 
       <!-- Branding -->
       <a href="#" class="d-flex align-items-center text-decoration-none text-dark mb-3 mb-md-0">
-        <img src="../img/Logo-Arteria/Logo-Transparente-dark.png" alt="Logo" class="brand-logo me-2">
+        <img src="../img/Logo-Arteria/Logo-transparente-light.png" alt="Logo" class="brand-logo me-2">
         <div>
           <h1 class="h4 m-0">ARTERIA</h1>
           <p class="m-0 small d-none d-md-block">Conectamos el pulso del arte local</p>
@@ -35,7 +35,7 @@
 
         <!-- Buscador para desktop -->
         <form class="input-group search-bar d-none d-md-flex" role="search" onsubmit="return false;">
-          <button type="submit" class="input-group-text bg-white border-end-0 border" onclick="buscar()">
+          <button type="submit" class="input-group-text bg-white border-end-0 border" onclick="buscar()" aria-label="Buscar">
             <i class="bi bi-search"></i>
           </button>
           <input type="search" class="form-control border-start-0" placeholder="Buscar arte o artista">
@@ -50,7 +50,7 @@
         <div class="mobile-search d-md-none" id="mobileSearchBar">
           <form class="d-flex w-100 px-3 py-2" role="search" onsubmit="return false;">
             <input type="search" class="form-control" placeholder="Buscar arte o artista">
-            <button type="submit" class="btn btn-link text-dark ms-2" onclick="buscar()">
+            <button type="submit" class="btn btn-link text-dark ms-2" onclick="buscar()" aria-label="Buscar">
               <i class="bi bi-search"></i>
             </button>
           </form>
