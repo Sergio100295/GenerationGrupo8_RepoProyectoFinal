@@ -1,4 +1,3 @@
-
 ///------- LÓGICA ANIMACIONES DEL HEADER  --------///
 function buscar() {
   const valor = document.querySelector('.search-bar input[type="search"]').value;
@@ -47,8 +46,6 @@ document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
     this.textContent = isVisible ? 'Ver más' : 'Ver menos';
   });
 });
-  
-
 ///------- LÓGICA ANIMACIONES DEL HEADER  --------///
 
 
