@@ -2,6 +2,10 @@
 body {
   font-family: var(--fuente-parrafo);
   background-color: var(--color-claro);
+  background-image: url(../img/Inicio-Registro/Imagen-Registro.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-size: var(--font-size-base);
   margin: 0;
   padding: 0;
@@ -9,7 +13,7 @@ body {
 
 /* Formulario principal */
 .formulario {
-  max-width: 350px;
+  max-width: 330px;
   margin: var(--espaciado-grande) auto;
   background: #fff;
   padding: var(--espaciado-grande);

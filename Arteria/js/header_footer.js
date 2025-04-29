@@ -1,23 +1,27 @@
 // Cargar header
-fetch('/Arteria/html/header.html')
+fetch('../html/header.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('header-container').innerHTML = data;
+    animacionHeader()
   });
+  
 
 // Cargar footer
-fetch('/Arteria/html/footer.html')
+fetch('../html/footer.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('footer-container').innerHTML = data;
   });
+
+  ///------- LÓGICA ANIMACIONES DEL HEADER  --------///
 
   function buscar() {
     const valor = document.querySelector('.search-bar input[type="search"]').value;
     console.log("Buscando:", valor);
   }
   
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function animacionHeader() {
     const toggle = document.getElementById('menuToggle');
     const menu = document.getElementById('menuCategorias');
     const searchToggle = document.getElementById('mobileSearchToggle');
@@ -60,3 +64,4 @@ fetch('/Arteria/html/footer.html')
     });
   });
     
+///------- LÓGICA ANIMACIONES DEL HEADER  --------///
