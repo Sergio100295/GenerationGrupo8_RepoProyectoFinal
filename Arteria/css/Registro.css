@@ -11,6 +11,7 @@ body {
   padding: 0;
 }
 
+/* RESPONSIVE */
 body::before {
   content: "";
   background-image: url(../img/Inicio-Registro/Imagen-Registro.jpg);
