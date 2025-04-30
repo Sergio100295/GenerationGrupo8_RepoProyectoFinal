@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente-parrafo);
+}
+
+body {
+    padding: var(--espaciado-grande);
+    background: var(--color-claro);
+}
+
+.contenedor-obras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--espaciado-mediano);
+}
+
+.caja-obra {
+    background: white;
+    border: 1px solid var(--color-gris);
+    border-radius: var(--radio-borde);
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    transition: transform 0.2s;
+}
+
+.caja-obra:hover {
+    transform: scale(1.02);
+}
+
+.caja-obra img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.texto-obra {
+    padding: var(--espaciado-mediano);
+}
+
+.texto-obra h3 {
+    font-family: var(--fuente-titulo);
+    font-size: var(--font-size-subtitulo);
+    margin-bottom: var(--espaciado-pequeno);
+}
+
+.texto-obra .precio-obra {
+    color: var(--color-principal);
+    font-weight: bold;
+    margin-top: var(--espaciado-pequeno);
+}
