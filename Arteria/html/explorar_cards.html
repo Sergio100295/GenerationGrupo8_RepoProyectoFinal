@@ -3,42 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" >
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header_footer.css">
+    <link rel="stylesheet" href="../css/explorar_cards.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" >
+
   <title>Explorar</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/explorar_cards.css">
+  
 </head>
 
 <body>
+  <div id="header-container"></div>
+  
+  
+  <!-- MENU LATERAL -->
+
+  <div class="Posicion">
+
+      <section class="menu-lateral">
+        <ul class="menu flex-column">
+          <li class="menu-item">
+            <a class="menu-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="#">Link</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="#">Link</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link disabled" href="#">Link</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link disabled" href="#">Link</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link disabled" href="#">Link</a>
+          </li>
+          
+        </ul>
+      </section>
+
 
 <!--CARDS PRODUCTOS-->
 
-    <!--CARD 1-->
     <div class="contenedor-obras">
-        <div class="caja-obra">
-          <img src="obra1.jpg" alt="Título de la obra">
+
+      <!--CARD 1-->
+      <a href="#" class="tarjeta-link">
+        <div class="caja-obra" data-categoria="artesania">
+          <img src="../img/Obras-explorar/pexels-yankrukov-6611188.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
             <p class="precio-obra">$1,643</p>
           </div>
         </div>
-
+      </a> 
     <!--CARD 2-->
    
-        <div class="caja-obra">
-          <img src="obra1.jpg" alt="Título de la obra">
+      <a href="#" class="tarjeta-link">
+        <div class="caja-obra" data-categoria="pintura">
+          <img src="../img/Obras-explorar/pexels-chetanvlad-2892606.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
             <p class="precio-obra">$1,643</p>
           </div>
         </div>
+      </a> 
     
     
     <!--CARD 3-->
    
         <div class="caja-obra">
-          <img src="obra1.jpg" alt="Título de la obra">
+          <img src="../img/Obras-explorar/pexels-olgakalinina-10668768.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
@@ -50,7 +92,7 @@
     <!--CARD 4-->
    
         <div class="caja-obra">
-          <img src="obra1.jpg" alt="Título de la obra">
+          <img src="../img/Obras-explorar/pexels-katrenur-70589429-10245591.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
@@ -62,7 +104,7 @@
     <!--CARD 5-->
     
         <div class="caja-obra">
-          <img src="obra1.jpg" alt="Título de la obra">
+          <img src="../img/Obras-explorar/pexels-olgakalinina-11354196.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
@@ -74,7 +116,7 @@
     <!--CARD 6-->
     
         <div class="caja-obra">
-          <img src="obra1.jpg" alt="Título de la obra">
+          <img src="../img/Obras-explorar/pexels-tivasee-17374727-30259434.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
@@ -85,7 +127,7 @@
     <!--CARD 7-->
     
         <div class="caja-obra">
-          <img src="../img/Obras-explorar/pexels-chetanvlad-2892606.jpg" alt="Título de la obra">
+          <img src="../img/Obras-explorar/pexels-tr-ng-nguy-n-thanh-2150411289-31380571.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
@@ -96,7 +138,7 @@
     <!--CARD 8-->
    
         <div class="caja-obra">
-          <img src="../img/Obras-explorar/pexels-paul-blenkhorn-sensoryarthouse-1340564-13281747.jpg" alt="Título de la obra">
+          <img src="../img/Obras-explorar/pexels-safa-adnan-563570768-16820437.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
@@ -118,7 +160,7 @@
     <!--CARD 10-->
    
         <div class="caja-obra">
-          <img src="../img/Obras-explorar/pexels-steve-16415282.jpg" alt="Título de la obra">
+          <img src="../img/Obras-explorar/pexels-tr-ng-nguy-n-thanh-2150411289-31835584.jpg" alt="Título de la obra">
           <div class="texto-obra">
             <h3>Lua + Juliette</h3>
             <p>Chloe Kaemmerer<br>France</p>
@@ -127,12 +169,12 @@
         </div>
     
 
-    
-    
-
+      </div>  
+    </div>
    
-
-    <!-- Puedes repetir el div.card por cada obra -->
-  </div>
+    <div id="footer-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/header_footer.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
