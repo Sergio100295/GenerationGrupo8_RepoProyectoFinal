@@ -22,7 +22,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--espaciado-mediano);
-    flex: 1;
+    justify-items: center;  /* Centra las tarjetas si hay mucho espacio */
 }
 
 .caja-obra {
@@ -67,6 +67,11 @@
     color: inherit;
     display: block;
   }
+
+  /* Tarjetas ocultas */
+.tarjeta-link[style*="display: none"] {
+    display: none !important;
+}
 
 /* MENU LATERAL*/
 

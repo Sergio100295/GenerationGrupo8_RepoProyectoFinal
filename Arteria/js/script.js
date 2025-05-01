@@ -1,23 +1,35 @@
-
-//LÓGICA CATEGORIAS BUSQUEDA NAV//
-
-document.querySelectorAll('menuCategorias').forEach(boton => {
-  boton.addEventListener('click', e => {
+// LÓGICA CATEGORIAS BUSQUEDA NAV
+function activarFiltroCategorias() {
+  // Usamos delegación de eventos para manejar elementos dinámicos
+  document.addEventListener('click', function(e) {
+    const boton = e.target.closest('#menuCategorias .nav-link');
+    if (!boton) return;
+    
     e.preventDefault();
 
     const filtro = boton.getAttribute('data-filtro');
-    const tarjetas = document.querySelectorAll('.tarjeta-link');
+    const obras = document.querySelectorAll('.contenedor-obras .caja-obra');
 
-    tarjetas.forEach(tarjeta => {
-      const categoria = tarjeta.querySelector('.caja-obra').getAttribute('data-categoria');
-
+    obras.forEach(obra => {
+      const categoria = obra.getAttribute('data-categoria');
+      const tarjetaLink = obra.closest('.tarjeta-link');
+      
       if (filtro === 'todos' || categoria === filtro) {
-        tarjeta.style.display = 'block'; // Mostrar el <a> completo
+        tarjetaLink.style.display = 'block';
       } else {
-        tarjeta.style.display = 'none'; // Ocultar el <a> completo
+        tarjetaLink.style.display = 'none';
       }
     });
-  });
-});
 
-//LÓGICA CATEGORIAS  BUSQUEDA NAV//
+    // Actualizar estado activo
+    document.querySelectorAll('#menuCategorias .nav-link').forEach(link => {
+      link.classList.remove('active');
+    });
+    boton.classList.add('active');
+  });
+}
+
+// Ejecutar después de que el header se haya cargado
+document.addEventListener('DOMContentLoaded', function() {
+  activarFiltroCategorias();
+});
