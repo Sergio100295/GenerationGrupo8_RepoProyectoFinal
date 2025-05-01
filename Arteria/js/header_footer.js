@@ -4,7 +4,25 @@ fetch('../html/header.html')
   .then(data => {
     document.getElementById('header-container').innerHTML = data;
     inicializarHeader();
-    activarFiltroCategorias(); // Si necesitas esta función
+    activarFiltroCategorias();
+   
+    //  Manejo de clicks en enlaces del header
+    document.addEventListener('click', function(e) {
+      // Verifica si se hizo clic en un enlace dentro del header
+      const link = e.target.closest('#header-container a[href]');
+      if (!link) return;
+      
+      // Permite el comportamiento normal para:
+      // 1. Enlaces externos (http/https)
+      // 2. Anclas dentro de la página (#seccion)
+      if (link.href.startsWith('http') || link.getAttribute('href').startsWith('#')) {
+        return;
+      }
+      
+      // Para enlaces internos:
+      e.preventDefault();
+      window.location.href = link.getAttribute('href');
+    });
   })
   .catch(error => console.error('Error loading header:', error));
 
@@ -16,8 +34,11 @@ fetch('../html/footer.html')
   })
   .catch(error => console.error('Error loading footer:', error));
 
+  
+
+// Función para inicializar el header
 function inicializarHeader() {
-  // Usar delegación de eventos para elementos dinámicos
+  // Delegación de eventos para el menú hamburguesa
   document.addEventListener('click', function(e) {
     // Menú hamburguesa
     if (e.target.closest('#menuToggle')) {
@@ -50,4 +71,9 @@ function inicializarHeader() {
       if (searchBar) searchBar.classList.remove('activa');
     }
   });
+}
+
+// Función para activar filtro de categorías
+function activarFiltroCategorias() {
+
 }
