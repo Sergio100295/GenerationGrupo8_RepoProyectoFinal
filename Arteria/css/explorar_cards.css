@@ -4,16 +4,25 @@
     padding: 0;
     font-family: var(--fuente-parrafo);
 }
-
-body {
-    padding: var(--espaciado-grande);
-    background: var(--color-claro);
+/* CARDS */
+.Posicion{
+    margin-top: 50px;
+    background-color: white;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 1rem;
 }
 
-.contenedor-obras {
+.menu-lateral{
+    width: 200px;
+}
+
+.contenedor-obras { 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--espaciado-mediano);
+    flex: 1;
 }
 
 .caja-obra {
@@ -23,6 +32,7 @@ body {
     overflow: hidden;
     box-shadow: var(--sombra-suave);
     transition: transform 0.2s;
+    padding: 1rem;
 }
 
 .caja-obra:hover {
@@ -31,7 +41,8 @@ body {
 
 .caja-obra img {
     width: 100%;
-    height: auto;
+    aspect-ratio: 3 / 5; 
+    object-fit: cover;
     display: block;
 }
 
@@ -50,3 +61,66 @@ body {
     font-weight: bold;
     margin-top: var(--espaciado-pequeno);
 }
+
+.tarjeta-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+/* MENU LATERAL*/
+
+.menu-lateral {
+    background-color: var(--color-claro);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-suave);
+    padding: var(--espaciado-mediano);
+  }
+  
+  .menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-pequeno);
+  }
+  
+  .menu-item {
+    margin-bottom: var(--espaciado-pequeno);
+  }
+  
+  .menu-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--color-negro-suave);
+    text-decoration: none;
+    font-size: var(--font-size-parrafo);
+    border-radius: var(--radio-borde);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .menu-link:hover {
+    background-color: var(--color-gris);
+    color: var(--color-principal);
+  }
+  
+  /* .menu-link.active {
+    background-color: var(--color-principal);
+    color: white;
+    font-weight: bold;
+  } */
+
+
+@media screen and (max-width: 768px) {
+    .Posicion {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .menu-lateral {
+      width: 100%;
+    }
+  
+    .contenedor-obras {
+      grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+    }
+  }

@@ -1,51 +1,23 @@
-///------- LÓGICA ANIMACIONES DEL HEADER  --------///
-function buscar() {
-  const valor = document.querySelector('.search-bar input[type="search"]').value;
-  console.log("Buscando:", valor);
-}
 
-document.addEventListener('DOMContentLoaded', function () {
-  const toggle = document.getElementById('menuToggle');
-  const menu = document.getElementById('menuCategorias');
-  const searchToggle = document.getElementById('mobileSearchToggle');
-  const searchBar = document.getElementById('mobileSearchBar');
+//LÓGICA CATEGORIAS BUSQUEDA NAV//
 
-  toggle.addEventListener('click', () => {
-    // Alterna el menú
-    menu.classList.toggle('mostrar');
-    // Cierra la barra de búsqueda si está abierta
-    searchBar.classList.remove('activa');
-  });
+document.querySelectorAll('menuCategorias').forEach(boton => {
+  boton.addEventListener('click', e => {
+    e.preventDefault();
 
-  searchToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    // Alterna la barra de búsqueda
-    searchBar.classList.toggle('activa');
-    // Cierra el menú si está abierto
-    menu.classList.remove('mostrar');
-  });
+    const filtro = boton.getAttribute('data-filtro');
+    const tarjetas = document.querySelectorAll('.tarjeta-link');
 
-  // Evita que clicks dentro de la barra de búsqueda la cierren inmediatamente
-  searchBar.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
+    tarjetas.forEach(tarjeta => {
+      const categoria = tarjeta.querySelector('.caja-obra').getAttribute('data-categoria');
 
-  // Cierra la barra de búsqueda si se hace clic fuera de ella
-  document.addEventListener('click', () => {
-    if (searchBar.classList.contains('activa')) {
-      searchBar.classList.remove('activa');
-    }
+      if (filtro === 'todos' || categoria === filtro) {
+        tarjeta.style.display = 'block'; // Mostrar el <a> completo
+      } else {
+        tarjeta.style.display = 'none'; // Ocultar el <a> completo
+      }
+    });
   });
 });
 
-document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
-  btn.addEventListener('click', function () {
-    const expanded = this.nextElementSibling;
-    const isVisible = expanded.style.display === 'block';
-    expanded.style.display = isVisible ? 'none' : 'block';
-    this.textContent = isVisible ? 'Ver más' : 'Ver menos';
-  });
-});
-///------- LÓGICA ANIMACIONES DEL HEADER  --------///
-
-
+//LÓGICA CATEGORIAS  BUSQUEDA NAV//
