@@ -1,16 +1,17 @@
   .home-carousel-wrapper .carousel-inner img {
-    height: 50vh;
+    height: 60vh;
     object-fit: cover;
    
   }
 
-  .home-carousel-wrapper {
-    padding-bottom: 50px; /* Ajusta el valor según cuánto sobresale el botón */
-}
   .home-carousel-wrapper .carousel-item {
     height: 60vh;
     max-height: 400px;
     position: relative;
+  }
+  
+  .carousel-inner { /* se pone este padding al contenedor padre del boton, para que se pueda visualizar*/
+  padding-bottom:90px;
   }
 
   .home-carousel-img {
@@ -18,7 +19,13 @@
     object-fit: cover;
     object-position: center;
   }
-  
+
+  .carousel-indicators{
+    bottom: 50px !important; /* Sube los indicadores desde el fondo del carrusel */
+    margin-bottom: 0; /* Elimina margen inferior para evitar conflicto */
+    z-index: 2; /* Asegura que estén debajo del botón */
+  }
+
   .home-carousel-caption {
     position: absolute;
     left: 0; right: 0;
@@ -55,7 +62,7 @@
     position: absolute;
     z-index: 3;
     left: 50%;
-    bottom: -30px; /* Hace que sobresalga la mitad del botón */
+    bottom: -90px; /* Hace que sobresalga la mitad del botón */
     transform: translateX(-50%);
     background: #222;
     color: #fff;
@@ -65,6 +72,8 @@
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    text-decoration: none;
+
   }
 
   .home-categories-nav {
@@ -81,12 +90,12 @@
     gap: 16px;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 30;
     background: transparent !important;
   }
   
   .home-categories-item {
-    box-shadow: 0 2px 8pxvar(--color-negro-suave);
+
     border-radius: 6px;
     transition: transform 0.15s;
   }
@@ -105,7 +114,6 @@
     text-decoration: none;
     cursor: pointer;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
-    box-shadow: 0 1px 4px var(--color-negro-suave);
   }
   
   .home-categories-link:hover,
@@ -116,77 +124,58 @@
   }
   
   @media (max-width: 768px) {
+
     .home-carousel-wrapper {
-      max-width: 100%;
-      margin: 0;
+      position: relative;
     }
-    .home-carousel-img {
-      height: 40vh;
-    }
-    .home-carousel-caption-content {
-      margin-bottom: 50px;
-    }
+
     .home-carousel-btn {
-      bottom: 15px;
+      bottom: -130px; /* Ajuste fino para móvil */
+      padding: 12px 24px;
+    }
+    
+    .carousel-inner {
+      padding-bottom: 70px; /* Más espacio en móvil */
+      margin-bottom: 0; /* Elimina margen conflictivo */
     }
 
     .home-categories-list {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 8px;
-    }
-    .home-categories-item {
-      width: 100%;
-      margin: 0;
-    }
-    .home-categories-link {
-      width: 100%;
-      text-align: center;
-      padding: 12px 0;
-      font-size: 1.05rem;
-    }
-
-
-
-    main {
       display: flex;
-      flex-direction: row;
-    }
-    .home-categories-nav {
-      order: 1;
-      margin-top: 0;
-      margin-bottom: 12px;
-      padding: 0 0.5rem;
-      background: var(--color-claro);
-    }
-    .home-carousel-wrapper {
-      order: 2;
-    }
-    .home-carousel-caption-outer {
-      order: 3;
-      margin-top: 0.5rem;
-    }
-  
-    /* Scroll horizontal para categorías */
-    .home-categories-list {
-      flex-wrap: nowrap;
-      overflow-x: auto;
+      flex-direction: row;      /* Fila horizontal */
+      flex-wrap: nowrap;        /* No se envuelven */
+      overflow-x: auto;         /* Scroll horizontal */
       gap: 8px;
       padding: 8px 0;
       background: var(--color-claro);
-    }
-    .home-categories-item {
-      flex: 0 0 auto;
-    }
-    .home-categories-link {
-      white-space: nowrap;
-      padding: 10px 18px;
-      font-size: 1rem;
+      scrollbar-width: none;
     }
     .home-categories-list::-webkit-scrollbar {
       display: none;
     }
+    .home-categories-item {
+      flex: 0 0 auto;
+      width: auto;
+      margin: 0;
+    }
+    .home-categories-link {
+      white-space: nowrap;
+      width: auto;
+      min-width: 100px;
+      text-align: center;
+      padding: 10px 18px;
+      font-size: 1rem;
+    }
   
+    /* Carrusel y botón */
+    .home-carousel-img {
+      height: 40vh;
+    }
+    .home-carousel-caption {
+      position: absolute !important;
+      bottom: 80px !important; /* Ajusta según necesidad */
+    }
+     
+
   
   }
    
