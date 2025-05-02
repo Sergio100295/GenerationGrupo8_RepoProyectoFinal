@@ -1,5 +1,6 @@
 // LÓGICA CATEGORIAS BUSQUEDA NAV
 function activarFiltroCategorias() {
+  
   // Usamos delegación de eventos para manejar elementos dinámicos
   document.addEventListener('click', function(e) {
     const boton = e.target.closest('#menuCategorias .nav-link');
