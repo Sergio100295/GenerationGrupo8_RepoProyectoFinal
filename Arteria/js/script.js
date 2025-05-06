@@ -1,50 +1,38 @@
-///------- LÓGICA ANIMACIONES DEL HEADER  --------///
-function buscar() {
-  const valor = document.querySelector('.search-bar input[type="search"]').value;
-  console.log("Buscando:", valor);
+// LÓGICA CATEGORIAS BUSQUEDA NAV
+function activarFiltroCategorias() {
+  
+  // Usamos delegación de eventos para manejar elementos dinámicos
+  document.addEventListener('click', function(e) {
+    const boton = e.target.closest('#menuCategorias .nav-link');
+    if (!boton) return;
+    
+    e.preventDefault();
+
+    const filtro = boton.getAttribute('data-filtro');
+    const obras = document.querySelectorAll('.contenedor-obras .caja-obra');
+
+    obras.forEach(obra => {
+      const categoria = obra.getAttribute('data-categoria');
+      const tarjetaLink = obra.closest('.tarjeta-link');
+      
+      if (filtro === 'todos' || categoria === filtro) {
+        tarjetaLink.style.display = 'block';
+      } else {
+        tarjetaLink.style.display = 'none';
+      }
+    });
+
+    // Actualizar estado activo
+    document.querySelectorAll('#menuCategorias .nav-link').forEach(link => {
+      link.classList.remove('active');
+    });
+    boton.classList.add('active');
+  });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const toggle = document.getElementById('menuToggle');
-  const menu = document.getElementById('menuCategorias');
-  const searchToggle = document.getElementById('mobileSearchToggle');
-  const searchBar = document.getElementById('mobileSearchBar');
-
-  toggle.addEventListener('click', () => {
-    // Alterna el menú
-    menu.classList.toggle('mostrar');
-    // Cierra la barra de búsqueda si está abierta
-    searchBar.classList.remove('activa');
-  });
-
-  searchToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    // Alterna la barra de búsqueda
-    searchBar.classList.toggle('activa');
-    // Cierra el menú si está abierto
-    menu.classList.remove('mostrar');
-  });
-
-  // Evita que clicks dentro de la barra de búsqueda la cierren inmediatamente
-  searchBar.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-
-  // Cierra la barra de búsqueda si se hace clic fuera de ella
-  document.addEventListener('click', () => {
-    if (searchBar.classList.contains('activa')) {
-      searchBar.classList.remove('activa');
-    }
-  });
-});
-
-document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
-  btn.addEventListener('click', function () {
-    const expanded = this.nextElementSibling;
-    const isVisible = expanded.style.display === 'block';
-    expanded.style.display = isVisible ? 'none' : 'block';
-    this.textContent = isVisible ? 'Ver más' : 'Ver menos';
-  });
+// Ejecutar después de que el header se haya cargado
+document.addEventListener('DOMContentLoaded', function() {
+  activarFiltroCategorias();
 });
 ///------- LÓGICA ANIMACIONES DEL HEADER  --------///
 
