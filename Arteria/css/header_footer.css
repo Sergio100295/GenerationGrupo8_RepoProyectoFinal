@@ -83,44 +83,6 @@ nav .nav-link:hover {
   text-decoration: none;
 }
 
-
-/* Estilo boton usuario*/
-.dropdown-toggle::after {
-  display: none !important;
-}
-.dropdown-menu {
-  background-color: var(--color-claro);
-  border-radius: var(--radio-borde);
-  box-shadow: var(--sombra-suave);
-  padding: 0.5rem 0;
-  min-width: 12rem;
-  font-family: var(--fuente-parrafo);
-  font-size: var(--font-size-parrafo);
-}
-
-.dropdown-menu-end {
-  right: 0;
-  left: auto;
-}
-
-/* Estilo para cada ítem del menú */
-.dropdown-item {
-  color: var(--color-negro-suave);
-  padding: var(--espaciado-pequeno) var(--espaciado-mediano);
-  transition: background-color 0.2s ease;
-}
-
-.dropdown-item:hover {
-  background-color: var(--color-gris);
-  color: var(--color-principal-oscuro);
-}
-
-/* Ocultar flecha del dropdown-toggle */
-.dropdown-toggle::after {
-  display: none !important;
-}
-
-
 /* Footer */
 .footer {
   background-color: var(--color-negro-suave);

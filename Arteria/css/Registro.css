@@ -32,7 +32,7 @@ body::before {
   max-width: 330px;
   margin: var(--espaciado-grande) auto;
   background: #fff;
-  padding: var(--espaciado-grande);
+  padding: var(--espaciado-mediano);
   border-radius: var(--radio-borde);
   box-shadow: var(--sombra-suave);
   position: relative;
