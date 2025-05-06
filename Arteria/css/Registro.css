@@ -11,12 +11,28 @@ body {
   padding: 0;
 }
 
+/* RESPONSIVE */
+body::before {
+  content: "";
+  background-image: url(../img/Inicio-Registro/Imagen-Registro.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.7;
+}
+
 /* Formulario principal */
 .formulario {
   max-width: 330px;
   margin: var(--espaciado-grande) auto;
   background: #fff;
-  padding: var(--espaciado-grande);
+  padding: var(--espaciado-mediano);
   border-radius: var(--radio-borde);
   box-shadow: var(--sombra-suave);
   position: relative;

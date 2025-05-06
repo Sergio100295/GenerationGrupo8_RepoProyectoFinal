@@ -83,6 +83,84 @@ nav .nav-link:hover {
   text-decoration: none;
 }
 
+
+/* Contenedor del menú desplegable */
+.profile-menu {
+  display: none;
+  position: absolute;
+  top: 100px; /* Ajusta según el tamaño de tu header */
+  right: 0;
+  min-width: 220px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 8px 0;
+  z-index: 1000;
+  transition: opacity 0.2s;
+}
+
+/* Mostrar el menú cuando esté activo */
+.profile-menu.open {
+  display: block;
+}
+
+/* Lista del menú */
+.profile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ítems del menú */
+.profile-menu li {
+  border: none;
+}
+
+/* Separador visual */
+.profile-menu hr {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 8px 0;
+}
+
+/* Enlaces del menú */
+.profile-menu a {
+  display: block;
+  padding: 12px 24px;
+  color: #222;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: inherit;
+  transition: background 0.18s, font-weight 0.18s;
+  cursor: pointer;
+}
+
+/* Efecto hover */
+.profile-menu a:hover {
+  background: #f5f5f5;
+  font-weight: 500;
+}
+
+/* Opcional: para que el menú no se cierre accidentalmente */
+.profile-dropdown {
+  position: relative;
+}
+
+/* Opcional: animación de aparición */
+.profile-menu.open {
+  animation: dropdownFade 0.18s ease;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-10px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
+
+
+
+
+
 /* Footer */
 .footer {
   background-color: var(--color-negro-suave);
