@@ -44,6 +44,14 @@ form.addEventListener('submit', function (event) {
   alert('Producto agregado correctamente');
 });
  
+
+
+
+
+
+
+
+
  
 //Funcion new card
  
