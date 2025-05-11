@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" >
 </head>
+
 <body class="admin-bg">
   <header class="admin-header">
     <a href="index.html" class="admin-logo-container d-flex align-items-center text-decoration-none text-dark">
@@ -24,39 +25,51 @@
   <main class="admin-main-content d-flex justify-content-center align-items-start">
     <div class="admin-form-wrapper shadow p-4 rounded-4 bg-white mt-5">
       <h2 class="admin-title mb-4 text-center">Agregar Producto</h2>
+
       <form id="admin-product-form" class="admin-product-form">
+        <!-- Artista -->
         <div class="admin-form-group mb-3">
-          <label for="admin-product-name" class="admin-form-label form-label">Nombre del Producto</label>
-          <input type="text"  class="admin-form-control form-control"  id="admin-product-name" placeholder="Ej: Lua + Juliette Painting" required/>
+          <label for="admin-artist-name" class="admin-form-label form-label">Nombre del Artista</label>
+          <input type="text" class="admin-form-control form-control" id="admin-artist-name"
+                 placeholder="Ej: Juliette Brown" required />
         </div>
+
+        <!-- Nombre de la obra -->
         <div class="admin-form-group mb-3">
-          <label for="admin-product-img" class="admin-form-label form-label">URL de la Imagen</label>
-          <input
-            type="url"
-            class="admin-form-control form-control"
-            id="admin-product-img"
-            placeholder="https://..."
-            required
-          />
+          <label for="admin-art-name" class="admin-form-label form-label">Nombre de la Obra</label>
+          <input type="text" class="admin-form-control form-control" id="admin-art-name"
+                 placeholder="Ej: Luas Rising" required />
         </div>
+
+        <!-- Imagen -->
         <div class="admin-form-group mb-3">
-          <label for="admin-product-description" class="admin-form-label form-label">Descripción</label>
-          <textarea
-            class="admin-form-control form-control"
-            id="admin-product-description"
-            rows="3"
-            placeholder="Ej: Pintura, óleo sobre madera"
-            required
-          ></textarea>
+          <label for="admin-url-img" class="admin-form-label form-label">URL de la Imagen</label>
+          <input type="url" class="admin-form-control form-control" id="admin-url-img"
+                 placeholder="https://..." required />
         </div>
+
+        <!-- Precio -->
+        <div class="admin-form-group mb-3">
+          <label for="admin-product-price" class="admin-form-label form-label">Precio (COP)</label>
+          <input type="number" step="0.01" min="0" class="admin-form-control form-control" id="admin-product-price"
+                 placeholder="Ej: 125000.00" required />
+        </div>
+
+        <!-- Descripción -->
+        <div class="admin-form-group mb-4">
+          <label for="admin-art-description" class="admin-form-label form-label">Descripción</label>
+          <textarea class="admin-form-control form-control" id="admin-art-description" rows="3"
+                    placeholder="Ej: Pintura, óleo sobre madera" required></textarea>
+        </div>
+
         <button type="submit" class="admin-btn-primary btn btn-primary">Agregar</button>
       </form>
     </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-  <script src="../js/script.js"></script>
   <script src="../js/admin.js"></script>
 </body>
+</html>
 </html>
 

@@ -25,22 +25,19 @@
         <section class="menu-lateral">
           <ul class="menu flex-column">
             <li class="menu-item">
-              <a class="menu-link active" aria-current="page" href="#">Active</a>
+              <a class="menu-link active" aria-current="page" href="./index.html">Inicio</a>
             </li>
             <li class="menu-item">
-              <a class="menu-link" href="#">Link</a>
+              <a class="menu-link" href="#">Precio</a>
             </li>
             <li class="menu-item">
-              <a class="menu-link" href="#">Link</a>
+              <a class="menu-link" href="#">Tamaño</a>
             </li>
             <li class="menu-item">
-              <a class="menu-link disabled" href="#">Link</a>
+              <a class="menu-link disabled" href="#">Técnica</a>
             </li>
             <li class="menu-item">
-              <a class="menu-link disabled" href="#">Link</a>
-            </li>
-            <li class="menu-item">
-              <a class="menu-link disabled" href="#">Link</a>
+              <a class="menu-link disabled" href="#">Artista</a>
             </li>
             
           </ul>
@@ -50,28 +47,33 @@
 
 <!--CARDS PRODUCTOS-->
 
-    <div class="contenedor-obras">
+    <div class="contenedor-obras" id="contenedor-obras">
 
       <!--CARD 1-->
-      <a href="#" class="tarjeta-link">
+      <a href="producto.html?id=adonis" class="tarjeta-link">
         <div class="caja-obra" data-categoria="artesania">
-          <img src="../img/Obras-explorar/pexels-yankrukov-6611188.jpg" alt="Título de la obra">
+          <!--f_auto= como WebP -- q_auto = peso y calidad -->
+          <!--loading="lazy" = No se cargan hasta que el usuario llegue a ellas-->
+          <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746556654/ceramica-rostro-azul_mdtiij.jpg" alt="Título de la obra">
           <div class="texto-obra">
-            <h3>Lua + Juliette</h3>
-            <p>Chloe Kaemmerer<br>France</p>
-            <p class="precio-obra">$1,643</p>
+            <h3>Adonis</h3>
+            <p>Luisa Ovalle</p>
+            <p class="precio-obra">$150.000</p>
+            <!-- <p class="description-card">Alguna descripción para la obra</p> -->
           </div>
         </div>
       </a> 
+
     <!--CARD 2-->
    
-      <a href="#" class="tarjeta-link">
-        <div class="caja-obra" data-categoria="pintura">
-          <img src="../img/Obras-explorar/pexels-chetanvlad-2892606.jpg" alt="Título de la obra">
+      <a href="producto.html?id=sentipensar" class="tarjeta-link">
+        <div class="caja-obra" data-categoria="ilustracion">
+          <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746568965/pintura-oleo-colores_uzuohr.jpg" alt="Título de la obra">
           <div class="texto-obra">
-            <h3>Lua + Juliette</h3>
-            <p>Chloe Kaemmerer<br>France</p>
-            <p class="precio-obra">$1,643</p>
+            <h3>Sentipensar</h3>
+            <p>Julian Ramirez</p>
+            <p class="precio-obra">$220.000</p>
+            <!-- <p class="description-card">Alguna descripción para la obra</p> -->
           </div>
         </div>
       </a> 
@@ -79,13 +81,14 @@
     
     <!--CARD 3-->
       
-      <a href="#" class="tarjeta-link">  
+      <a href="producto.html?id=lastresmarias" class="tarjeta-link">  
         <div class="caja-obra" data-categoria="artetextil">
-          <img src="../img/Obras-explorar/pexels-olgakalinina-10668768.jpg" alt="Título de la obra">
+          <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746556293/bordado-hilo-amigas_aibiid.jpg" alt="Título de la obra">
           <div class="texto-obra">
-            <h3>Lua + Juliette</h3>
-            <p>Chloe Kaemmerer<br>France</p>
-            <p class="precio-obra">$1,643</p>
+            <h3>Las tres Marías</h3>
+            <p>Rosa Aguilar</p>
+            <p class="precio-obra">$50.000</p>
+            <!-- <p class="description-card">Alguna descripción para la obra</p> -->
           </div>
         </div>
       </a>
@@ -93,13 +96,14 @@
 
     <!--CARD 4-->
       
-      <a href="#" class="tarjeta-link">
-        <div class="caja-obra" data-categoria="artetextil">
-          <img src="../img/Obras-explorar/pexels-katrenur-70589429-10245591.jpg" alt="Título de la obra">
+      <a href="producto.html?id=atardecercafe" class="tarjeta-link">
+        <div class="caja-obra" data-categoria="pintura">
+          <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746630056/pintura-oleo-cafe_fknoii.jpg"  alt="Título de la obra">
           <div class="texto-obra">
-            <h3>Lua + Juliette</h3>
-            <p>Chloe Kaemmerer<br>France</p>
-            <p class="precio-obra">$1,643</p>
+            <h3>Atardecer café</h3>
+            <p>Carlos Rodríguez</p>
+            <p class="precio-obra">$80.000</p>
+            <!-- <p class="description-card">Alguna descripción para la obra</p> -->
           </div>
         </div>
       </a>
@@ -107,80 +111,85 @@
     
     <!--CARD 5-->
     
-      <a href="#" class="tarjeta-link">
-        <div class="caja-obra" data-categoria="artetextil">
-          <img src="../img/Obras-explorar/pexels-olgakalinina-11354196.jpg" alt="Título de la obra">
+      <a href="producto.html?id=pasion" class="tarjeta-link">
+        <div class="caja-obra" data-categoria="fotografia">
+          <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746628010/pintura-oleo-rojoYNaranja_i10nxg.jpg" alt="Título de la obra">
           <div class="texto-obra">
-            <h3>Lua + Juliette</h3>
-            <p>Chloe Kaemmerer<br>France</p>
-            <p class="precio-obra">$1,643</p>
+            <h3>Pasión</h3>
+            <p>Laura Dominguez</p>
+            <p class="precio-obra">$1.150.000</p>
+            <!-- <p class="description-card">Alguna descripción para la obra</p> -->
           </div>
         </div>
       </a>
 
        <!--CARD 6-->
-    <a href="#" class="tarjeta-link">
+    <a href="producto.html?id=floressiendo" class="tarjeta-link">
       <div class="caja-obra" data-categoria="artesania">
-      <img src="../img/Obras-explorar/pexels-tivasee-17374727-30259434.jpg" alt="Título de la obra">
+      <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746556655/ceramica-jarron-flores_j2iamf.jpg" alt="Título de la obra">
       <div class="texto-obra">
-        <h3>Lua + Juliette</h3>
-        <p>Chloe Kaemmerer<br>France</p>
-        <p class="precio-obra">$1,643</p>
+        <h3>Flores Siendo</h3>
+        <p>Camila López</p>
+        <p class="precio-obra">$250.000</p>
+        <!-- <p class="description-card">Alguna descripción para la obra</p> -->
       </div>
     </div>
   </a>
 
 <!--CARD 7-->
-  <a href="#" class="tarjeta-link">
+  <a href="producto.html?id=floreciendo" class="tarjeta-link">
       <div class="caja-obra" data-categoria="escultura">
-      <img src="../img/Obras-explorar/pexels-tr-ng-nguy-n-thanh-2150411289-31380571.jpg" alt="Título de la obra">
+      <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746568187/ceramica-matera_wvwshk.jpg" alt="Título de la obra">
       <div class="texto-obra">
-        <h3>Lua + Juliette</h3>
-        <p>Chloe Kaemmerer<br>France</p>
-        <p class="precio-obra">$1,643</p>
+        <h3>Floreciendo</h3>
+        <p>Camila López</p>
+        <p class="precio-obra">$319.500</p>
+        <!-- <p class="description-card">Alguna descripción para la obra</p> -->
       </div>
     </div>
   </a>
 
 <!--CARD 8-->
 
-  <a href="#" class="tarjeta-link">
+  <a href="producto.html?id=te" class="tarjeta-link">
     <div class="caja-obra" data-categoria="artesania">
-      <img src="../img/Obras-explorar/pexels-safa-adnan-563570768-16820437.jpg" alt="Título de la obra">
+      <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746557084/ceramica-pocillo-azul_zokqpw.jpg" alt="Título de la obra">
       <div class="texto-obra">
-        <h3>Lua + Juliette</h3>
-        <p>Chloe Kaemmerer<br>France</p>
-        <p class="precio-obra">$1,643</p>
+        <h3>Té</h3>
+        <p>Ramiro Alvarado</p>
+        <p class="precio-obra">$120.000</p>
+        <!-- <p class="description-card">Alguna descripción para la obra</p> -->
       </div>
     </div>
   </a>  
 
 <!--CARD 9-->
 
-  <a href="#" class="tarjeta-link">
-    <div class="caja-obra" data-categoria="pintura">
-      <img src="../img/Obras-explorar/pexels-sandriany-15062718.jpg" alt="Título de la obra">
+  <a href="producto.html?id=luisajulieta" class="tarjeta-link">
+    <div class="caja-obra" data-categoria="artetextil">
+      <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746630066/bordado-medias_nl2x6d.jpg" alt="Título de la obra">
       <div class="texto-obra">
-        <h3>Lua + Juliette</h3>
-        <p>Chloe Kaemmerer<br>France</p>
-        <p class="precio-obra">$1,643</p>
+        <h3>Luisa + Julieta</h3>
+        <p>Luz Torres</p>
+        <p class="precio-obra">$100.000</p>
+        <!-- <p class="description-card">Alguna descripción para la obra</p> -->
       </div>
     </div>
   </a>
 
 <!--CARD 10-->
 
-  <a href="#" class="tarjeta-link">
-    <div class="caja-obra" data-categoria="artesania">
-      <img src="../img/Obras-explorar/pexels-tr-ng-nguy-n-thanh-2150411289-31835584.jpg" alt="Título de la obra">
+  <a href="producto.html?id=macrameblanco" class="tarjeta-link">
+    <div class="caja-obra" data-categoria="artetextil">
+      <img src="https://res.cloudinary.com/dmkgdtntx/image/upload/f_auto,q_auto/v1746630066/tejido-blanco-pared_mlptbs.jpg" alt="Título de la obra">
       <div class="texto-obra">
-        <h3>Lua + Juliette</h3>
-        <p>Chloe Kaemmerer<br>France</p>
-        <p class="precio-obra">$1,643</p>
+        <h3>Macramé blanco</h3>
+        <p>Mónica Lizeth</p>
+        <p class="precio-obra">$154.000</p>
+        <!-- <p class="description-card">Alguna descripción para la obra</p> -->
       </div>
     </div>
   </a>
-
 
 
       </div>  
@@ -189,8 +198,12 @@
     <div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/header_footer.js"></script>
-    <script src="../js/script.js"></script>
+     <script type="module" src="../js/header_footer.js"></script>
+     <script src="../js/script.js"></script>
+    <script src="../js/carrito.js"></script>
+    
+    <!-- <script src="../js/admin.js"></script> -->
+    <script src="../js/admin_cards.js"></script> 
     
     
 </body>
