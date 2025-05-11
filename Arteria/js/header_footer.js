@@ -1,10 +1,13 @@
-// Cargar header
+// ---------- CARGAR HEADER ----------
+import { initProfileMenu } from './navbar-profile-menu.js';
+
 fetch('../html/header.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('header-container').innerHTML = data;
     inicializarHeader();
     activarFiltroCategorias();
+    initProfileMenu();  
    
     //  Manejo de clicks en enlaces del header
     document.addEventListener('click', function(e) {
@@ -26,7 +29,7 @@ fetch('../html/header.html')
   })
   .catch(error => console.error('Error loading header:', error));
 
-// Cargar footer
+// ---------- CARGAR FOOTER ----------
 fetch('../html/footer.html')
   .then(response => response.text())
   .then(data => {
@@ -36,38 +39,46 @@ fetch('../html/footer.html')
 
   
 
-// Función para inicializar el header
+// ---------- INICIALIZAR HEADER ----------
 function inicializarHeader() {
-  // Delegación de eventos para el menú hamburguesa
-  document.addEventListener('click', function(e) {
-    // Menú hamburguesa
-    if (e.target.closest('#menuToggle')) {
+  // Delegación para hamburguesa y búsqueda móvil
+  document.addEventListener('click', function (e) {
+    // Hamburguesa
+    if (e.target.closest('#hdrMenuToggle')) {
       e.preventDefault();
-      const menu = document.getElementById('menuCategorias');
+      const menu = document.getElementById('hdrMenuCategorias');
       if (menu) menu.classList.toggle('mostrar');
-      const searchBar = document.getElementById('mobileSearchBar');
+
+      const searchBar = document.getElementById('hdrMobileSearchBar');
       if (searchBar) searchBar.classList.remove('activa');
     }
 
-    // Búsqueda móvil
-    if (e.target.closest('#mobileSearchToggle')) {
+    // Lupa móvil
+    if (e.target.closest('#hdrMobileSearchToggle')) {
       e.preventDefault();
-      const searchBar = document.getElementById('mobileSearchBar');
+      const searchBar = document.getElementById('hdrMobileSearchBar');
       if (searchBar) searchBar.classList.toggle('activa');
-      const menu = document.getElementById('menuCategorias');
+
+      const menu = document.getElementById('hdrMenuCategorias');
       if (menu) menu.classList.remove('mostrar');
     }
   });
 
   // Cerrar menús al hacer clic fuera
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('#menuToggle') && !e.target.closest('#menuCategorias')) {
-      const menu = document.getElementById('menuCategorias');
+  document.addEventListener('click', function (e) {
+    if (
+      !e.target.closest('#hdrMenuToggle') &&
+      !e.target.closest('#hdrMenuCategorias')
+    ) {
+      const menu = document.getElementById('hdrMenuCategorias');
       if (menu) menu.classList.remove('mostrar');
     }
-    
-    if (!e.target.closest('#mobileSearchToggle') && !e.target.closest('#mobileSearchBar')) {
-      const searchBar = document.getElementById('mobileSearchBar');
+
+    if (
+      !e.target.closest('#hdrMobileSearchToggle') &&
+      !e.target.closest('#hdrMobileSearchBar')
+    ) {
+      const searchBar = document.getElementById('hdrMobileSearchBar');
       if (searchBar) searchBar.classList.remove('activa');
     }
   });

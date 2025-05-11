@@ -1,59 +1,84 @@
-// Recuperar la lista de productos desde localStorage o inicializarla vacía
+// ------------------------------------------------------------------
+//  ADMIN – Gestión de productos
+// ------------------------------------------------------------------
+
 let productList = JSON.parse(localStorage.getItem('productList')) || [];
 
-// Referencia al formulario con nuevo ID
 const form = document.getElementById('admin-product-form');
 
-// Evento al enviar el formulario
 form.addEventListener('submit', function (event) {
-  event.preventDefault(); // Evita el comportamiento por defecto del formulario
-
-  // Captura de los valores ingresados con nuevos IDs
-  const name = document.getElementById('admin-product-name').value.trim();
-  const img = document.getElementById('admin-product-img').value.trim();
-  const description = document.getElementById('admin-product-description').value.trim();
-
-  // Validación básica
-  if (name && img && description) {
-    // Creación del objeto producto
-    const newProduct = {
-      name: name,
-      img: img,
-      description: description,
-    };
-
-    // Agregar el nuevo producto a la lista
-    productList.push(newProduct);
-
-    // Guardar la lista actualizada en localStorage
-    localStorage.setItem('productList', JSON.stringify(productList));
-
-    // Mostrar la lista actualizada en la consola en formato JSON
-    console.log(JSON.stringify(productList, null, 2));
-
-    // Limpiar el formulario
-    form.reset();
-  } else {
-    alert('Por favor, completa todos los campos.');
-  }
-});
-
-/*
-// Leer productos del localStorage al cargar la página
-const savedProducts = localStorage.getItem('products');
-const products = savedProducts ? JSON.parse(savedProducts) : [];
-document.getElementById('productForm').addEventListener('submit', function(event) {
   event.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const img = document.getElementById('img').value.trim();
-  const description = document.getElementById('description').value.trim();
-  const newProduct = { name, img, description };
-  products.push(newProduct);
-  // Guardar en localStorage
-  localStorage.setItem('products', JSON.stringify(products));
+
+  // Captura de valores
+  const artistName = document.getElementById('admin-artist-name').value.trim();
+  const artName = document.getElementById('admin-art-name').value.trim();
+  const urlImg = document.getElementById('admin-url-img').value.trim();
+  const price = parseFloat(document.getElementById('admin-product-price').value);
+  const artDescription = document.getElementById('admin-art-description').value.trim();
+
+  // Validación
+  if (!artistName || !artName || !urlImg || isNaN(price) || !artDescription) {
+    alert('Por favor, completa todos los campos.');
+    return;
+  }
+
+  // Objeto con nombres definitivos
+  const newProductStorage = {
+    artistName,
+    artName,
+    urlImg,
+    price,
+    artDescription
+  };
+
+  productList.push(newProductStorage);
+  localStorage.setItem('productList', JSON.stringify(productList));
+
+  // debug opcional
   console.clear();
-  console.log("Lista de productos en el catálogo:");
-  console.log(JSON.stringify(products, null, 2));
-  this.reset();
+  console.log('Producto agregado:', newProductStorage);
+  console.log('Lista completa:', productList);
+
+  form.reset();
+  
+  alert('Producto agregado correctamente');
 });
-*/
+ 
+
+
+
+
+
+
+
+
+ 
+//Funcion new card
+ 
+// function addCard(product){
+ 
+//      const container = document.getElementById('contenedor-obras');
+ 
+//      const card = document.createElement('a');
+//      card.className = 'tarjeta-link';
+//      card.onclick = viewCard;
+//      card.innerHTML = `
+//          <div class="caja-obra" data-categoria="ilustracion">
+//              <img src="${product.urlImg}" alt="${product.artName}">
+//              <div class="texto-obra">
+//              <h3>${product.artName}</h3>
+//              <p>${product.artistName}</p>
+//              <p class="precio-obra">${product.price}</p>
+//              <p class="description-card">${product.artDescription}</p>
+ 
+//              </div>
+//          </div>
+//          `;
+ 
+//      container.appendChild(card);
+ 
+//  }
+ 
+//  function viewCard(){
+//   console.log("Hola soy view Card");
+// }

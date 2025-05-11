@@ -1,7 +1,7 @@
-/* ======= Estilos base ======= */
+/*=======Estilos base=======*/
 
 /* Header */
-.top-bar {
+.hdr-top-bar {
   background-color: var(--color-negro-suave);
   color: var(--color-claro);
   text-align: center;
@@ -10,17 +10,17 @@
   font-weight: bolder;
 }
 
-.brand-logo {
+.hdr-logo {
   width: 75px;
 }
 
-.search-bar {
+.hdr-search {
   max-width: 325px;
   font-family: var(--fuente-parrafo);
   font-size: var(--font-size-parrafo);
 }
 
-.icon-btn {
+.hdr-icon {
   background: none;
   border: none;
   font-size: 35px;
@@ -48,6 +48,7 @@ header p {
   color: var(--color-principal);
 }
 
+/* Barra de navegación principal */
 nav {
   border-bottom: 1px solid var(--color-claro);
   background-color: var(--color-claro);
@@ -65,7 +66,7 @@ nav ul.nav {
 }
 
 .nav-link {
-  color: var(--color-negro-suave)!important;
+  color: var(--color-negro-suave) !important;
   text-decoration: none;
   font-size: 21px;
   font-weight: bold;
@@ -74,86 +75,108 @@ nav ul.nav {
 }
 
 nav .nav-link:hover {
-  color: var(--color-principal)!important;
+  color: var(--color-principal) !important;
 }
 
 .nav-link:visited,
 .nav-link:active {
-  color: var(--color-negro-suave)!important;
+  color: var(--color-negro-suave) !important;
   text-decoration: none;
 }
 
+/* Contenedor relativo */
+.profile-dropdown {
+  position: relative;
+  /* ← deja solo una vez */
+}
 
-/* Contenedor del menú desplegable */
+/* ---------- Menú desplegable de perfil ---------- */
+
+/* 1. Contenedor relativo: lo necesitas una sola vez en todo el CSS */
+.profile-dropdown {
+  position: relative;
+}
+
+/* 2. Caja y posición del menú */
 .profile-menu {
   display: none;
+  /* se muestra con .open            */
   position: absolute;
-  top: 100px; /* Ajusta según el tamaño de tu header */
+  top: calc(100% + 8px);
+  /* 8 px debajo del icono           */
   right: 0;
   min-width: 220px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  background: var(--color-claro);
+  /* blanco de tu tema               */
+  border-radius: var(--radio-borde);
+  /* mismo radio que usas en tarjetas*/
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
   padding: 8px 0;
   z-index: 1000;
-  transition: opacity 0.2s;
+  overflow: hidden;
 }
 
-/* Mostrar el menú cuando esté activo */
 .profile-menu.open {
   display: block;
+  animation: dropdownFade 0.18s ease;
 }
 
-/* Lista del menú */
+@keyframes dropdownFade {
+  from { opacity:0; transform:translateY(-6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* 3. Estructura interior (lista, separadores, enlaces) */
 .profile-menu ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Ítems del menú */
 .profile-menu li {
   border: none;
 }
 
-/* Separador visual */
 .profile-menu hr {
   border: none;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--color-gris);
   margin: 8px 0;
 }
 
-/* Enlaces del menú */
 .profile-menu a {
   display: block;
   padding: 12px 24px;
-  color: #222;
+  /* usa espaciados existentes       */
+  color: var(--color-negro-suave);
   text-decoration: none;
-  font-size: 16px;
-  font-family: inherit;
-  transition: background 0.18s, font-weight 0.18s;
+  font-size: var(--font-size-parrafo);
+  transition: background .18s, font-weight .18s;
   cursor: pointer;
 }
 
-/* Efecto hover */
 .profile-menu a:hover {
-  background: #f5f5f5;
-  font-weight: 500;
+  background: var(--color-claro);
+   font-weight: 500;
 }
 
-/* Opcional: para que el menú no se cierre accidentalmente */
 .profile-dropdown {
   position: relative;
 }
 
-/* Opcional: animación de aparición */
 .profile-menu.open {
   animation: dropdownFade 0.18s ease;
 }
 
 @keyframes dropdownFade {
-  from { opacity: 0; transform: translateY(-10px);}
-  to   { opacity: 1; transform: translateY(0);}
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
