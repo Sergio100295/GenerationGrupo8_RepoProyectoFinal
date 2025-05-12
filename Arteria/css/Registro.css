@@ -29,7 +29,7 @@ body::before {
 
 /* Formulario principal */
 .formulario {
-  max-width: 330px;
+  max-width: 23.9rem;
   margin: var(--espaciado-grande) auto;
   background: #fff;
   padding: var(--espaciado-mediano);
@@ -40,6 +40,7 @@ body::before {
 
 /* Botón cerrar (la X) */
 .cerrar {
+  
   position: absolute;
   top: var(--espaciado-pequeno);
   right: var(--espaciado-pequeno);
@@ -49,8 +50,13 @@ body::before {
   cursor: pointer;
 }
 
+.cerrar a {
+  color: var(--color-principal-oscuro);
+}
+
 /* Título */
-h2 {
+.titulo-resgistro {
+  margin: 1.05rem;
   font-family: var(--fuente-titulo);
   font-size: var(--font-size-titulo);
   color: var(--color-negro-suave);
@@ -147,13 +153,6 @@ form input {
   text-decoration: underline;
 }
 
-.texto-promos {
-  font-size: 1rem;
-  margin-top: var(--espaciado-pequeno);
-  color: var(--color-negro-suave);
-  font-size: 0.9rem;
-}
-
 /* Enlace login */
 .ya-tiene-cuenta {
   font-size: var(--font-size-parrafo);
@@ -165,4 +164,33 @@ form input {
   color: var(--color-principal);
   text-decoration: underline;
   font-weight: bold;
+}
+
+.mensaje-Registro {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 330px;
+  z-index: 1000;
+}
+
+/*Colores alertas*/
+.alert-warning {
+  background-color: var(--color-claro) !important;
+  border-color: var(--color-gris) !important;
+  color: var(--color-negro-suave) !important;
+}
+
+.alert-danger {
+  background-color: #fbeaea !important; 
+  border-color: var(--color-principal) !important;
+  color: var(--color-principal-oscuro) !important;
+}
+
+.alert-success {
+  background-color: #e0f5ec !important; 
+  border-color: #9cd3b2 !important;    
+  color: #155c3d !important;           
 }

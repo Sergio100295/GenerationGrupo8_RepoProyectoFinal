@@ -10,20 +10,40 @@ document.getElementById("registro-form").addEventListener("submit", function(eve
   const contraseña = form.contraseña.value;
   const acepto = form.acepto.checked;
 
+   //Alertas
+  function mostrarAlerta(mensaje, tipo = "danger") { 
+  const contenedor = document.querySelector(".mensaje-Registro");
+  contenedor.innerHTML = `
+    <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+      ${mensaje}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `;
+
+  setTimeout(() => {
+    const alert = contenedor.querySelector('.alert');
+    if (alert) {
+      const bsAlert = new bootstrap.Alert(alert);
+      bsAlert.close();
+    }
+  }, 4000);
+}
+
+
   // Validaciones de campos vacíos
   if (!nombre || !apellido || !correo || !celular || !contraseña) {
-    alert("Por favor completa todos los campos del formulario.");
+    mostrarAlerta("Por favor completa todos los campos del formulario.", "warning");
     return;
   }
 
    // Validar celular
   if (celular.length !== 10) {
-    alert("El número de celular debe tener exactamente 10 dígitos.");
+    mostrarAlerta("El número de celular debe tener exactamente 10 dígitos.", "warning");
     return;
   }
 
   if (!acepto) {
-    alert("Debes aceptar los términos y la política de privacidad para continuar.");
+    mostrarAlerta("Debes aceptar los términos y la política de privacidad para continuar.", "danger");
     return;
   }
 
@@ -32,14 +52,14 @@ document.getElementById("registro-form").addEventListener("submit", function(eve
   // Validación de contraseña segura
   const contraseñaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
   if (!contraseñaValida.test(contraseña)) {
-    alert("La contraseña debe tener al menos 6 caracteres, incluir una mayúscula, una minúscula y un número.");
+    mostrarAlerta("La contraseña debe tener al menos 6 caracteres, incluir una mayúscula, una minúscula y un número.", "warning");
     return;
   }
 
   const confirmar = form.confirmar.value;
 
     if (contraseña !== confirmar) {
-    alert("Las contraseñas no coinciden.");
+    mostrarAlerta("Las contraseñas no coinciden.", "danger");
     return;
     }
 
@@ -49,9 +69,10 @@ document.getElementById("registro-form").addEventListener("submit", function(eve
   // Verificar si ya existe un usuario con el mismo correo
   const usuarioExistente = usuarios.find(user => user.correo === correo);
   if (usuarioExistente) {
-    alert("Ya existe un usuario con este correo electrónico.");
+    mostrarAlerta("Ya existe un usuario con este correo electrónico.", "danger");
     return;
   }
+
 
   // Crear un nuevo usuario
   const usuario = {
@@ -68,7 +89,7 @@ document.getElementById("registro-form").addEventListener("submit", function(eve
   // Guardar el array de usuarios actualizado en localStorage
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-  alert("Registro exitoso");
+  mostrarAlerta("Registro exitoso", "success");
   form.reset();
 });
 
