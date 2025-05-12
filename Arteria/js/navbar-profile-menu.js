@@ -1,4 +1,4 @@
-export function initProfileMenu (loggedIn = true) {
+export function initProfileMenu (loggedIn = false) {
     // Plantillas…
     const menuLoggedIn = `
     <ul>

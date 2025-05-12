@@ -71,10 +71,33 @@ form input {
 
 /* Ayuda contraseña */
 .nota-contra {
-  font-size: 0.8rem;
+  margin-top: 0.05rem;
+  font-size: 0.7rem;
   color: var(--color-negro-suave);
-  margin-bottom: var(--espaciado-mediano);
+  margin-bottom: var(--espaciado-pequeno);
 }
+
+.campo-contrasena {
+  position: relative;
+  margin-bottom: var(--espaciado-pequeno);
+}
+
+.campo-contrasena input {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 
 /* Botón de enviar */
 .boton-enviar {
@@ -95,10 +118,40 @@ form input {
 
 /* Texto de abajo */
 .info {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-family: var(--fuente-parrafo);
   color: var(--color-negro-suave);
-  line-height: 1.4;
+  line-height: 1.6;
   margin-top: var(--espaciado-pequeno);
+  padding: var(--espaciado-mediano);
+}
+
+.info label {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-weight: 590;
+  font-family: var(--fuente-parrafo);
+}
+
+.info input[type="checkbox"] {
+  margin-top: 1rem;
+  accent-color: var(--color-principal);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.info a {
+  color: var(--color-principal);
+  text-decoration: underline;
+}
+
+.texto-promos {
+  font-size: 1rem;
+  margin-top: var(--espaciado-pequeno);
+  color: var(--color-negro-suave);
+  font-size: 0.9rem;
 }
 
 /* Enlace login */
