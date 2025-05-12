@@ -184,3 +184,51 @@ body {
 #btn-carrito-ayuda:hover {
     background-color: var(--color-principal);  /* Un tono de azul más oscuro al pasar el ratón */
 }
+/* === Estilos responsivos para tablets y móviles === */
+@media (max-width: 992px) {
+  .carrito-contenedor {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .carrito-productos {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .contenedor-principal {
+    width: 100%;
+    align-items: center;
+  }
+
+  .contenedor-resumen,
+  .contenedor-confianza,
+  .contenedor-ayuda {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-imagen {
+    height: 45px;
+  }
+
+  .logo-texto {
+    font-size: 1.4rem;
+  }
+
+  .carrito-contenedor {
+    padding: 15px;
+    gap: 20px;
+  }
+
+  #btn-carrito-vacio,
+  #btn-comprar,
+  #btn-carrito-ayuda {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+}
