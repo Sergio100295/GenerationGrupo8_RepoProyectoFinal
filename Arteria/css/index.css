@@ -1,181 +1,181 @@
-  .home-carousel-wrapper .carousel-inner img {
-    height: 60vh;
-    object-fit: cover;
-   
-  }
+  /* ======= Carrusel ======= */
 
-  .home-carousel-wrapper .carousel-item {
-    height: 60vh;
-    max-height: 400px;
-    position: relative;
-  }
-  
-  .carousel-inner { /* se pone este padding al contenedor padre del boton, para que se pueda visualizar*/
+/* 1. Contenedor relativo para el botón */
+.home-carousel-wrapper {
+  position: relative;
+ }
+
+ .carousel-inner { /* se pone este padding al contenedor padre del boton, para que se pueda visualizar*/
   padding-bottom:90px;
   }
-
-  .home-carousel-img {
-    height: 60vh;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .carousel-indicators{
-    bottom: 50px !important; /* Sube los indicadores desde el fondo del carrusel */
-    margin-bottom: 0; /* Elimina margen inferior para evitar conflicto */
-    z-index: 2; /* Asegura que estén debajo del botón */
-  }
-
-  .home-carousel-caption {
-    position: absolute;
-    left: 0; right: 0;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 60px; /* Espacio para el botón */
-    z-index: 2;
-  }
   
-  .home-carousel-caption-content {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .home-carousel-title {
-    font-family: var(--fuente-titulo);
-    font-size: var(--font-size-titulo);
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .home-carousel-text {
-    font-family: var(--fuente-parrafo);
-    font-size: var(--font-size-subtitulo);
-    color: #fff;
-  }
-  
-  .home-carousel-btn {
-    background: var(--color-negro-suave);
-    position: absolute;
-    z-index: 3;
-    left: 50%;
-    bottom: -90px; /* Hace que sobresalga la mitad del botón */
-    transform: translateX(-50%);
-    background: #222;
-    color: #fff;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    text-decoration: none;
-
-  }
-
-  .home-categories-nav {
-    margin: 40px auto 0 auto;
-    max-width: 1100px;
-    padding: 0 16px;
-    background: transparent !important;
-  }
-  
-  .home-categories-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    list-style: none;
-    padding: 0;
-    margin: 30;
-    background: transparent !important;
-  }
-  
-  .home-categories-item {
-
-    border-radius: 6px;
-    transition: transform 0.15s;
-  }
-  .home-categories-item:hover {
-    transform: translateY(-2px) scale(1.03);
-  }
-  
-  .home-categories-link {
-    display: inline-block;
-    background: #fff;
-    border: 1.5px solid #ccc;
-    border-radius: 6px;
-    padding: 10px 24px;
-    font-size: 1rem;
-    color: #222;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-  }
-  
-  .home-categories-link:hover,
-  .home-categories-link:focus {
-    background: #222;
-    color: #fff;
-    border-color: #222;
-  }
-  
-  @media (max-width: 768px) {
-
-    .home-carousel-wrapper {
-      position: relative;
-    }
-
-    .home-carousel-btn {
-      bottom: -130px; /* Ajuste fino para móvil */
-      padding: 12px 24px;
-    }
-    
-    .carousel-inner {
-      padding-bottom: 70px; /* Más espacio en móvil */
-      margin-bottom: 0; /* Elimina margen conflictivo */
-    }
-
-    .home-categories-list {
-      display: flex;
-      flex-direction: row;      /* Fila horizontal */
-      flex-wrap: nowrap;        /* No se envuelven */
-      overflow-x: auto;         /* Scroll horizontal */
-      gap: 8px;
-      padding: 8px 0;
-      background: var(--color-claro);
-      scrollbar-width: none;
-    }
-    .home-categories-list::-webkit-scrollbar {
-      display: none;
-    }
-    .home-categories-item {
-      flex: 0 0 auto;
-      width: auto;
-      margin: 0;
-    }
-    .home-categories-link {
-      white-space: nowrap;
-      width: auto;
-      min-width: 100px;
-      text-align: center;
-      padding: 10px 18px;
-      font-size: 1rem;
-    }
-  
-    /* Carrusel y botón */
-    .home-carousel-img {
-      height: 40vh;
-    }
-    .home-carousel-caption {
-      position: absolute !important;
-      bottom: 80px !important; /* Ajusta según necesidad */
-    }
-     
-
-  
-  }
    
+
+/* 2. Imágenes del carrusel */
+.home-carousel-wrapper .carousel-inner img,
+.home-carousel-img {
+  height: 60vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 3. Slides */
+.home-carousel-wrapper .carousel-item {
+  height: 60vh;
+  max-height: 400px;
+  position: relative;
+}
+
+/* 4. Indicadores del carrusel */
+.carousel-indicators {
+  bottom: 50px !important;  /* sube los indicadores */
+  margin-bottom: 0;
+  z-index: 2;
+}
+
+/* 5. Caption y contenido */
+.home-carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 80px;      /* espacio para el botón */
+  z-index: 2;
+}
+
+.home-carousel-caption-content {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.home-carousel-title {
+  font-family: var(--fuente-titulo);
+  font-size: var(--font-size-titulo);
+  color: #fff;
+  font-weight: bold;
+}
+
+.home-carousel-text {
+  font-family: var(--fuente-parrafo);
+  font-size: var(--font-size-subtitulo);
+  color: #fff;
+}
+
+/* 6. Botón “Comienza a explorar” */
+.home-carousel-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 0;                      /* ancla al pie del slide */
+  transform: translate(-50%, 30%);/* sobresale la mitad de su alto */
+  z-index: 10;                     /* encima de indicadores */
+  background: var(--color-negro-suave);
+  color: var(--color-claro);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+/* ======= Navegación de categorías ======= */
+
+.home-categories-nav {
+  margin: 40px auto 0;
+  max-width: 1100px;
+  padding: 0 16px;
+  background: transparent !important;
+}
+
+.home-categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+  background: transparent !important;
+}
+
+.home-categories-item {
+  border-radius: 6px;
+  transition: transform 0.15s;
+}
+.home-categories-item:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.home-categories-link {
+  display: inline-block;
+  background: #fff;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  color: #222;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.home-categories-link:hover,
+.home-categories-link:focus {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+
+/* ======= Responsive (≤ 768px) ======= */
+@media (max-width: 768px) {
+  /* El wrapper mantiene posición relativa */
+  .home-carousel-wrapper {
+    position: relative;
+  }
+
+  /* Quita cualquier padding-bottom/margin-bottom previo */
+  .carousel-inner {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  /* Ajuste del botón en móvil */
+  .home-carousel-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    /*bottom: 0;*/
+    transform: translate(-50%, 30%);
+  }
+
+  /* Categorías: scroll horizontal */
+  .home-categories-list {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px 0;
+    background: var(--color-claro);
+    scrollbar-width: none;
+  }
+  .home-categories-list::-webkit-scrollbar {
+    display: none;
+  }
+  .home-categories-item {
+    flex: 0 0 auto;
+    width: auto;
+    margin: 0;
+  }
+  .home-categories-link {
+    white-space: nowrap;
+    width: auto;
+    min-width: 100px;
+    text-align: center;
+    padding: 10px 18px;
+    font-size: 1rem;
+  }
+}
