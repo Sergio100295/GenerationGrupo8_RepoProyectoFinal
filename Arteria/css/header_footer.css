@@ -84,11 +84,6 @@ nav .nav-link:hover {
   text-decoration: none;
 }
 
-/* Contenedor relativo */
-.profile-dropdown {
-  position: relative;
-  /* ← deja solo una vez */
-}
 
 /* ---------- Menú desplegable de perfil ---------- */
 
@@ -100,20 +95,16 @@ nav .nav-link:hover {
 /* 2. Caja y posición del menú */
 .profile-menu {
   display: none;
-  /* se muestra con .open            */
   position: absolute;
   top: calc(100% + 8px);
-  /* 8 px debajo del icono           */
   right: 0;
   min-width: 220px;
   background: var(--color-claro);
-  /* blanco de tu tema               */
   border-radius: var(--radio-borde);
-  /* mismo radio que usas en tarjetas*/
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
   padding: 8px 0;
-  z-index: 1000;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .profile-menu.open {
@@ -146,7 +137,6 @@ nav .nav-link:hover {
 .profile-menu a {
   display: block;
   padding: 12px 24px;
-  /* usa espaciados existentes       */
   color: var(--color-negro-suave);
   text-decoration: none;
   font-size: var(--font-size-parrafo);
@@ -157,10 +147,6 @@ nav .nav-link:hover {
 .profile-menu a:hover {
   background: var(--color-claro);
    font-weight: 500;
-}
-
-.profile-dropdown {
-  position: relative;
 }
 
 .profile-menu.open {
@@ -178,11 +164,6 @@ nav .nav-link:hover {
     transform: translateY(0);
   }
 }
-
-
-
-
-
 
 /* Footer */
 .footer {
@@ -316,57 +297,10 @@ nav .nav-link:hover {
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
+  } 
 }
 
 /* ======= Media Queries ======= */
-
-@media (max-width: 992px) {
-/* Contexto para posicionar la búsqueda */
-.hdr-actions {
-  position: relative;
-}
-
-/* Iconos siempre sobre la búsqueda */
-.hdr-icons {
-  position: relative;
-  z-index: 20;
-}
-
-/* Barra de búsqueda: absolutamente debajo, full-width */
-.hdr-mobile-search {
-  position: absolute;
-  top: 100%;              /* justo al pie de hdr-actions */
-  left: 0;
-  width: 100%;
-  display: none;          /* oculta por defecto */
-  background: var(--color-claro);
-  padding: 0.5rem 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-bottom: 1px solid var(--color-gris);
-  box-sizing: border-box;
-  z-index: 10;            /* por debajo de los iconos */
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-.hdr-mobile-search.activa {
-  display: flex;
-}
-
-/* Esconde el buscador desktop */
-.hdr-search,
-.hdr-search.d-md-flex {
-  display: none !important;
-}
-}
-
-
-
-
-
-
-
 
   /* Footer responsivo */
 
@@ -374,16 +308,27 @@ nav .nav-link:hover {
      /* Contenedor del header debe ser relativo */
   header { position: relative; }
 
+    /* Oculta el buscador desktop */
+  .hdr-search {
+    display: none !important;
+  }
   /* Iconos siempre encima */
-  .hdr-icons {
-    position: relative;
-    z-index: 20;
+    .hdr-actions {
+    flex-wrap: wrap;
+    align-items: center;
+    
   }
 
+  .hdr-icons {
+    order: 1;
+    flex: 0 0 auto;
+    z-index: 2;
+  }
+  
   /* Barra móvil: absolute bajo todo el header, full-width */
   .hdr-mobile-search {
     position: absolute;
-    top: 100%;
+    top: calc(100% - 8px);
     left: 0;
     width: 100%;
     display: none;
@@ -392,17 +337,27 @@ nav .nav-link:hover {
     box-sizing: border-box;
     border-bottom: 1px solid var(--color-gris);
     z-index: 10;
-    display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  .hdr-mobile-search.activa {
-    display: flex;
+ 
+  /* Búsqueda móvil, full-width, oculta por defecto */
+  #hdrMobileSearchBar {
+    order: 3;
+    flex: 1 1 100%;
+    width: 100%;
+    display: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 
-  /* Oculta el buscador desktop */
-  .hdr-search {
-    display: none !important;
+  /* Al hacer toggle: mostrar */
+  #hdrMobileSearchBar.activa {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--color-claro);
+    border-bottom: 1px solid var(--color-gris);
   }
 
   /* Categorías ocultas hasta toggle */

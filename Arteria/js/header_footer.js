@@ -41,45 +41,38 @@ fetch('../html/footer.html')
 
 // ---------- INICIALIZAR HEADER ----------
 function inicializarHeader() {
-  // Delegación para hamburguesa y búsqueda móvil
+  const menuCategorias  = document.getElementById('hdrMenuCategorias');
+  const searchBar       = document.getElementById('hdrMobileSearchBar');
+
   document.addEventListener('click', function (e) {
-    // Hamburguesa
+    // 1) Hamburguesa
     if (e.target.closest('#hdrMenuToggle')) {
       e.preventDefault();
-      const menu = document.getElementById('hdrMenuCategorias');
-      if (menu) menu.classList.toggle('mostrar');
-
-      const searchBar = document.getElementById('hdrMobileSearchBar');
-      if (searchBar) searchBar.classList.remove('activa');
+      menuCategorias.classList.toggle('mostrar');
+      searchBar.classList.remove('activa');
+      return;
     }
 
-    // Lupa móvil
+    // 2) Lupa móvil
     if (e.target.closest('#hdrMobileSearchToggle')) {
       e.preventDefault();
-      const searchBar = document.getElementById('hdrMobileSearchBar');
-      if (searchBar) searchBar.classList.toggle('activa');
-
-      const menu = document.getElementById('hdrMenuCategorias');
-      if (menu) menu.classList.remove('mostrar');
-    }
-  });
-
-  // Cerrar menús al hacer clic fuera
-  document.addEventListener('click', function (e) {
-    if (
-      !e.target.closest('#hdrMenuToggle') &&
-      !e.target.closest('#hdrMenuCategorias')
-    ) {
-      const menu = document.getElementById('hdrMenuCategorias');
-      if (menu) menu.classList.remove('mostrar');
+      searchBar.classList.toggle('activa');
+      menuCategorias.classList.remove('mostrar');
+      return;
     }
 
+    // 3) Clic fuera → cierro ambos
     if (
-      !e.target.closest('#hdrMobileSearchToggle') &&
-      !e.target.closest('#hdrMobileSearchBar')
+      !e.target.closest('#hdrMenuCategorias') &&
+      menuCategorias.classList.contains('mostrar')
     ) {
-      const searchBar = document.getElementById('hdrMobileSearchBar');
-      if (searchBar) searchBar.classList.remove('activa');
+      menuCategorias.classList.remove('mostrar');
+    }
+    if (
+      !e.target.closest('#hdrMobileSearchBar') &&
+      searchBar.classList.contains('activa')
+    ) {
+      searchBar.classList.remove('activa');
     }
   });
 }
@@ -88,3 +81,23 @@ function inicializarHeader() {
 function activarFiltroCategorias() {
 
 }
+
+
+
+// Función que a futuro va a hacer que el ícono de la lupa realmente dispare la búsqueda
+/* const mobileForm  = document.getElementById('mobile-search-form');
+const mobileInput = document.getElementById('mobile-search-input');
+
+mobileForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const query = mobileInput.value.trim();
+  if (!query) return;
+
+   → aquí  se va a llamar a la API / base de datos /  para filtrar el catálogo…
+   ejemplo de fetch:
+   fetch(`/api/search?q=${encodeURIComponent(query)}`)
+  / .then(res => res.json())
+    .then(renderResultados);
+
+  console.log('Disparar búsqueda con:', query);
+}); */
