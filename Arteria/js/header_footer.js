@@ -41,41 +41,57 @@ fetch('../html/footer.html')
 
 // ---------- INICIALIZAR HEADER ----------
 function inicializarHeader() {
-  const menuCategorias  = document.getElementById('hdrMenuCategorias');
-  const searchBar       = document.getElementById('hdrMobileSearchBar');
+  const menuCat      = document.getElementById('hdrMenuCategorias');
+  const searchBar    = document.getElementById('hdrMobileSearchBar');
+  const profileBtn   = document.getElementById('hdrProfileBtn');
+  const profileMenu  = document.getElementById('hdrProfileMenu');
+
+  function closeAll() {
+    menuCat.classList.remove('mostrar');
+    searchBar.classList.remove('activa');
+    profileMenu.classList.remove('open');
+  }
 
   document.addEventListener('click', function (e) {
-    // 1) Hamburguesa
-    if (e.target.closest('#hdrMenuToggle')) {
-      e.preventDefault();
-      menuCategorias.classList.toggle('mostrar');
-      searchBar.classList.remove('activa');
+    const isProfileBtn = !!e.target.closest('#hdrProfileBtn');
+    const isCatBtn     = !!e.target.closest('#hdrMenuToggle');
+    const isSearchBtn  = !!e.target.closest('#hdrMobileSearchToggle');
+
+    // 1) Perfil
+    if (isProfileBtn) {
+      e.stopPropagation();
+      const wasOpen = profileMenu.classList.contains('open');
+      closeAll();
+      if (!wasOpen) profileMenu.classList.add('open');
       return;
     }
 
-    // 2) Lupa móvil
-    if (e.target.closest('#hdrMobileSearchToggle')) {
+    // 2) Hamburguesa (categorías)
+    if (isCatBtn) {
       e.preventDefault();
-      searchBar.classList.toggle('activa');
-      menuCategorias.classList.remove('mostrar');
+      const wasOpen = menuCat.classList.contains('mostrar');
+      closeAll();
+      if (!wasOpen) menuCat.classList.add('mostrar');
       return;
     }
 
-    // 3) Clic fuera → cierro ambos
-    if (
-      !e.target.closest('#hdrMenuCategorias') &&
-      menuCategorias.classList.contains('mostrar')
-    ) {
-      menuCategorias.classList.remove('mostrar');
+    // 3) Lupa móvil (búsqueda)
+    if (isSearchBtn) {
+      e.preventDefault();
+      const wasOpen = searchBar.classList.contains('activa');
+      closeAll();
+      if (!wasOpen) searchBar.classList.add('activa');
+      return;
     }
-    if (
-      !e.target.closest('#hdrMobileSearchBar') &&
-      searchBar.classList.contains('activa')
-    ) {
-      searchBar.classList.remove('activa');
-    }
+    
+    // 4) Clic fuera de cualquier toggle → cierro todo
+    closeAll();
   });
 }
+
+
+
+
 
 // Función para activar filtro de categorías
 function activarFiltroCategorias() {

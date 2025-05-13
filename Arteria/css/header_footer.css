@@ -86,22 +86,20 @@ nav .nav-link:hover {
 
 
 /* ---------- Menú desplegable de perfil ---------- */
-
-/* 1. Contenedor relativo: lo necesitas una sola vez en todo el CSS */
 .profile-dropdown {
   position: relative;
 }
 
-/* 2. Caja y posición del menú */
-.profile-menu {
+.profile-dropdown .profile-menu {
   display: none;
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%) !important;
   min-width: 220px;
   background: var(--color-claro);
   border-radius: var(--radio-borde);
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
   padding: 8px 0;
   overflow: hidden;
   z-index: 1000;
@@ -113,11 +111,17 @@ nav .nav-link:hover {
 }
 
 @keyframes dropdownFade {
-  from { opacity:0; transform:translateY(-6px); }
-  to   { opacity:1; transform:translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* 3. Estructura interior (lista, separadores, enlaces) */
+/* Estructura interior */
 .profile-menu ul {
   list-style: none;
   margin: 0;
@@ -146,23 +150,7 @@ nav .nav-link:hover {
 
 .profile-menu a:hover {
   background: var(--color-claro);
-   font-weight: 500;
-}
-
-.profile-menu.open {
-  animation: dropdownFade 0.18s ease;
-}
-
-@keyframes dropdownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  font-weight: 500;
 }
 
 /* Footer */
@@ -302,21 +290,20 @@ nav .nav-link:hover {
 
 /* ======= Media Queries ======= */
 
-  /* Footer responsivo */
+ 
 
   @media (max-width: 768px) {
-     /* Contenedor del header debe ser relativo */
+
   header { position: relative; }
 
-    /* Oculta el buscador desktop */
   .hdr-search {
     display: none !important;
   }
+
   /* Iconos siempre encima */
     .hdr-actions {
     flex-wrap: wrap;
     align-items: center;
-    
   }
 
   .hdr-icons {
@@ -325,7 +312,7 @@ nav .nav-link:hover {
     z-index: 2;
   }
   
-  /* Barra móvil: absolute bajo todo el header, full-width */
+ 
   .hdr-mobile-search {
     position: absolute;
     top: calc(100% - 8px);
@@ -341,7 +328,7 @@ nav .nav-link:hover {
     gap: 0.5rem;
   }
  
-  /* Búsqueda móvil, full-width, oculta por defecto */
+  
   #hdrMobileSearchBar {
     order: 3;
     flex: 1 1 100%;
@@ -351,7 +338,7 @@ nav .nav-link:hover {
     box-sizing: border-box;
   }
 
-  /* Al hacer toggle: mostrar */
+  
   #hdrMobileSearchBar.activa {
     display: flex;
     align-items: center;
@@ -360,20 +347,38 @@ nav .nav-link:hover {
     border-bottom: 1px solid var(--color-gris);
   }
 
-  /* Categorías ocultas hasta toggle */
-  #hdrMenuCategorias {
-    display: none;
+    nav.border-bottom {
+    position: relative;
   }
+
+  /* 2. Oculta por defecto el listado de categorías */
+  #hdrMenuCategorias {
+    display: none;            
+    position: absolute;       
+    top: 100%;               
+    left: 0;                  
+    width: 100%;              
+    background: var(--color-claro);
+    padding: var(--espaciado-mediano);
+    gap: var(--espaciado-pequeno);
+    flex-direction: column;
+    z-index: 900;  
+    border-radius: var(--radio-borde);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);          
+  }
+
+  
   #hdrMenuCategorias.mostrar {
     display: flex;
-    flex-direction: column;
-    gap: var(--espaciado-pequeno);
-    padding: var(--espaciado-mediano);
   }
+
   #hdrMenuCategorias .nav-link {
     padding: 0.5rem 0;
     font-size: 1rem;
   }
+
+
+   /* Footer responsivo */
   .logo {
     display: none;
   }
