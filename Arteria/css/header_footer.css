@@ -23,7 +23,7 @@
 .hdr-icon {
   background: none;
   border: none;
-  font-size: 35px;
+  font-size: 30px;
   color: var(--color-negro-suave);
 }
 
@@ -321,47 +321,104 @@ nav .nav-link:hover {
 
 /* ======= Media Queries ======= */
 
-@media (max-width: 768px) {
-  /* Header responsivo */
-  .icon-container {
-    gap: 0.5rem;
+@media (max-width: 992px) {
+/* Contexto para posicionar la búsqueda */
+.hdr-actions {
+  position: relative;
+}
+
+/* Iconos siempre sobre la búsqueda */
+.hdr-icons {
+  position: relative;
+  z-index: 20;
+}
+
+/* Barra de búsqueda: absolutamente debajo, full-width */
+.hdr-mobile-search {
+  position: absolute;
+  top: 100%;              /* justo al pie de hdr-actions */
+  left: 0;
+  width: 100%;
+  display: none;          /* oculta por defecto */
+  background: var(--color-claro);
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--color-gris);
+  box-sizing: border-box;
+  z-index: 10;            /* por debajo de los iconos */
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hdr-mobile-search.activa {
+  display: flex;
+}
+
+/* Esconde el buscador desktop */
+.hdr-search,
+.hdr-search.d-md-flex {
+  display: none !important;
+}
+}
+
+
+
+
+
+
+
+
+  /* Footer responsivo */
+
+  @media (max-width: 768px) {
+     /* Contenedor del header debe ser relativo */
+  header { position: relative; }
+
+  /* Iconos siempre encima */
+  .hdr-icons {
     position: relative;
-    z-index: 1001;
+    z-index: 20;
   }
-  .actions-container {
-    gap: 0.25rem;
-  }
-  .actions-container .icon-btn {
-    font-size: 1.5rem;
-  }
-  .mobile-search {
-    z-index: 1000;
-    display: none;
+
+  /* Barra móvil: absolute bajo todo el header, full-width */
+  .hdr-mobile-search {
     position: absolute;
-    top: 55px;
+    top: 100%;
     left: 0;
-    right: 0;
-    background-color: white;
-    border-bottom: 1px solid var(--color-claro);
-  }
-  .mobile-search.activa {
-    display: block;
-  }
-  #menuCategorias {
+    width: 100%;
     display: none;
+    background: var(--color-claro);
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--color-gris);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hdr-mobile-search.activa {
+    display: flex;
+  }
+
+  /* Oculta el buscador desktop */
+  .hdr-search {
+    display: none !important;
+  }
+
+  /* Categorías ocultas hasta toggle */
+  #hdrMenuCategorias {
+    display: none;
+  }
+  #hdrMenuCategorias.mostrar {
+    display: flex;
     flex-direction: column;
     gap: var(--espaciado-pequeno);
     padding: var(--espaciado-mediano);
   }
-  #menuCategorias.mostrar {
-    display: flex;
-  }
-  #menuCategorias.nav-link {
-    font-size: 18px;
+  #hdrMenuCategorias .nav-link {
     padding: 0.5rem 0;
+    font-size: 1rem;
   }
-
-  /* Footer responsivo */
   .logo {
     display: none;
   }
@@ -389,4 +446,5 @@ nav .nav-link:hover {
   .social-icons {
     margin-top: var(--espaciado-pequeno);
   }
+  
 }
