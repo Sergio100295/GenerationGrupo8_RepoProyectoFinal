@@ -37,7 +37,20 @@ body {
   }
   
   /* Botón cerrar (la X) */
+
+  .cerrar-inicio-sesion {
+  
+  position: absolute;
+  top: var(--espaciado-pequeno);
+  right: var(--espaciado-pequeno);
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
   .cerrar-inicio-sesion a {
+    color: var(--color-principal-oscuro);
     position: absolute;
     top: var(--espaciado-pequeno);
     right: var(--espaciado-pequeno);
@@ -76,6 +89,17 @@ body {
     text-decoration: underline;
     font-weight: bold;
     font-size: 0.8em;
+  }
+
+  /*Ojito*/
+    .toggle-password {
+    position: absolute;
+    right: 40px;
+    top: 40.5%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
   }
 
   
@@ -123,3 +147,31 @@ body {
     text-decoration: underline;
     font-weight: bold;
   }
+
+  /*Contenedor alertas*/
+
+  .mensaje-inicio {
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+
+
+  /*Colores alertas*/
+.alert-warning {
+  background-color: var(--color-claro) !important;
+  border-color: var(--color-gris) !important;
+  color: var(--color-negro-suave) !important;
+}
+
+.alert-danger {
+  background-color: #fbeaea !important; 
+  border-color: var(--color-principal) !important;
+  color: var(--color-principal-oscuro) !important;
+}
+
+.alert-success {
+  background-color: #e0f5ec !important; 
+  border-color: #9cd3b2 !important;    
+  color: #155c3d !important;           
+}

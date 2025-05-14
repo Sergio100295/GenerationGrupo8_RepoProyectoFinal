@@ -84,36 +84,25 @@ nav .nav-link:hover {
   text-decoration: none;
 }
 
-/* Contenedor relativo */
-.profile-dropdown {
-  position: relative;
-  /* ← deja solo una vez */
-}
 
 /* ---------- Menú desplegable de perfil ---------- */
-
-/* 1. Contenedor relativo: lo necesitas una sola vez en todo el CSS */
 .profile-dropdown {
   position: relative;
 }
 
-/* 2. Caja y posición del menú */
-.profile-menu {
+.profile-dropdown .profile-menu {
   display: none;
-  /* se muestra con .open            */
   position: absolute;
   top: calc(100% + 8px);
-  /* 8 px debajo del icono           */
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%) !important;
   min-width: 220px;
   background: var(--color-claro);
-  /* blanco de tu tema               */
   border-radius: var(--radio-borde);
-  /* mismo radio que usas en tarjetas*/
   box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
   padding: 8px 0;
-  z-index: 1000;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .profile-menu.open {
@@ -122,11 +111,17 @@ nav .nav-link:hover {
 }
 
 @keyframes dropdownFade {
-  from { opacity:0; transform:translateY(-6px); }
-  to   { opacity:1; transform:translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* 3. Estructura interior (lista, separadores, enlaces) */
+/* Estructura interior */
 .profile-menu ul {
   list-style: none;
   margin: 0;
@@ -146,7 +141,6 @@ nav .nav-link:hover {
 .profile-menu a {
   display: block;
   padding: 12px 24px;
-  /* usa espaciados existentes       */
   color: var(--color-negro-suave);
   text-decoration: none;
   font-size: var(--font-size-parrafo);
@@ -156,33 +150,8 @@ nav .nav-link:hover {
 
 .profile-menu a:hover {
   background: var(--color-claro);
-   font-weight: 500;
+  font-weight: 500;
 }
-
-.profile-dropdown {
-  position: relative;
-}
-
-.profile-menu.open {
-  animation: dropdownFade 0.18s ease;
-}
-
-@keyframes dropdownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-
-
-
 
 /* Footer */
 .footer {
@@ -316,74 +285,37 @@ nav .nav-link:hover {
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
+  } 
 }
 
 /* ======= Media Queries ======= */
 
-@media (max-width: 992px) {
-/* Contexto para posicionar la búsqueda */
-.hdr-actions {
-  position: relative;
-}
-
-/* Iconos siempre sobre la búsqueda */
-.hdr-icons {
-  position: relative;
-  z-index: 20;
-}
-
-/* Barra de búsqueda: absolutamente debajo, full-width */
-.hdr-mobile-search {
-  position: absolute;
-  top: 100%;              /* justo al pie de hdr-actions */
-  left: 0;
-  width: 100%;
-  display: none;          /* oculta por defecto */
-  background: var(--color-claro);
-  padding: 0.5rem 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-bottom: 1px solid var(--color-gris);
-  box-sizing: border-box;
-  z-index: 10;            /* por debajo de los iconos */
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-.hdr-mobile-search.activa {
-  display: flex;
-}
-
-/* Esconde el buscador desktop */
-.hdr-search,
-.hdr-search.d-md-flex {
-  display: none !important;
-}
-}
-
-
-
-
-
-
-
-
-  /* Footer responsivo */
+ 
 
   @media (max-width: 768px) {
-     /* Contenedor del header debe ser relativo */
+
   header { position: relative; }
 
-  /* Iconos siempre encima */
-  .hdr-icons {
-    position: relative;
-    z-index: 20;
+  .hdr-search {
+    display: none !important;
   }
 
-  /* Barra móvil: absolute bajo todo el header, full-width */
+  /* Iconos siempre encima */
+    .hdr-actions {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .hdr-icons {
+    order: 1;
+    flex: 0 0 auto;
+    z-index: 2;
+  }
+  
+ 
   .hdr-mobile-search {
     position: absolute;
-    top: 100%;
+    top: calc(100% - 8px);
     left: 0;
     width: 100%;
     display: none;
@@ -392,33 +324,61 @@ nav .nav-link:hover {
     box-sizing: border-box;
     border-bottom: 1px solid var(--color-gris);
     z-index: 10;
-    display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  .hdr-mobile-search.activa {
-    display: flex;
-  }
-
-  /* Oculta el buscador desktop */
-  .hdr-search {
-    display: none !important;
-  }
-
-  /* Categorías ocultas hasta toggle */
-  #hdrMenuCategorias {
+ 
+  
+  #hdrMobileSearchBar {
+    order: 3;
+    flex: 1 1 100%;
+    width: 100%;
     display: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
+
+  
+  #hdrMobileSearchBar.activa {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--color-claro);
+    border-bottom: 1px solid var(--color-gris);
+  }
+
+    nav.border-bottom {
+    position: relative;
+  }
+
+  /* 2. Oculta por defecto el listado de categorías */
+  #hdrMenuCategorias {
+    display: none;            
+    position: absolute;       
+    top: 100%;               
+    left: 0;                  
+    width: 100%;              
+    background: var(--color-claro);
+    padding: var(--espaciado-mediano);
+    gap: var(--espaciado-pequeno);
+    flex-direction: column;
+    z-index: 900;  
+    border-radius: var(--radio-borde);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);          
+  }
+
+  
   #hdrMenuCategorias.mostrar {
     display: flex;
-    flex-direction: column;
-    gap: var(--espaciado-pequeno);
-    padding: var(--espaciado-mediano);
   }
+
   #hdrMenuCategorias .nav-link {
     padding: 0.5rem 0;
     font-size: 1rem;
   }
+
+
+   /* Footer responsivo */
   .logo {
     display: none;
   }
