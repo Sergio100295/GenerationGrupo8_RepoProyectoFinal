@@ -23,7 +23,7 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
     gap: var(--espaciado-mediano);
     justify-items: center; 
-    max-width: 1200px; /* o el ancho máximo que prefieras */
+    max-width: 1200px; /* ancho */
     margin: 0 auto; /* centra el contenedor */
 }
 

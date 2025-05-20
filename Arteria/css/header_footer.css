@@ -221,12 +221,18 @@ nav .nav-link:hover {
   margin-bottom: var(--espaciado-pequeno);
 }
 
-.categories-links,
+.categories-links {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 6px 20px;
+}
+
 .info-links {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 6px 20px;
 }
+
 
 .footer-bottom {
   border-top: 1px solid var(--color-gris);
