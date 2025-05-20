@@ -160,6 +160,7 @@ nav .nav-link:hover {
   padding: var(--espaciado-grande);
   font-family: var(--fuente-parrafo);
   font-size: var(--font-size-parrafo);
+  padding: 15px;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 0.3s;
 }
@@ -267,7 +268,7 @@ nav .nav-link:hover {
   display: flex;
   gap: 10px;
   margin-left: auto;
-  margin-top: 0;
+  margin-top: -20px;
 }
 
 .social-icons a {
