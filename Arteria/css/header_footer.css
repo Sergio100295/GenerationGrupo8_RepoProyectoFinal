@@ -160,7 +160,8 @@ nav .nav-link:hover {
   padding: var(--espaciado-grande);
   font-family: var(--fuente-parrafo);
   font-size: var(--font-size-parrafo);
-  padding: 15px;
+  padding: 20px;
+  padding-bottom: 5px;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 0.3s;
 }
