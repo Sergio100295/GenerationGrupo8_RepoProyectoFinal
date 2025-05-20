@@ -1,0 +1,71 @@
+
+.vender-contenido {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--espaciado-grande);
+  background-color: white;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+}
+
+.vender-title {
+  font-family: var(--fuente-titulo);
+  font-size: var(--font-size-titulo);
+  color: var(--color-principal-oscuro);
+  margin-bottom: var(--espaciado-mediano);
+}
+
+.vender-fecha {
+  font-family: var(--fuente-parrafo);
+  font-size: 0.875rem;
+  color: var(--color-negro-suave);
+  margin-bottom: var(--espaciado-grande);
+}
+
+.vender-intro,
+.vender-instrucciones,
+.vender-post-envio,
+.vender-cierre {
+  font-family: var(--fuente-parrafo);
+  font-size: var(--font-size-parrafo);
+  color: var(--color-negro-suave);
+  margin-bottom: var(--espaciado-mediano);
+  line-height: 1.6;
+}
+
+.vender-subtitulo {
+  font-family: var(--fuente-titulo);
+  font-size: var(--font-size-subtitulo);
+  color: var(--color-principal);
+  margin-top: var(--espaciado-grande);
+  margin-bottom: var(--espaciado-pequeno);
+}
+
+.vender-lista {
+  padding-left: var(--espaciado-grande);
+  margin-bottom: var(--espaciado-mediano);
+  font-family: var(--fuente-parrafo);
+  font-size: var(--font-size-parrafo);
+  color: var(--color-negro-suave);
+  line-height: 1.6;
+}
+
+.vender-sublista {
+  padding-left: var(--espaciado-grande);
+  margin-top: var(--espaciado-pequeno);
+  list-style-type: circle;
+}
+
+.vender-recomendaciones li {
+  list-style-type: square;
+  margin-bottom: var(--espaciado-pequeno);
+}
+
+a {
+  color: var(--color-principal);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--color-principal-oscuro);
+}
