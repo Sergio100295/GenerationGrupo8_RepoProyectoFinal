@@ -1,5 +1,8 @@
 // ---------- LÓGICA CATEGORÍAS (BARRA NAV) ----------
+
+
 function activarFiltroCategorias() {
+  
   // Delegación de eventos para manejar elementos dinámicos
   document.addEventListener('click', function (e) {
     const boton = e.target.closest('#hdrMenuCategorias .nav-link');
@@ -37,4 +40,16 @@ function activarFiltroCategorias() {
 // Ejecutar al cargar el DOM
 document.addEventListener('DOMContentLoaded', function () {
   activarFiltroCategorias();
+
+  // Nuevo: filtrar automáticamente si hay una categoría en la URL
+  const params = new URLSearchParams(window.location.search);
+  const categoria = params.get('categoria');
+
+  if (categoria) {
+    const link = document.querySelector(`#hdrMenuCategorias .nav-link[data-filtro="${categoria}"]`);
+    if (link) {
+      // Simular clic en el link correspondiente
+      link.click();
+    }
+  }
 });
