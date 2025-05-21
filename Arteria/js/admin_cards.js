@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function createCardElement(product) {
   const card = document.createElement('a');
   card.className = 'tarjeta-link';
-  card.href = `producto.html?id=${product.id}`;
+  card.href = `producto.html?id=${product.id}`; //Agregado Sergio
 
   const cajaObra = document.createElement('div');
   cajaObra.className = 'caja-obra';

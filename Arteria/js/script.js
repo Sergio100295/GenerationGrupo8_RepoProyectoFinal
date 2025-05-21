@@ -10,18 +10,13 @@ function manejarFiltrosCategorias() {
 
   // Manejar clicks en los filtros (desde cualquier página)
   document.addEventListener('click', (e) => {
-    const botonFiltro = e.target.closest('#hdrMenuCategorias .nav-link[data-filtro]');
+    const botonFiltro = e.target.closest('#hdrMenuCategorias .nav-link[data-filtro], ' + 
+      '.footer-section .categories-links a[href*="categoria="]');
     if (!botonFiltro) return;
 
-    // Si no estamos en explorar_cards.html, el href normal redirigirá
-    // No necesitamos hacer nada más aquí
   });
 }
 
-/**
- * Aplica el filtro basado en el parámetro de URL
- * Solo se ejecuta en explorar_cards.html
- */
 function aplicarFiltroDesdeURL() {
   if (!window.location.pathname.includes('explorar_cards.html')) return;
 
@@ -55,7 +50,10 @@ function aplicarFiltroDesdeURL() {
  * @param {string} filtro - La categoría activa (o 'todos')
  */
 function actualizarFiltroActivo(filtro) {
-  const todosLosFiltros = document.querySelectorAll('#hdrMenuCategorias .nav-link[data-filtro]');
+  const todosLosFiltros = document.querySelectorAll(`
+    #hdrMenuCategorias .nav-link[data-filtro],
+    .categories-links a[data-filtro]
+  `);
   
   todosLosFiltros.forEach((filtroElemento) => {
     const esFiltroActivo = filtroElemento.getAttribute('data-filtro') === filtro;
