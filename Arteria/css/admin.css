@@ -94,7 +94,7 @@ h2 {
 .admin-title {
   font-family: var(--fuente-titulo);
   font-size: var(--font-size-titulo);
-  color: var(--color-negro-suave);
+  color: var(--color-principal-oscuro);
   font-weight: bold;
   margin-bottom: 2rem;
   text-align: center;

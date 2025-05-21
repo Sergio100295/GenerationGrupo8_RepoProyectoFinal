@@ -117,3 +117,16 @@ mobileForm.addEventListener('submit', function(e) {
 
   console.log('Disparar búsqueda con:', query);
 }); */
+
+// ---------- Funcionalidad botón 'Ver más' en cards ----------
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const expanded = this.nextElementSibling;
+      const isVisible = expanded.style.display === 'block';
+      expanded.style.display = isVisible ? 'none' : 'block';
+      this.textContent = isVisible ? 'Ver más' : 'Ver menos';
+    });
+  });
+  
+});

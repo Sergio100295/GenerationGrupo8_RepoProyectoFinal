@@ -6,6 +6,10 @@ formulario.addEventListener('submit', function (e) {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
 
+  // Datos del administrador (predefinido, no necesita estar en localStorage)
+  const adminEmail = "arteriacol@gmail.com";
+  const adminPassword = "Arteriacolaamrs2025";
+
   const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || [];
 
   const usuarioAutenticado = usuariosGuardados.find(usuario =>
@@ -38,11 +42,17 @@ formulario.addEventListener('submit', function (e) {
   }
 
   // Autenticación
-  if (usuarioAutenticado) {
+  if ((email === adminEmail && password === adminPassword) || usuarioAutenticado) {
     mostrarAlerta("¡Inicio de sesión exitoso!", "success");
+
     setTimeout(() => {
-      window.location.href = 'index.html';
+      if (email === adminEmail && password === adminPassword) {
+        window.location.href = 'admin.html';
+      } else {
+        window.location.href = 'index.html';
+      }
     }, 1500);
+
   } else {
     mostrarAlerta("Correo electrónico o contraseña incorrectos.", "danger");
   }
