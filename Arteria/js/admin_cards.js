@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function createCardElement(product) {
   const card = document.createElement('a');
   card.className = 'tarjeta-link';
+  card.href = `producto.html?id=${product.id}`; // AGREGADO SERGIO
 //   card.onclick = viewCard; // FUNCION SERGIO
   card.innerHTML = `
     <div class="caja-obra" data-categoria="ilustracion">
@@ -34,16 +35,5 @@ function createCardElement(product) {
   return card;
 }
 
-//FUNCION SERGIO
-/* 
-function viewCard() {
-console.log("Hola soy view Card");
- }
-*/
 
-
-/* //Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
-localStorage.clear();
-location.reload();
-*/
 
