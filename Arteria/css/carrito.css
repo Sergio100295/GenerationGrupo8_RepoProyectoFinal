@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.logo-contenedor {
+/* .logo-contenedor {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -29,7 +29,7 @@
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--color-negro-suave);
-}
+} */
 
 /* === Cuerpo general === */
 body {
@@ -37,7 +37,7 @@ body {
     background-color: var(--color-gris);
     margin: 0;
     padding: 0;
-    padding-top: 90px;
+    padding-top: 0;
     /* Espacio para encabezado fijo */
 }
 
