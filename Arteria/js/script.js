@@ -53,3 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 });
+
+
+// Lógica boton de fltrado del manú lateral
+
+const botonFiltro = document.querySelector('.filtro-btn');
+  const menuLateral = document.querySelector('.menu-lateral');
+
+  botonFiltro.addEventListener('click', () => {
+    menuLateral.classList.toggle('activo');
+  });
