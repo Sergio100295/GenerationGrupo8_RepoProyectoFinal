@@ -1,14 +1,14 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const miniaturas = document.querySelectorAll('.miniatura');
-  const imagenPrincipal = document.getElementById('imagen-principal');
+// document.addEventListener('DOMContentLoaded', function () {
+//   const miniaturas = document.querySelectorAll('.miniatura');
+//   const imagenPrincipal = document.getElementById('imagen-principal');
 
-  miniaturas.forEach(function (miniatura) {
-    miniatura.addEventListener('click', function () {
-      const nuevaSrc = this.getAttribute('src');
-      imagenPrincipal.setAttribute('src', nuevaSrc);
-    });
-  });
-});
+//   miniaturas.forEach(function (miniatura) {
+//     miniatura.addEventListener('click', function () {
+//       const nuevaSrc = this.getAttribute('src');
+//       imagenPrincipal.setAttribute('src', nuevaSrc);
+//     });
+//   });
+// });
 
 
 const productos = {
@@ -123,52 +123,75 @@ const productos = {
   //   ]
   // },
 
-
-
-  // Puedes seguir agregando más productos con su ID correspondiente
+  // Se puede seguir agregando más productos con su ID correspondiente
 };
 
-// Obtener el parámetro 'id' de la URL
-const urlParams = new URLSearchParams(window.location.search);
-const productoId = urlParams.get("id");
 
-if (productoId && productos[productoId]) {
-  const producto = productos[productoId];
 
-  // Actualizar el título y texto del producto
-  document.querySelector(".descripcion-box h5").textContent = `Obra: ${producto.titulo}`;
-  document.querySelector(".descripcion-box p.text-muted").textContent = `Artista: ${producto.artista}`;
-  document.querySelector(".descripcion-box h4").textContent = producto.precio;
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productoId = urlParams.get("id");
 
-  // Actualizar la imagen principal
+  // Intentar cargar desde productos hardcodeados
+  if (productoId && productos[productoId]) {
+    const producto = productos[productoId];
+
+    document.querySelector(".descripcion-box h5").textContent = `Obra: ${producto.titulo}`;
+    document.querySelector(".descripcion-box p.text-muted").textContent = `Artista: ${producto.artista}`;
+    document.querySelector(".descripcion-box h4").textContent = producto.precio;
+
+    const imagenPrincipal = document.getElementById("imagen-principal");
+    imagenPrincipal.src = producto.imagenes[0];
+    imagenPrincipal.alt = `Imagen de ${producto.titulo}`;
+
+    const miniaturas = document.querySelectorAll(".miniatura");
+    miniaturas.forEach((img, index) => {
+      img.src = producto.imagenes[index] || producto.imagenes[0];
+      img.alt = `Miniatura ${index + 1} de ${producto.titulo}`;
+      img.classList.remove("seleccionada");
+      if (index === 0) img.classList.add("seleccionada");
+
+      img.addEventListener("click", () => {
+        imagenPrincipal.src = img.src;
+        miniaturas.forEach(m => m.classList.remove("seleccionada"));
+        img.classList.add("seleccionada");
+      });
+    });
+
+    return;
+  }
+
+  // Si no está hardcodeado, buscar en productos del localStorage
+  const productList = JSON.parse(localStorage.getItem("productList")) || [];
+  const producto = productList.find(p => p.id === productoId);
+
+  if (!producto) {
+    alert("Producto no encontrado.");
+    return;
+  }
+
+  document.querySelector(".descripcion-box h5").textContent = `Obra: ${producto.artName}`;
+  document.querySelector(".descripcion-box p.text-muted").textContent = `Artista: ${producto.artistName}`;
+  document.querySelector(".descripcion-box p:nth-of-type(3)").textContent = producto.artDescription;
+  document.querySelector(".descripcion-box h4").textContent = `$${producto.price.toLocaleString("es-CO")}`;
+
   const imagenPrincipal = document.getElementById("imagen-principal");
-  imagenPrincipal.src = producto.imagenes[0];
-  imagenPrincipal.alt = `Imagen de ${producto.titulo}`;
+  imagenPrincipal.src = producto.thumbnails[0];
+  imagenPrincipal.alt = producto.artName;
 
-  // Actualizar las miniaturas
   const miniaturas = document.querySelectorAll(".miniatura");
   miniaturas.forEach((img, index) => {
-    img.src = producto.imagenes[index];
-    img.alt = `Miniatura ${index + 1} de ${producto.titulo}`;
+    img.src = producto.thumbnails?.[index] || producto.urlImg;
+    img.alt = `${producto.artName} ${index + 1}`;
     img.classList.remove("seleccionada");
     if (index === 0) img.classList.add("seleccionada");
-  });
 
-  // Agregar funcionalidad para cambiar imagen principal al hacer clic en miniaturas
-  miniaturas.forEach((img) => {
     img.addEventListener("click", () => {
       imagenPrincipal.src = img.src;
-
       miniaturas.forEach(m => m.classList.remove("seleccionada"));
       img.classList.add("seleccionada");
     });
   });
-
-} else {
-  // Si no se encontró el producto, puedes redirigir o mostrar error
-  alert("Producto no encontrado");
-}
-
-
+});
 
 
