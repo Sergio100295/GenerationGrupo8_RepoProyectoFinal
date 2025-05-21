@@ -33,7 +33,8 @@ form.addEventListener('submit', function (event) {
       urlImg,
       price,
       artDescription,
-      thumbnails: [thumb1, thumb2, thumb3] // AGREGADO SERGIO
+      thumbnails: [thumb1, thumb2, thumb3] ,// AGREGADO SERGIO
+      category: 'ilustracion' //Prueba categorias ALEJA
     };
 
   productList.push(newProductStorage);

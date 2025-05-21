@@ -1,39 +1,64 @@
 //
+/// Normalización de datos y carga inicial
 document.addEventListener('DOMContentLoaded', function() {
-  // No necesitamos limpiar el contenedor
+  // 1. Normalizar los datos existentes
   const storedCards = JSON.parse(localStorage.getItem('productList')) || [];
-  
-  // Solo agregamos las nuevas cards que no estén ya en el HTML
-  const container = document.getElementById('contenedor-obras');
-  const existingCardNames = Array.from(container.querySelectorAll('h3')).map(h3 => h3.textContent);
-  
-  storedCards.forEach(product => {
-    if (!existingCardNames.includes(product.artName)) {
-      const card = createCardElement(product);
-      container.appendChild(card);
-    }
+  const normalizedCards = storedCards.map(product => ({
+    ...product,
+    category: (product.category || 'ilustracion').toLowerCase().trim()
+  }));
+  localStorage.setItem('productList', JSON.stringify(normalizedCards));
+
+  // 2. Cargar tarjetas
+  const container = document.querySelector('.contenedor-obras');
+  if (!container) return;
+
+  // Limpiar solo tarjetas dinámicas (opcional)
+  const dynamicCards = container.querySelectorAll('.tarjeta-link[dynamic]');
+  dynamicCards.forEach(card => card.remove());
+
+  // 3. Añadir tarjetas con atributo de identificación
+  normalizedCards.forEach(product => {
+    const card = createCardElement(product);
+    card.setAttribute('dynamic', 'true'); // Marcar como dinámica
+    container.appendChild(card);
   });
+
+  // 4. Forzar re-filtrado si estamos en explorar_cards.html
+  if (window.location.pathname.includes('explorar_cards.html')) {
+    setTimeout(() => aplicarFiltroDesdeURL(), 100);
+  }
 });
 
-//FUNCION QUE CREA LAS CARDS EN EXPLORAR CARDS
+// Función mejorada para crear tarjetas
 function createCardElement(product) {
   const card = document.createElement('a');
   card.className = 'tarjeta-link';
-  card.href = `producto.html?id=${product.id}`; // AGREGADO SERGIO
-//   card.onclick = viewCard; // FUNCION SERGIO
-  card.innerHTML = `
-    <div class="caja-obra" data-categoria="ilustracion">
-      <img src="${product.urlImg}" alt="${product.artName}" loading="lazy">
-      <div class="texto-obra">
-        <h3>${product.artName}</h3>
-        <p>${product.artistName}</p>
-        <p class="precio-obra">$${product.price.toLocaleString('es-CO')}</p>
-        <p class="description-card">${product.artDescription}</p>
-      </div>
+  card.href = `producto.html?id=${product.id}`;
+
+  const cajaObra = document.createElement('div');
+  cajaObra.className = 'caja-obra';
+  cajaObra.dataset.categoria = product.category;
+  
+  // Contenido de la tarjeta (asegúrate que coincida con tu HTML estático)
+  cajaObra.innerHTML = `
+    <img src="${product.urlImg}" alt="${product.artName}" loading="lazy">
+    <div class="texto-obra">
+      <h3>${product.artName}</h3>
+      <p>${product.artistName}</p>
+      <p class="precio-obra">$${product.price.toLocaleString('es-CO')}</p>
+      <p class="description-card">${product.artDescription}</p>
     </div>
   `;
+
+  card.appendChild(cajaObra);
   return card;
 }
+
+/*//Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
+localStorage.clear();
+location.reload();
+*/
 
 
 

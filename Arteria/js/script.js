@@ -1,58 +1,94 @@
 // ---------- LÓGICA CATEGORÍAS (BARRA NAV) ----------
+/**
+ * Función principal para manejar el filtrado por categorías
+ */
 
 
-function activarFiltroCategorias() {
-  
-  // Delegación de eventos para manejar elementos dinámicos
-  document.addEventListener('click', function (e) {
-    const boton = e.target.closest('#hdrMenuCategorias .nav-link');
-    if (!boton) return;
+function manejarFiltrosCategorias() {
+  // Aplicar filtro al cargar la página (solo en explorar_cards.html)
+  aplicarFiltroDesdeURL();
 
-    const filtro = boton.getAttribute('data-filtro');
-    const esBotonExplorar = boton.textContent.trim() === "Explorar";
-     if (!filtro || esBotonExplorar) return;
+  // Manejar clicks en los filtros (desde cualquier página)
+  document.addEventListener('click', (e) => {
+    const botonFiltro = e.target.closest('#hdrMenuCategorias .nav-link[data-filtro]');
+    if (!botonFiltro) return;
 
-     e.preventDefault();
-
-     
-    const obras = document.querySelectorAll('.contenedor-obras .caja-obra');
-    obras.forEach((obra) => {
-      const categoria = obra.getAttribute('data-categoria');
-      const tarjetaLink = obra.closest('.tarjeta-link');
-
-      tarjetaLink.style.display = (filtro === 'todos' || categoria === filtro) ? 'block' : 'none';
-
-      if (filtro === 'todos' || categoria === filtro) {
-        tarjetaLink.style.display = 'block';
-      } else {
-        tarjetaLink.style.display = 'none';
-      }
-    });
-
-    // Actualizar estado activo
-    document
-      .querySelectorAll('#hdrMenuCategorias .nav-link')
-      .forEach((link) => link.classList.remove('active'));
-    boton.classList.add('active');
+    // Si no estamos en explorar_cards.html, el href normal redirigirá
+    // No necesitamos hacer nada más aquí
   });
 }
 
-// Ejecutar al cargar el DOM
-document.addEventListener('DOMContentLoaded', function () {
-  activarFiltroCategorias();
+/**
+ * Aplica el filtro basado en el parámetro de URL
+ * Solo se ejecuta en explorar_cards.html
+ */
+function aplicarFiltroDesdeURL() {
+  if (!window.location.pathname.includes('explorar_cards.html')) return;
 
-  // Nuevo: filtrar automáticamente si hay una categoría en la URL
   const params = new URLSearchParams(window.location.search);
-  const categoria = params.get('categoria');
+  let categoria = params.get('categoria');
+  
+  // Normalización del filtro
+  const filtro = categoria ? categoria.toLowerCase().trim() : 'todos';
 
-  if (categoria) {
-    const link = document.querySelector(`#hdrMenuCategorias .nav-link[data-filtro="${categoria}"]`);
-    if (link) {
-      // Simular clic en el link correspondiente
-      link.click();
-    }
+  // Selector más preciso
+  const obras = document.querySelectorAll('.contenedor-obras .caja-obra');
+  let obrasMostradas = 0;
+
+  obras.forEach(obra => {
+    const obraCategoria = obra.dataset.categoria?.toLowerCase().trim() || 'ilustracion';
+    const tarjetaLink = obra.closest('.tarjeta-link');
+    
+    // Comparación estricta
+    const mostrar = (filtro === 'todos' || obraCategoria === filtro);
+    tarjetaLink.style.display = mostrar ? '' : 'none';
+    
+    if (mostrar) obrasMostradas++;
+  });
+
+  manejarMensajeSinResultados(obrasMostradas === 0);
+  actualizarFiltroActivo(filtro);
+}
+
+/**
+ * Actualiza visualmente qué filtro está activo
+ * @param {string} filtro - La categoría activa (o 'todos')
+ */
+function actualizarFiltroActivo(filtro) {
+  const todosLosFiltros = document.querySelectorAll('#hdrMenuCategorias .nav-link[data-filtro]');
+  
+  todosLosFiltros.forEach((filtroElemento) => {
+    const esFiltroActivo = filtroElemento.getAttribute('data-filtro') === filtro;
+    filtroElemento.classList.toggle('active', esFiltroActivo);
+  });
+}
+
+/**
+ * Muestra/Oculta mensaje cuando no hay resultados
+ * @param {boolean} mostrar - True para mostrar el mensaje
+ */
+function manejarMensajeSinResultados(mostrar) {
+  let mensaje = document.querySelector('.mensaje-sin-resultados');
+  
+  if (!mensaje && mostrar) {
+    mensaje = document.createElement('div');
+    mensaje.className = 'mensaje-sin-resultados alert alert-info mt-4';
+    mensaje.textContent = 'No se encontraron obras en esta categoría.';
+    document.querySelector('.contenedor-obras')?.appendChild(mensaje);
+  } else if (mensaje && !mostrar) {
+    mensaje.remove();
   }
-});
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', manejarFiltrosCategorias);
+
+// También ejecutar si se carga dinámicamente contenido (por si acaso)
+document.addEventListener('ajaxComplete', manejarFiltrosCategorias);
+
+
+
+
 
 
 // Lógica boton de fltrado del manú lateral
