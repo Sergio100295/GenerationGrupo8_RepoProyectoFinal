@@ -43,6 +43,9 @@ formulario.addEventListener('submit', function (e) {
 
   // Autenticación
   if ((email === adminEmail && password === adminPassword) || usuarioAutenticado) {
+   localStorage.setItem('loggedIn', 'true');                 // banderita de sesión
+    localStorage.setItem('role', email === adminEmail ? 'admin' : 'user');
+
     mostrarAlerta("¡Inicio de sesión exitoso!", "success");
 
     setTimeout(() => {

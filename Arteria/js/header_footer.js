@@ -1,5 +1,5 @@
 // ---------- CARGAR HEADER ----------
-import { initProfileMenu } from './navbar-profile-menu.js';
+import { initProfileMenu } from './navbar-profile.js';
 
 fetch('../html/header.html')
   .then(response => response.text())
