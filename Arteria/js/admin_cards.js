@@ -1,13 +1,14 @@
-//
-/// Normalización de datos y carga inicial
 document.addEventListener('DOMContentLoaded', function() {
-
   // 1. Normalizar los datos existentes
   const storedCards = JSON.parse(localStorage.getItem('productList')) || [];
+  
+  // Mejoramos la normalización para asegurar categorías consistentes
   const normalizedCards = storedCards.map(product => ({
     ...product,
     category: (product.category || 'ilustracion').toLowerCase().trim()
   }));
+  
+  // Actualizamos localStorage con los datos normalizados
   localStorage.setItem('productList', JSON.stringify(normalizedCards));
 
   // 2. Cargar tarjetas
@@ -31,17 +32,20 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Función para crear tarjetas
+// Función para crear tarjetas - versión corregida
 function createCardElement(product) {
   const card = document.createElement('a');
   card.className = 'tarjeta-link';
-  card.href = `producto.html?id=${product.id}`; //Agregado Sergio
+  card.href = `producto.html?id=${product.id}`;
 
   const cajaObra = document.createElement('div');
   cajaObra.className = 'caja-obra';
-  cajaObra.dataset.categoria = product.category;
   
-  // Contenido de la tarjeta
+  // Normalización más robusta de la categoría
+ cajaObra.dataset.categoria = product.category || 'sin-categoria';
+  
+  
+  // CARD
   cajaObra.innerHTML = `
     <img src="${product.urlImg}" alt="${product.artName}" loading="lazy">
     <div class="texto-obra">
