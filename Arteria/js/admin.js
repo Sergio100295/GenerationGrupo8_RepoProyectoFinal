@@ -72,23 +72,8 @@ form.addEventListener('submit', function (event) {
       urlImg,
       price,
       artDescription,
+      category,
       thumbnails: [thumb1, thumb2, thumb3], // AGREGADO SERGIO
-
-      //Prueba Aleja
-      category: (() => {
-    let cat = categorySelect.value === 'otro' 
-      ? otherInput.value.trim() 
-      : categorySelect.value;
-    
-    // Normalización estricta
-    return cat
-      .toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // elimina acentos
-      .replace(/\s+/g, '-') // espacios a guiones
-      .replace('illustracion', 'ilustracion') // corrección específica
-      .replace('artesanias', 'artesania');
-  })()
-      //Prueba Aleja
     };
 
   productList.push(newProductStorage);

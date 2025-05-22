@@ -54,7 +54,7 @@ function normalizarCategoria(categoria) {
   };
 
   // Normalización completa
-  let cat = (categoria || 'ilustracion')
+  let cat = (categoria || 'todos')
     .toString()
     .toLowerCase()
     .trim()
@@ -62,7 +62,7 @@ function normalizarCategoria(categoria) {
     .replace(/\s+/g, '-') // Espacios a guiones
     .replace(/[^a-z-]/g, ''); // Solo letras y guiones
 
-  return estandares[cat] || 'ilustracion';
+  return estandares[cat] || 'todos';
 }
 
 function createCardElement(product) {

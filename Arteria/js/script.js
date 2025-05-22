@@ -1,38 +1,10 @@
-// ---------- NORMALIZADOR DE CATEGORÍAS ----------
-function normalizarCategoria(categoria) {
-  const estandares = {
-    'ilustracion': 'ilustracion',
-    'pintura': 'pintura',
-    'fotografia': 'fotografia',
-    'escultura': 'escultura',
-    'artesania': 'artesania',
-    'arte-textil': 'arte-textil',
-    'artesanía': 'artesania',
-    'artesanias': 'artesania',
-    'artetextil': 'arte-textil',
-    'arte textil': 'arte-textil',
-    'fotografía': 'fotografia',
-    'illustracion': 'ilustracion',
-    'todos': 'todos',
-    'all': 'todos',
-    'explorar': 'todos'
-  };
 
-  if (!categoria) return 'todos';
-
-  let cat = categoria.toString()
-    .toLowerCase()
-    .trim()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z-]/g, '');
-
-  return estandares[cat] || 'todos';
-}
-
-// ---------- FUNCIÓN DE FILTRADO MEJORADA ----------
+// ---------- FUNCIÓN DE FILTRADO ----------
 function filtrarObras(filtro) {
   const filtroNormalizado = normalizarCategoria(filtro);
+  //Console de prueba
+console.log('Filtro recibido:', filtro, 'Filtro normalizado:', filtroNormalizado);
+
   const tarjetas = document.querySelectorAll('.tarjeta-link');
 
   tarjetas.forEach(card => {
@@ -88,10 +60,10 @@ function manejarClickFiltro(e) {
   const filtro = botonFiltro.getAttribute('data-filtro');
 
   // Forzar redirección si no estamos en explorar_cards.html
-  if (!window.location.pathname.includes('explorar_cards.html')) {
+ if (!window.location.pathname.includes('explorar_cards.html')) {
     window.location.href = filtro === 'todos'
       ? 'explorar_cards.html'
-      : `explorar_cards.html?categoria=${filtro}`;
+      : `explorar_cards.html?categoria=${encodeURIComponent(filtro)}`;
     return;
   }
 
@@ -101,14 +73,16 @@ function manejarClickFiltro(e) {
 
 // ---------- INICIALIZACIÓN ----------
 function initFiltros() {
-  // Manejar clicks
+  // Escuchar clicks en toda la página, para que funcione en index.html y explorar_cards.html
   document.addEventListener('click', manejarClickFiltro);
 
-  // Manejar cambios de estado (navegación adelante/atrás)
-  window.addEventListener('popstate', (e) => {
-    const filtro = e.state?.filtro || new URLSearchParams(window.location.search).get('categoria') || 'todos';
-    filtrarObras(filtro);
-  });
+  // Manejar navegación atrás/adelante solo en explorar_cards.html
+  if (window.location.pathname.includes('explorar_cards.html')) {
+    window.addEventListener('popstate', (e) => {
+      const filtro = e.state?.filtro || new URLSearchParams(window.location.search).get('categoria') || 'todos';
+      filtrarObras(filtro);
+    });
+  }
 }
 
 // ---------- MENSAJE SIN RESULTADOS (opcional, si tienes esta función) ----------
@@ -123,12 +97,13 @@ function manejarMensajeSinResultados(sinResultados) {
 
 // ---------- CARGA INICIAL ----------
 document.addEventListener('DOMContentLoaded', function() {
-  if (!window.location.pathname.includes('explorar_cards.html')) return;
   initFiltros();
+  if (!window.location.pathname.includes('explorar_cards.html')) return;
+ 
 
   // Aplicar filtro inicial desde URL
-  const filtroInicial = new URLSearchParams(window.location.search).get('categoria') || 'todos';
-  filtrarObras(filtroInicial);
+   const filtroInicial = new URLSearchParams(window.location.search).get('categoria') || 'todos';
+    filtrarObras(filtroInicial);
 
   document.addEventListener('filterUpdate', function() {
   if (!window.location.pathname.includes('explorar_cards.html')) return;
