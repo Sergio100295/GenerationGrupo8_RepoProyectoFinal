@@ -1,70 +1,108 @@
 // ---------- LÓGICA CATEGORÍAS (BARRA NAV) ----------
-/**
- * Función principal para manejar el filtrado por categorías
- */
-
-
 function manejarFiltrosCategorias() {
-  // Aplicar filtro al cargar la página (solo en explorar_cards.html)
+  // Aplicar filtro al cargar la página
   aplicarFiltroDesdeURL();
 
-  // Manejar clicks en los filtros (desde cualquier página)
+  // Manejar clicks en los filtros - Versión mejorada
   document.addEventListener('click', (e) => {
-    const botonFiltro = e.target.closest('#hdrMenuCategorias .nav-link[data-filtro], ' + 
-      '.footer-section .categories-links a[href*="categoria="]');
+    // Selector más inclusivo que captura todos los posibles filtros
+    const botonFiltro = e.target.closest(
+      '[data-filtro], ' + 
+      'a[href*="explorar_cards.html"], ' +
+      'a[href*="categoria="]'
+    );
+    
     if (!botonFiltro) return;
-
+    
+    e.preventDefault();
+    
+    // Determinar el filtro basado en el elemento clickeado
+    let filtro = 'todos';
+    if (botonFiltro.hasAttribute('data-filtro')) {
+      filtro = botonFiltro.getAttribute('data-filtro');
+    } else if (botonFiltro.href.includes('categoria=')) {
+      filtro = new URL(botonFiltro.href).searchParams.get('categoria');
+    }
+    
+    filtrarObrasPorCategoria(filtro);
+    
+    // Actualizar URL siempre para explorar_cards.html
+    if (window.location.pathname.includes('explorar_cards.html')) {
+      const nuevaURL = filtro === 'todos' 
+        ? 'explorar_cards.html' 
+        : `explorar_cards.html?categoria=${encodeURIComponent(filtro)}`;
+      history.pushState({}, '', nuevaURL);
+    }
   });
 }
 
-function aplicarFiltroDesdeURL() {
-  if (!window.location.pathname.includes('explorar_cards.html')) return;
-
-  const params = new URLSearchParams(window.location.search);
-  let categoria = params.get('categoria');
-  
-  // Normalización del filtro
-  const filtro = categoria ? categoria.toLowerCase().trim() : 'todos';
-
-  // Selector más preciso
+function filtrarObrasPorCategoria(filtro) {
   const obras = document.querySelectorAll('.contenedor-obras .caja-obra');
   let obrasMostradas = 0;
 
-  obras.forEach(obra => {
-    const obraCategoria = obra.dataset.categoria?.toLowerCase().trim() || 'ilustracion';
-    const tarjetaLink = obra.closest('.tarjeta-link');
+  // Normalizar el filtro recibido (por si viene de URL)
+  const filtroNormalizado = filtro
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, '-');
+
+   obras.forEach(obra => {
+    const obraCategoria = (obra.dataset.categoria || '')
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, '-');
     
-    // Comparación estricta
-    const mostrar = (filtro === 'todos' || obraCategoria === filtro);
-    tarjetaLink.style.display = mostrar ? '' : 'none';
-    
+    const mostrar = (filtroNormalizado === 'todos' || obraCategoria === filtroNormalizado);
+    obra.closest('.tarjeta-link').style.display = mostrar ? 'block' : 'none';
     if (mostrar) obrasMostradas++;
   });
 
-  manejarMensajeSinResultados(obrasMostradas === 0);
+  // Solo mostrar mensaje si hay filtro activo (no en "todos")
+  manejarMensajeSinResultados(obrasMostradas === 0 && filtro !== 'todos');
+  actualizarFiltroActivo(filtroNormalizado);
+}
+
+function aplicarFiltroDesdeURL() {
+  // Solo aplicar si estamos en explorar_cards.html
+  if (!window.location.pathname.includes('explorar_cards.html')) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const categoria = params.get('categoria');
+  const filtro = categoria ? categoria.toLowerCase().trim() : 'todos';
+  
+  // Forzar mostrar todas las cards si no hay filtro
+  if (filtro === 'todos') {
+    document.querySelectorAll('.contenedor-obras .tarjeta-link').forEach(card => {
+      card.style.display = 'block';
+    });
+    manejarMensajeSinResultados(false);
+  } else {
+    filtrarObrasPorCategoria(filtro);
+  }
+  
   actualizarFiltroActivo(filtro);
 }
 
-/**
- * Actualiza visualmente qué filtro está activo
- * @param {string} filtro - La categoría activa (o 'todos')
- */
 function actualizarFiltroActivo(filtro) {
   const todosLosFiltros = document.querySelectorAll(`
-    #hdrMenuCategorias .nav-link[data-filtro],
-    .categories-links a[data-filtro]
+    [data-filtro],
+    a[href*="explorar_cards.html"],
+    a[href*="categoria="]
   `);
   
   todosLosFiltros.forEach((filtroElemento) => {
-    const esFiltroActivo = filtroElemento.getAttribute('data-filtro') === filtro;
+    let esFiltroActivo = false;
+    
+    if (filtroElemento.hasAttribute('data-filtro')) {
+      esFiltroActivo = filtroElemento.getAttribute('data-filtro') === filtro;
+    } else if (filtro === 'todos' && filtroElemento.href.includes('explorar_cards.html') && !filtroElemento.href.includes('categoria=')) {
+      esFiltroActivo = true;
+    }
+    
     filtroElemento.classList.toggle('active', esFiltroActivo);
   });
 }
 
-/**
- * Muestra/Oculta mensaje cuando no hay resultados
- * @param {boolean} mostrar - True para mostrar el mensaje
- */
 function manejarMensajeSinResultados(mostrar) {
   let mensaje = document.querySelector('.mensaje-sin-resultados');
   
@@ -78,10 +116,19 @@ function manejarMensajeSinResultados(mostrar) {
   }
 }
 
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', manejarFiltrosCategorias);
+// Inicialización
+document.addEventListener('DOMContentLoaded', function() {
+  // Mostrar todas las cards por defecto al cargar
+  if (window.location.pathname.includes('explorar_cards.html') && !window.location.search) {
+    document.querySelectorAll('.contenedor-obras .tarjeta-link').forEach(card => {
+      card.style.display = 'block';
+    });
+  }
+  
+  manejarFiltrosCategorias();
+});
 
-// También ejecutar si se carga dinámicamente contenido (por si acaso)
+// Para contenido cargado dinámicamente
 document.addEventListener('ajaxComplete', manejarFiltrosCategorias);
 
 
