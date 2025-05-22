@@ -134,8 +134,6 @@ document.addEventListener('ajaxComplete', manejarFiltrosCategorias);
 
 
 
-
-
 // Lógica boton de fltrado del manú lateral
 
 const botonFiltro = document.querySelector('.filtro-btn');

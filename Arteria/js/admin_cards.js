@@ -60,6 +60,8 @@ function createCardElement(product) {
   return card;
 }
 
+
+
 /*//Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
 localStorage.clear();
 location.reload();
