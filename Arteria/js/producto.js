@@ -193,5 +193,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+document.getElementById('btn-anadir-carrito').addEventListener('click', function () {
+  const producto = {
+    nombre: this.dataset.nombre,
+    artista: this.dataset.artista,
+    tipo: this.dataset.tipo,
+    tamano: this.dataset.tamano,
+    imagen: this.dataset.imagen
+  };
+
+  // Guardar en localStorage
+  localStorage.setItem('productoSeleccionado', JSON.stringify(producto));
+
+  // Redirigir al carrito
+  window.location.href = 'carrito.html';
+});
 
 
