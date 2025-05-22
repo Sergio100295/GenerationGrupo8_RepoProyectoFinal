@@ -1,5 +1,4 @@
-// ---------- CARGAR HEADER ----------
-import { initProfileMenu } from './navbar-profile.js';
+// ---------- CARGAR HEADER ----------//
 
 fetch('../html/header.html')
   .then(response => response.text())
@@ -7,7 +6,11 @@ fetch('../html/header.html')
     document.getElementById('header-container').innerHTML = data;
     inicializarHeader();
     activarFiltroCategorias();
-    initProfileMenu();  
+   
+
+  import('./navbar-profile.js')
+    .then(({ initProfileMenu }) => initProfileMenu())
+    .catch(err => console.error('navbar-profile.js no se pudo cargar', err));
    
     //  Manejo de clicks en enlaces del header
     document.addEventListener('click', function(e) {

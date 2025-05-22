@@ -1,69 +1,48 @@
 
-  /* ───────── Elementos del DOM ───────── */
-  const profileBtn   = document.getElementById('hdrProfileBtn');
-  const profileMenu  = document.getElementById('hdrProfileMenu');
-  const tplIn        = document.getElementById('tpl-profile-logged-in');
-  const tplOut       = document.getElementById('tpl-profile-logged-out');
+  /* -------------------------------------------------------------
+   navbar-profile.js   (solo exporta la función)
+   ------------------------------------------------------------- */
+export function initProfileMenu () {
+  const btn   = document.getElementById('hdrProfileBtn');
+  const menu  = document.getElementById('hdrProfileMenu');
+  const tplIn  = document.getElementById('tpl-profile-logged-in');
+  const tplOut = document.getElementById('tpl-profile-logged-out');
 
-  if (!profileBtn || !profileMenu || !tplIn || !tplOut) {
-    console.warn('[navbar-profile] Elementos requeridos no encontrados.');
-    return { setLoggedIn () {}, getLoggedIn () { return false; } };
-  }
+  /* Si aún no existe el header, sal silenciado (header_footer lo llamará
+     después de inyectar el HTML) */
+  if (!btn || !menu || !tplIn || !tplOut) return;
 
-  /* ───────── Estado ───────── */
+  /* ---------- estado ---------- */
   let logged = localStorage.getItem('loggedIn') === 'true';
 
-  /* ───────── Renderizado del menú ───────── */
+  /* ---------- render ---------- */
   const render = () => {
-    profileMenu.innerHTML = '';
-    profileMenu.appendChild(
+    menu.innerHTML = '';
+    menu.appendChild(
       (logged ? tplIn : tplOut).content.cloneNode(true)
     );
 
     if (logged) {
-      const logout = profileMenu.querySelector('[data-action="logout"]');
-      logout?.addEventListener('click', e => {
-        e.preventDefault();
-        localStorage.removeItem('loggedIn');
-        logged = false;
-        render();                        
-        profileMenu.classList.remove('open');
-      });
+      menu.querySelector('[data-action="logout"]')
+          ?.addEventListener('click', e => {
+            e.preventDefault();
+            localStorage.removeItem('loggedIn');
+            logged = false;
+            render();
+            menu.classList.remove('open');
+          });
     }
   };
   render();
 
-  /* ───────── Apertura / cierre ───────── */
-  profileBtn.addEventListener('click', e => {
+  /* ---------- interacción ---------- */
+  btn.addEventListener('click', e => {
     e.stopPropagation();
-    const opened = profileMenu.classList.toggle('open');
-    profileBtn.setAttribute('aria-expanded', opened);
+    btn.setAttribute('aria-expanded', menu.classList.toggle('open'));
   });
-
   window.addEventListener('click', e => {
-    if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
-      profileMenu.classList.remove('open');
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove('open');
     }
-  });
-
-  /* ───────── API pública ───────── */
-  return {
-    setLoggedIn (flag) {
-      logged = !!flag;
-      localStorage.setItem('loggedIn', logged ? 'true' : 'false');
-      render();
-    },
-    getLoggedIn () {
-      return logged;
-    }
-  };
-
-
-/* ───────── Auto-inicialización si el script se carga directo ───────── */
-if (document.readyState !== 'loading') {
-  window.profileMenuCtrl = initProfileMenu();
-} else {
-  document.addEventListener('DOMContentLoaded', () => {
-    window.profileMenuCtrl = initProfileMenu();
   });
 }
