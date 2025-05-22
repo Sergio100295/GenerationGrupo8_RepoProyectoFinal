@@ -72,7 +72,7 @@ h2 {
 
 .admin-main-content {
   min-height: 100vh;
-  padding-top: 20px; 
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -114,9 +114,26 @@ h2 {
   margin-bottom: 1.1rem;
 }
 
+/* ---------- campo “Otro” con deslizamiento ---------- */
+.admin-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .35s ease, opacity .35s ease;
+}
+
+.admin-collapse.show {
+  max-height: 8rem;   /* antes 5rem → ahora cabe sin recorte */
+  overflow: visible;  /* deja ver el contenido completo */
+  opacity: 1;
+}
+
 .admin-btn-primary {
+
+  background-color:var(--color-principal);
   background-color: var(--color-principal);
   border-color: var(--color-principal);
+  border-radius: 12px;
   border-radius: var(--radio-borde);
   font-weight: 700;
   font-size: 1.2rem;
@@ -125,7 +142,7 @@ h2 {
   margin-top: 0.5rem;
   transition: background 0.15s;
   cursor: pointer;
-  color: white;
+  color: var(--color-claro);
   border-style: solid;
   border-width: 1.5px;
 }
@@ -134,6 +151,28 @@ h2 {
   background-color: var(--color-principal-oscuro);
   border-color: var(--color-principal-oscuro);
 }
+
+
+/* ---------- alertas flotantes ---------- */
+.admin-alert-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* centrado absoluto */
+  z-index: 1080;
+  /* por encima de todo */
+  width: clamp(280px, 90%, 400px);
+  /* responsive */
+  pointer-events: none;
+  /* no bloquea clicks */
+}
+
+.admin-alert-container .alert {
+  pointer-events: auto;
+  /* pero el botón close sí */
+}
+
 
 /* RESPONSIVE: Móvil */
 @media (max-width: 768px) {
@@ -148,24 +187,27 @@ h2 {
     width: 100%;
     border-radius: var(--radio-borde);
   }
+
   .admin-title {
     font-size: var(--font-size-titulo);
     margin-bottom: var(--espaciado-mediano);
   }
+
   .admin-logo-text {
     font-size: var(--font-size-subtitulo);
   }
- 
+
   .admin-logo-image {
     height: 44px;
   }
+
   .admin-logo-container {
     padding-left: 8px;
   }
 
   .admin-main-content {
     margin-top: var(--espaciado-grande);
-    padding-top: var(--espaciado-grande); 
+    padding-top: var(--espaciado-grande);
   }
 
   .admin-form-label,
@@ -173,10 +215,12 @@ h2 {
   .admin-btn-primary {
     font-size: var(--font-size-parrafo) !important;
   }
+
   .admin-form-control {
     padding: var(--espaciado-mediano) var(--espaciado-mediano);
     margin-bottom: var(--espaciado-mediano);
   }
+
   .admin-btn-primary {
     padding: var(--espaciado-mediano) 0;
   }

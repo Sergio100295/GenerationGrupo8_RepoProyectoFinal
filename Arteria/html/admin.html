@@ -26,6 +26,7 @@
     <div class="admin-form-wrapper shadow p-4 rounded-4 bg-white mt-5">
       <h2 class="admin-title mb-4 text-center">Agregar Producto</h2>
 
+
       <form id="admin-product-form" class="admin-product-form">
         <!-- Artista -->
         <div class="admin-form-group mb-3">
@@ -66,7 +67,29 @@
         </div>
         <!--AGREGADO SERGIO-->
 
-        
+        <!--Lista: categorías -->
+        <div class="admin-form-group mb-3">
+            <label for="admin-category" class="admin-form-label form-label">Categoría</label>
+            <select id="admin-category" class="admin-form-control form-select" required>
+            <option value="" selected disabled>Selecciona una categoría…</option>
+            <option>Pintura</option>
+            <option>Escultura</option>
+            <option>Fotografía</option>
+            <option>Ilustración</option>
+            <option>Artesanías</option>
+            <option>Arte Textil</option>
+            <option value="otro">Otro (especificar)</option>
+            </select>
+        </div>
+
+        <!-- Campo libre que sólo se muestra si eligen “Otro” -->
+        <div id="admin-category-other-wrapper" class="admin-form-group mb-3 admin-collapse">
+            <label for="admin-category-other" class="admin-form-label form-label">¿Cuál?</label>
+            <input type="text" id="admin-category-other"
+                class="admin-form-control form-control"
+                placeholder="Ej: Arte digital">
+        </div>
+
         
         <!-- Precio -->
         <div class="admin-form-group mb-3">
@@ -82,7 +105,9 @@
                     placeholder="Ej: Pintura, óleo sobre madera" required></textarea>
         </div>
 
-        <button type="submit" class="admin-btn-primary btn btn-primary">Agregar</button>
+        <button type="submit" class="admin-btn-primary">Agregar</button>
+
+          <div id="admin-alert-area"></div>
       </form>
     </div>
   </main>
