@@ -58,7 +58,7 @@
 .contenedor-obras { 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
-    gap: var(--espaciado-mediano);
+    gap: 2.5rem;
     justify-items: center; 
     max-width: 1200px; /* ancho */
     margin: 0 auto; /* centra el contenedor */
