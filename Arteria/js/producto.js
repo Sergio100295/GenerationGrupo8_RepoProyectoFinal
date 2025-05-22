@@ -193,20 +193,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-document.getElementById('btn-anadir-carrito').addEventListener('click', function () {
-  const producto = {
-    nombre: this.dataset.nombre,
-    artista: this.dataset.artista,
-    tipo: this.dataset.tipo,
-    tamano: this.dataset.tamano,
-    imagen: this.dataset.imagen
-  };
 
-  // Guardar en localStorage
-  localStorage.setItem('productoSeleccionado', JSON.stringify(producto));
+  // ../js/producto.js Fracmonto de codigo para el carrito
 
-  // Redirigir al carrito
-  window.location.href = 'carrito.html';
+document.addEventListener("DOMContentLoaded", () => {
+    const btnAnadirCarrito = document.getElementById("btn-anadir-carrito");
+
+    btnAnadirCarrito.addEventListener("click", () => {
+        const producto = {
+            nombre: btnAnadirCarrito.getAttribute("data-nombre"),
+            artista: btnAnadirCarrito.getAttribute("data-artista"),
+            tipo: btnAnadirCarrito.getAttribute("data-tipo"),
+            tamano: btnAnadirCarrito.getAttribute("data-tamano"),
+            imagen: btnAnadirCarrito.getAttribute("data-imagen"),
+            precio: 150000 // Puedes reemplazar con un atributo data-precio si es necesario
+        };
+
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        carrito.push(producto);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+
+        alert("Producto añadido al carrito 🎨🛒");
+    });
 });
+
 
 
