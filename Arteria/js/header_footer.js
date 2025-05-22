@@ -8,6 +8,7 @@ fetch('../html/header.html')
     inicializarHeader();
     activarFiltroCategorias();
     initProfileMenu();  
+    updateCartCounter();
    
     //  Manejo de clicks en enlaces del header
     document.addEventListener('click', function(e) {
@@ -117,3 +118,31 @@ mobileForm.addEventListener('submit', function(e) {
 
   console.log('Disparar búsqueda con:', query);
 }); */
+
+// ==================== CONTADOR DE CARRITO ====================
+/**
+ * Actualiza el contador de items en el icono del carrito
+ * @function updateCartCounter
+ */
+function updateCartCounter() {
+  try {
+    const cartCounter = document.getElementById('cart-counter');
+    if (!cartCounter) return;
+
+    const cart = JSON.parse(localStorage.getItem('carrito')) || [];
+    const totalItems = cart.reduce((total, item) => total + (item.cantidad || 1), 0);
+
+    cartCounter.textContent = totalItems > 99 ? '99+' : totalItems;
+    cartCounter.classList.toggle('show', totalItems > 0);
+  } catch (error) {
+    console.error('Error actualizando contador de carrito:', error);
+  }
+}
+
+// Actualización inicial y eventos
+document.addEventListener('DOMContentLoaded', updateCartCounter);
+
+// Hacer disponible globalmente
+if (typeof window.updateCartCounter === 'undefined') {
+  window.updateCartCounter = updateCartCounter;
+}

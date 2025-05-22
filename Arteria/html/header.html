@@ -62,8 +62,16 @@
           </div>
 
           <!-- Carrito -->
-          <a href="./carrito.html" class="hdr-icon" aria-label="Carrito">
+          <!-- <a href="./carrito.html" class="hdr-icon" aria-label="Carrito">
             <i class="bi bi-bag"></i>
+          </a> -->
+          <!-- Carrito -->
+          <a href="./carrito.html" class="hdr-icon position-relative" aria-label="Carrito" id="cart-icon">
+            <i class="bi bi-bag"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              id="cart-counter">
+              0
+            </span>
           </a>
 
           <!-- Hamburguesa -->
@@ -73,7 +81,7 @@
         </div>
 
       </section>
-       <!-- Buscador mobile (segunda fila) -->
+      <!-- Buscador mobile (segunda fila) -->
       <div class="hdr-mobile-search d-md-none" id="hdrMobileSearchBar">
         <form class="d-flex w-100" role="search" onsubmit="return false;">
           <input type="search" class="form-control" placeholder="Buscar arte o artista">
@@ -87,7 +95,7 @@
   </header>
 
 
- 
+
 
   <!-- Barra navegación categorías -->
   <nav class="border-bottom bg-white py-2 mt-3">

@@ -232,3 +232,44 @@ body {
     text-align: center;
   }
 }
+
+/* Estilos para el carrito */
+.producto-carrito {
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  
+}
+
+.producto-carrito:hover {
+  background-color: #ffffff;
+}
+
+.cantidad-input {
+  max-width: 40px;
+}
+
+.btn-cantidad {
+  width: 30px;
+}
+
+.btn-eliminar {
+  transition: all 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .producto-carrito {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  
+  .producto-carrito > div:last-child {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+}

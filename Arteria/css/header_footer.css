@@ -408,3 +408,13 @@ nav .nav-link:hover {
   }
   
 }
+/* Estilos para el contador del carrito */
+#cart-counter {
+  font-size: 0.9rem;
+  padding: 0.4em 0.6em;
+  display: none;
+}
+
+#cart-counter.show {
+  display: block;
+}
