@@ -1,5 +1,3 @@
-
-
 /* NUESTRA HISTORIA (RICHARD) /*
 
 /* Ajustes generales del contenedor del banner */
@@ -92,7 +90,7 @@
   backface-visibility: hidden;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 15px;
   box-sizing: border-box;
 }
@@ -127,15 +125,26 @@
   margin: 0 auto 10px auto;
 }
 
+.flip-card-back h5 {
+  font-size: var(--font-size-subtitulo);
+  font-family: var(--fuente-titulo);
+  font-weight: bold;
+  margin-bottom: var(--espaciado-pequeno);
+  color: var(--color-principal-oscuro);
+  text-align: center;
+}
+
 .rol {
   font-weight: bold;
   text-align: center;
-  margin-top: 10px;
+  font-size: var(--font-size-subtitulo);
+  margin-top: var(--espaciado-pequeno);
+  color: var(--color-principal-oscuro)
 }
 
 .nombre {
   text-align: center;
-  font-size: 1.1rem;
+  font-size: var(--font-size-subtitulo);
   font-weight: 500;
 }
 
@@ -160,6 +169,8 @@ small {
   display: block;
   margin: 10px auto 0;
 }
+
+
 
 @media (max-width: 576px) {
   .profile-card {
@@ -188,160 +199,159 @@ small {
   }
 }
 
-  
 /* UNA EXPERCIENCIA DIFERENTE */
 
 .experiencia-diferente {
-    background-color: var(--color-gris);
-    padding: var(--espaciado-grande);
-  }
-  
-  .contenedor-experiencia {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: var(--espaciado-grande);
-    flex-wrap: wrap;
-  }
-  
-  .experiencia-texto {
-    flex: 1;
-    max-width: 300px;
-  }
-  
-  .experiencia-texto h2 {
-    font-family: var(--fuente-titulo);
-    font-size: var(--font-size-titulo);
-    margin-bottom: var(--espaciado-pequeno);
-  }
-  
-  .experiencia-texto p {
-    font-family: var(--fuente-parrafo);
-    font-size: var(--font-size-parrafo);
-    line-height: 1.5;
-  }
-  
-  .beneficios {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaciado-mediano);
-  }
-  
-  .beneficio {
-    display: flex;
-    align-items: center;
-    gap: var(--espaciado-mediano);
-    background-color: white;
-    border-radius: var(--radio-borde);
-    box-shadow: var(--sombra-suave);
-    padding: var(--espaciado-mediano);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    cursor: pointer; /* opcional, da sensación de interactividad */
+  background-color: var(--color-gris);
+  padding: var(--espaciado-grande);
 }
-  
-  .icono {
-    font-size: 2rem;
-    flex-shrink: 0;
-  }
-  
-  .texto-beneficio {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .beneficio h3 {
-    margin: 0;
-    font-family: var(--fuente-titulo);
-    font-size: var(--font-size-subtitulo);
-  }
-  
-  .beneficio p {
-    margin: 0;
-    font-family: var(--fuente-parrafo);
-    font-size: var(--font-size-parrafo);
-  }
+
+.contenedor-experiencia {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: var(--espaciado-grande);
+  flex-wrap: wrap;
+}
+
+.experiencia-texto {
+  flex: 1;
+  max-width: 300px;
+}
+
+.experiencia-texto h2 {
+  font-family: var(--fuente-titulo);
+  font-size: var(--font-size-titulo);
+  margin-bottom: var(--espaciado-pequeno);
+}
+
+.experiencia-texto p {
+  font-family: var(--fuente-parrafo);
+  font-size: var(--font-size-parrafo);
+  line-height: 1.5;
+}
+
+.beneficios {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-mediano);
+}
+
+.beneficio {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-mediano);
+  background-color: white;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  padding: var(--espaciado-mediano);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  /* opcional, da sensación de interactividad */
+}
+
+.icono {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.texto-beneficio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.beneficio h3 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: var(--font-size-subtitulo);
+}
+
+.beneficio p {
+  margin: 0;
+  font-family: var(--fuente-parrafo);
+  font-size: var(--font-size-parrafo);
+}
 
 .beneficio:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    background-color: #f9f9f9;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  background-color: #f9f9f9;
 }
 
 /* Animación del ícono */
 .beneficio-icono {
-    font-size: 2rem;
-    transition: transform 0.3s ease;
+  font-size: 2rem;
+  transition: transform 0.3s ease;
 }
 
 .beneficio:hover .beneficio-icono {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 
 
 
 
-            /* Estilos para menú de categorías en móvil */
+/* Estilos para menú de categorías en móvil */
 
 /* RESPONSIVE HEADER */
 
 @media (max-width: 768px) {
 
 
-     /* NUESTRA HISTORIA */
-     .contenido-superpuesto {
-      flex-direction: column;
-      text-align: center;
-      padding: 0 10%;
-    }
-  
-    .texto-banner {
-      max-width: 100%;
-    }
-  
-    /* El video del logo se oculta en pantallas pequeñas */
-    .logo-video {
-      display: none !important;
-    }
-   
-   
-   /* RESPONSIVE UN EXPERIENCIA DIFERENTE */
-       .experiencia-container {
-         flex-direction: column;
-         align-items: center;
-         gap: var(--espaciado-grande);
-         text-align: center;
-       }
-     
-       .experiencia-texto {
-         max-width: 90%;
-       }
-     
-       .beneficios {
-         width: 100%;
-         align-items: center;
-       }
-     
-       .beneficio {
-         width: 90%;
-         flex-direction: column;
-         align-items: center;
-         text-align: center;
-       }
-     
-       .beneficio-icono {
-         font-size: 2.5rem;
-         margin-bottom: var(--espaciado-pequeno);
-       }
-     
-       .beneficio-texto {
-         max-width: 100%;
-       }
+  /* NUESTRA HISTORIA */
+  .contenido-superpuesto {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 10%;
+  }
 
-      }
-  
+  .texto-banner {
+    max-width: 100%;
+  }
+
+  /* El video del logo se oculta en pantallas pequeñas */
+  .logo-video {
+    display: none !important;
+  }
+
+
+  /* RESPONSIVE UN EXPERIENCIA DIFERENTE */
+  .experiencia-container {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-grande);
+    text-align: center;
+  }
+
+  .experiencia-texto {
+    max-width: 90%;
+  }
+
+  .beneficios {
+    width: 100%;
+    align-items: center;
+  }
+
+  .beneficio {
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .beneficio-icono {
+    font-size: 2.5rem;
+    margin-bottom: var(--espaciado-pequeno);
+  }
+
+  .beneficio-texto {
+    max-width: 100%;
+  }
+
+}

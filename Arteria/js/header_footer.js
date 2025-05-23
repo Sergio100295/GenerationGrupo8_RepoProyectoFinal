@@ -1,5 +1,4 @@
-// ---------- CARGAR HEADER ----------
-import { initProfileMenu } from './navbar-profile-menu.js';
+// ---------- CARGAR HEADER ----------//
 
 fetch('../html/header.html')
   .then(response => response.text())
@@ -7,7 +6,11 @@ fetch('../html/header.html')
     document.getElementById('header-container').innerHTML = data;
     inicializarHeader();
     activarFiltroCategorias();
-    initProfileMenu();  
+   
+
+  import('./navbar-profile.js')
+    .then(({ initProfileMenu }) => initProfileMenu())
+    .catch(err => console.error('navbar-profile.js no se pudo cargar', err));
    
     //  Manejo de clicks en enlaces del header
     document.addEventListener('click', function(e) {
@@ -117,3 +120,16 @@ mobileForm.addEventListener('submit', function(e) {
 
   console.log('Disparar búsqueda con:', query);
 }); */
+
+// ---------- Funcionalidad botón 'Ver más' en cards ----------
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const expanded = this.nextElementSibling;
+      const isVisible = expanded.style.display === 'block';
+      expanded.style.display = isVisible ? 'none' : 'block';
+      this.textContent = isVisible ? 'Ver más' : 'Ver menos';
+    });
+  });
+  
+});

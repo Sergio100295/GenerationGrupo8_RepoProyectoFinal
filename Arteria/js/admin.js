@@ -3,8 +3,43 @@
 // ------------------------------------------------------------------
 
 // Persistencia -----------------------------------------------------
+// Persistencia -----------------------------------------------------
 let productList = JSON.parse(localStorage.getItem('productList')) || [];
 
+// Elementos del DOM ------------------------------------------------
+const form             = document.getElementById('admin-product-form');
+const categorySelect   = document.getElementById('admin-category');
+const otherWrapper     = document.getElementById('admin-category-other-wrapper');
+const otherInput       = document.getElementById('admin-category-other');
+const alertArea        = document.getElementById('admin-alert-area');
+
+// Helpers ----------------------------------------------------------
+/**
+ * Muestra una alerta Bootstrap (success | danger | info | warning)
+ * y la descarta automáticamente después de 3 s.
+ */
+function showAlert (msg, type = 'success') {
+  alertArea.innerHTML = `
+    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+      ${msg}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>`;
+  // Autodescartar
+  setTimeout(() => {
+    const alert = bootstrap.Alert.getOrCreateInstance(alertArea.querySelector('.alert'));
+    alert.close();
+  }, 3000);
+}
+
+// Lógica “Otro (especificar)” -------------------------------------
+categorySelect.addEventListener('change', () => {
+  const isOther = categorySelect.value === 'otro';
+  otherWrapper.classList.toggle('show', isOther);
+  otherInput.required = isOther;
+  if (!isOther) otherInput.value = '';
+});
+
+// Envío de formulario ---------------------------------------------
 // Elementos del DOM ------------------------------------------------
 const form             = document.getElementById('admin-product-form');
 const categorySelect   = document.getElementById('admin-category');
@@ -58,12 +93,22 @@ form.addEventListener('submit', function (event) {
                       : categorySelect.value;
  
 
+    // Categoría (gestiona “Otro”)
+      const category = categorySelect.value === 'otro'
+                      ? otherInput.value.trim()
+                      : categorySelect.value;
+ 
+
     // Validación                              (!Thumb1-3 AGREGADO SERGIO)
+    if (!artistName || !artName || !urlImg || !thumb1 || !thumb2 || !thumb3 || isNaN(price) || !artDescription|| !category) {
+      showAlert('Por favor, completa todos los campos.', 'danger');
+    return;
     if (!artistName || !artName || !urlImg || !thumb1 || !thumb2 || !thumb3 || isNaN(price) || !artDescription|| !category) {
       showAlert('Por favor, completa todos los campos.', 'danger');
     return;
     }
 
+    // Creación del objeto para almacenar, con miniaturas
     // Creación del objeto para almacenar, con miniaturas
     const newProductStorage = {
       id: crypto.randomUUID(), // AGREGADO SERGIO
@@ -78,6 +123,15 @@ form.addEventListener('submit', function (event) {
 
   productList.push(newProductStorage);
   localStorage.setItem('productList', JSON.stringify(productList));
+
+
+    // --- Feedback + limpieza
+  showAlert('Producto agregado correctamente');
+  form.reset();
+  // Reestablece select
+  categorySelect.value = '';
+  otherWrapper.classList.remove('show');
+  otherInput.required = false;
 
 
     // --- Feedback + limpieza
