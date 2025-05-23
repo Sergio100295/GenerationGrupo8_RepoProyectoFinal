@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Mostrar mensaje si el carrito está vacío
   if (carrito.length === 0) {
-    listaCarrito.innerHTML = '<p class="py-3">Tu carrito está vacío.</p>';
+    listaCarrito.innerHTML = '<p class="py-3 text-dark">Tu carrito está vacío.</p>';
     btnExplorar.style.display = 'block';
     totalSpan.textContent = '0';
     btnComprar.disabled = true;

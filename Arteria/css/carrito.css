@@ -208,6 +208,11 @@ body {
     width: 100%;
     max-width: 500px;
   }
+  .total{
+    font-size: var(--font-size-subtitulo);
+    font-family: var(--fuente-parrafo);
+
+  }
 }
 
 @media (max-width: 576px) {
@@ -218,6 +223,7 @@ body {
   .logo-texto {
     font-size: 1.4rem;
   }
+  
 
   .carrito-contenedor {
     padding: 15px;
