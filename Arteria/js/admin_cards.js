@@ -108,7 +108,6 @@ document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
 
 
 
-
 /*//Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
 localStorage.clear();
 location.reload();
