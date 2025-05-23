@@ -28,11 +28,13 @@
 }
 
 header {
+  position:relative;
   font-family: var(--fuente-parrafo);
   background-color: white;
   padding: var(--espaciado-mediano) 0;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  z-index: 12000; 
 }
 
 header h1 {
@@ -56,58 +58,55 @@ nav {
   font-family: var(--fuente-parrafo);
 }
 
-nav ul.nav {
-  padding-left: 0;
-  margin: 0;
-}
 
-.nav-item {
-  margin-right: var(--espaciado-mediano);
+nav ul.nav{padding-left:0;margin:0;}
+.nav-item{margin-right:var(--espaciado-mediano);}
+.nav-link{
+  color:var(--color-negro-suave)!important;
+  text-decoration:none;
+  font-size:21px;
+  font-weight:bold;
+  transition:color .3s ease;
+  padding:0;
 }
-
-.nav-link {
-  color: var(--color-negro-suave) !important;
-  text-decoration: none;
-  font-size: 21px;
-  font-weight: bold;
-  transition: color 0.3s ease;
-  padding: 0;
-}
-
-nav .nav-link:hover {
-  color: var(--color-principal) !important;
-}
-
+nav .nav-link:hover{color:var(--color-principal)!important;}
 .nav-link:visited,
-.nav-link:active {
-  color: var(--color-negro-suave) !important;
-  text-decoration: none;
+.nav-link:active{color:var(--color-negro-suave)!important;text-decoration:none;}
+
+/* ---------- Menú desplegable de perfil (desktop) ---------- */
+.profile-dropdown{position:relative;}
+
+.profile-dropdown .profile-menu{
+  display:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%)!important;
+  min-width:220px;
+  background:var(--color-claro);
+  border-radius:var(--radio-borde);
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+  padding:8px 0;
+  overflow:hidden;
+  z-index:11000;
+}
+.profile-menu.open{
+  display:block;
+  animation:dropdownFade .18s ease;
 }
 
-
-/* ---------- Menú desplegable de perfil ---------- */
-.profile-dropdown {
-  position: relative;
+@keyframes dropdownFade{
+  from{opacity:0;transform:translateY(-6px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
-.profile-dropdown .profile-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) !important;
-  min-width: 220px;
-  background: var(--color-claro);
-  border-radius: var(--radio-borde);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
-  padding: 8px 0;
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.profile-menu.open {
-  display: block;
-  animation: dropdownFade 0.18s ease;
+/* Interior del menú */
+.profile-menu ul{list-style:none;margin:0;padding:0;}
+.profile-menu li{border:none;}
+.profile-menu hr{
+  border:none;
+  border-top:1px solid var(--color-gris);
+  margin:8px 0;
 }
 
 @keyframes dropdownFade {
@@ -160,6 +159,8 @@ nav .nav-link:hover {
   padding: var(--espaciado-grande);
   font-family: var(--fuente-parrafo);
   font-size: var(--font-size-parrafo);
+  padding: 20px;
+  padding-bottom: 10px;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 0.3s;
 }
@@ -221,12 +222,18 @@ nav .nav-link:hover {
   margin-bottom: var(--espaciado-pequeno);
 }
 
-.categories-links,
+.categories-links {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 6px 20px;
+}
+
 .info-links {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 6px 20px;
 }
+
 
 .footer-bottom {
   border-top: 1px solid var(--color-gris);
@@ -261,7 +268,7 @@ nav .nav-link:hover {
   display: flex;
   gap: 10px;
   margin-left: auto;
-  margin-top: 0;
+  margin-top: -20px;
 }
 
 .social-icons a {
@@ -307,7 +314,6 @@ nav .nav-link:hover {
   }
 
   .hdr-icons {
-    order: 1;
     flex: 0 0 auto;
     z-index: 2;
   }
@@ -351,6 +357,29 @@ nav .nav-link:hover {
     position: relative;
   }
 
+  .profile-dropdown .profile-menu{
+    position:absolute !important;                /* saca el menú del flujo normal */
+    top: calc(100% + 8px);   ;   /* justo debajo del botón r */
+    left: 50%;                     /* margen para no pegarse al borde */
+    transform: translateX(-50%) !important;
+    max-width: 90vw; 
+    width: auto;
+    max-height: calc(100vh - 100px); 
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 11000;                 
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    border-radius: var(--radio-borde);
+    }
+
+  /* padding táctil cómodo */
+  .profile-menu::-webkit-scrollbar{width:6px;}
+  .profile-menu::-webkit-scrollbar-thumb{
+  background: var(--color-gris);
+  border-radius:3px;
+  }
+
+  .profile-menu a{padding:14px 24px;} /* tacto cómodo */
   /* 2. Oculta por defecto el listado de categorías */
   #hdrMenuCategorias {
     display: none;            
@@ -407,4 +436,14 @@ nav .nav-link:hover {
     margin-top: var(--espaciado-pequeno);
   }
   
+}
+/* Estilos para el contador del carrito */
+#cart-counter {
+  font-size: 0.9rem;
+  padding: 0.4em 0.6em;
+  display: none;
+}
+
+#cart-counter.show {
+  display: block;
 }

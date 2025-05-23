@@ -192,6 +192,62 @@ document.addEventListener("DOMContentLoaded", () => {
       img.classList.add("seleccionada");
     });
   });
+
 });
 
+  // ../js/producto.js Fragmento de codigo para el carrito
 
+document.addEventListener('DOMContentLoaded', () => {
+  const btnAnadir = document.getElementById('btn-anadir-carrito');
+
+  if (btnAnadir) {
+    btnAnadir.addEventListener('click', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productoId = urlParams.get("id");
+      
+      // Obtener producto de los datos hardcodeados o del localStorage
+      const producto = productos[productoId] || 
+        JSON.parse(localStorage.getItem("productList")).find(p => p.id === productoId);
+
+      if (!producto) {
+        alert("Producto no encontrado.");
+        return;
+      }
+
+      // Crear objeto producto para el carrito
+      const nuevoProducto = {
+        id: productoId,
+        nombre: producto.titulo || producto.artName,
+        artista: producto.artista || producto.artistName,
+        tipo: producto.tipo || producto.artDescription || "Pintura, Técnica mixta",
+        tamano: producto.tamano || "45.5 W x 39 H x 0.3 D cm",
+        imagen: producto.imagenes?.[0] || producto.thumbnails?.[0] || producto.urlImg || "ruta/a/imagen.jpg",
+        precio: parseFloat((producto.precio || producto.price || "150000").replace(/[^\d]/g, '')) || 150000,
+        cantidad: 1
+      };
+
+      // Obtener carrito actual o crear uno nuevo
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      
+      // Verificar si el producto ya está en el carrito
+      const productoExistente = carrito.find(item => item.id === productoId);
+      
+      if (productoExistente) {
+        // Incrementar cantidad si ya existe
+        productoExistente.cantidad += 1;
+      } else {
+        // Agregar nuevo producto al carrito
+        carrito.push(nuevoProducto);
+      }
+
+      // Guardar carrito actualizado
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      
+      // Notificar al usuario
+      alert(`"${nuevoProducto.nombre}" ha sido añadido al carrito`);
+      
+      // Opcional: Redirigir al carrito
+      // window.location.href = 'carrito.html';
+    });
+  }
+});
