@@ -14,7 +14,7 @@
           }
       }).then(response => {
           if (response.ok) {
-              status.innerHTML = "Gracias por habernos contactado.";
+              status.innerHTML = "Gracias por contactarse.";
               form.reset()
           } else {
               response.json().then(data => {

@@ -5,132 +5,118 @@
     padding: var(--espaciado-pequeno) 0;
     font-family: var(--fuente-parrafo);
   }
-  
+
   /* Lista de navegación  horizontal*/
   nav ul.nav {
     padding-left: 0;
     margin: 0;
   }
-  
-  /* Ítems de lista */
-.nav-item {
-  margin-right: var(--espaciado-mediano);
-}
 
-/* Enlaces */
-.nav-link {
-  color: var(--color-negro-suave)!important;
-  text-decoration: none;
-  font-size: 21px;
-  font-weight: bold;
-  transition: color 0.3s ease;
-  padding: 0; 
-}
-
-nav .nav-link:hover {
-  color: var(--color-principal)!important;
-}
-
-.nav-link:visited,
-.nav-link:active {
-  color: var(--color-negro-suave)!important;
-  text-decoration: none;
-}
-/* Banner */
-.banner {
-  background-image: url('../img/Logo-Arteria/foto-banner3.png');
-  background-size: cover;
-  background-position: center;
-  height: 250px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 0 2rem;
-}
-
-
-.banner-title {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  font-size: 2.5rem;
-  color: white;
-  font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-}
-
-
-/* Contenedor principal */
-.contact-form {
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.form-card {
-  background: #d3d3d3;
-  width: 100%;
-  max-width: 700px;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(10, 10, 10, 0.6);
-}
-
-.form-title {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.form-box {
-  margin-bottom: 1.5rem;
-  border-radius: 50px;
-}
-
-.form-box label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.form-box input,
-.form-box textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
-}
-
-/* Botón centrado y estilizado */
-.form-boton {
-  display: flex;
-  justify-content: center;
-
-
-}
-
-#my-form-button {
-  background-color: #580303;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 50px;
-  width: 50%;
-  max-width: 200px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-align: center;
-}
-
-#my-form-button:hover {
-  background-color: #a4161a;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  #my-form-button {
-    width: 100%;
+  /* Ítems de lista */                                   
+  .nav-item {
+    margin-right: var(--espaciado-mediano);
   }
+
+  /* Enlaces */
+  .nav-link {
+    color: var(--color-negro-suave) !important;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 0;
+  }
+
+  nav .nav-link:hover {
+    color: var(--color-principal) !important;
+  }
+
+  .nav-link:visited,
+  .nav-link:active {
+    color: var(--color-negro-suave) !important;
+    text-decoration: none;
+  }
+
+  /* Contenedor principal */
+  .contact-form {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-card {
+    background: #d3d3d3;
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(10, 10, 10, 0.6);
+  }
+
+  .form-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-box {
+    margin-bottom: 1.5rem;
+    border-radius: 50px;
+  }
+
+  .form-box label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .form-box input,
+  .form-box textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+  }
+
+  /* Botón centrado y estilizado */
+  .form-boton {
+    display: flex;
+    justify-content: center;
+
+
+  }
+
+  #my-form-button {
+    background-color: #580303;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    width: 50%;
+    max-width: 200px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+
+  #my-form-button:hover {
+    background-color: #a4161a;
+  }
+  /* Mensaje "Gracias por contactarnos"*/
+  #my-form-status {
+  text-align: center;       /* Centra el texto horizontalmente */
+  font-size: 1.2rem;        /* Aumenta el tamaño de la fuente */
+  margin-top: 1rem;         /* Espacio superior opcional */
+  font-weight: bold;        /* Opcional: hace que el mensaje resalte más */
+  color: rgb(8, 8, 8);             /* Opcional: cambia el color del mensaje a verde */
 }
+
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    #my-form-button {
+      width: 100%;
+    }
+  }

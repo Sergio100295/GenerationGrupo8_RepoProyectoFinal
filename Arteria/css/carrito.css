@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.logo-contenedor {
+/* .logo-contenedor {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -29,7 +29,7 @@
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--color-negro-suave);
-}
+} */
 
 /* === Cuerpo general === */
 body {
@@ -37,7 +37,7 @@ body {
     background-color: var(--color-gris);
     margin: 0;
     padding: 0;
-    padding-top: 90px;
+    padding-top: 0;
     /* Espacio para encabezado fijo */
 }
 
@@ -183,4 +183,99 @@ body {
 
 #btn-carrito-ayuda:hover {
     background-color: var(--color-principal);  /* Un tono de azul más oscuro al pasar el ratón */
+}
+/* === Estilos responsivos para tablets y móviles === */
+@media (max-width: 992px) {
+  .carrito-contenedor {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .carrito-productos {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .contenedor-principal {
+    width: 100%;
+    align-items: center;
+  }
+
+  .contenedor-resumen,
+  .contenedor-confianza,
+  .contenedor-ayuda {
+    width: 100%;
+    max-width: 500px;
+  }
+  .total{
+    font-size: var(--font-size-subtitulo);
+    font-family: var(--fuente-parrafo);
+
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-imagen {
+    height: 45px;
+  }
+
+  .logo-texto {
+    font-size: 1.4rem;
+  }
+  
+
+  .carrito-contenedor {
+    padding: 15px;
+    gap: 20px;
+  }
+
+  #btn-carrito-vacio,
+  #btn-comprar,
+  #btn-carrito-ayuda {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+}
+
+/* Estilos para el carrito */
+.producto-carrito {
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  
+}
+
+.producto-carrito:hover {
+  background-color: #ffffff;
+}
+
+.cantidad-input {
+  max-width: 40px;
+}
+
+.btn-cantidad {
+  width: 30px;
+}
+
+.btn-eliminar {
+  transition: all 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .producto-carrito {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  
+  .producto-carrito > div:last-child {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
 }

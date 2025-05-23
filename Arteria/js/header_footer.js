@@ -6,12 +6,13 @@ fetch('../html/header.html')
     document.getElementById('header-container').innerHTML = data;
     inicializarHeader();
     activarFiltroCategorias();
-   
+    initProfileMenu();  
+    updateCartCounter();
 
-  import('./navbar-profile.js')
+    import('./navbar-profile.js')
     .then(({ initProfileMenu }) => initProfileMenu())
     .catch(err => console.error('navbar-profile.js no se pudo cargar', err));
-   
+    
     //  Manejo de clicks en enlaces del header
     document.addEventListener('click', function(e) {
       // Verifica si se hizo clic en un enlace dentro del header
@@ -120,7 +121,6 @@ mobileForm.addEventListener('submit', function(e) {
 
   console.log('Disparar búsqueda con:', query);
 }); */
-
 // ---------- Funcionalidad botón 'Ver más' en cards ----------
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
@@ -133,3 +133,31 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   
 });
+
+//==================== CONTADOR DE CARRITO ====================
+/**
+ * Actualiza el contador de items en el icono del carrito
+ * @function updateCartCounter
+ */
+function updateCartCounter() {
+  try {
+    const cartCounter = document.getElementById('cart-counter');
+    if (!cartCounter) return;
+
+    const cart = JSON.parse(localStorage.getItem('carrito')) || [];
+    const totalItems = cart.reduce((total, item) => total + (item.cantidad || 1), 0);
+
+    cartCounter.textContent = totalItems > 99 ? '99+' : totalItems;
+    cartCounter.classList.toggle('show', totalItems > 0);
+  } catch (error) {
+    console.error('Error actualizando contador de carrito:', error);
+  }
+}
+
+// Actualización inicial y eventos
+document.addEventListener('DOMContentLoaded', updateCartCounter);
+
+// Hacer disponible globalmente
+if (typeof window.updateCartCounter === 'undefined') {
+  window.updateCartCounter = updateCartCounter;
+}
