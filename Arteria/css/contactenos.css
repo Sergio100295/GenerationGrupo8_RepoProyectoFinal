@@ -37,24 +37,44 @@
     text-decoration: none;
   }
 
+.banner-title{
+  margin-top: 2.5rem;
+  text-align: center;
+  color: var(--color-principal-oscuro);
+  font-size: var(--font-size-titulo);
+}
+
+
   /* Contenedor principal */
   .contact-form {
+    color: var(--color-claro);
     padding: 2rem;
     display: flex;
     justify-content: center;
   }
 
   .form-card {
-    background: #d3d3d3;
     width: 100%;
-    max-width: 700px;
+    max-width: 30rem;
+    height: 38rem;;
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(10, 10, 10, 0.6);
+    /* Fondo con imagen */
+    background-image: url('../img/Logo-Arteria/Foto-banner3.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+  .form-card {
+    background-image: url('../img/Logo-Arteria/Foto-banner3.png');
+    background-color: rgba(0, 0, 0, 0.4); 
+    background-blend-mode: darken;
   }
 
+
   .form-title {
-    text-align: center;
+    text-align:center;
     margin-bottom: 1.5rem;
   }
 
@@ -88,7 +108,7 @@
   }
 
   #my-form-button {
-    background-color: #580303;
+    background-color: var(--color-principal);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -102,7 +122,7 @@
   }
 
   #my-form-button:hover {
-    background-color: #a4161a;
+    background-color: var(--color-principal-oscuro);
   }
   /* Mensaje "Gracias por contactarnos"*/
   #my-form-status {
