@@ -132,14 +132,7 @@ function createCards(listProducts){
       card.appendChild(cajaObra);
       const container = document.querySelector('.contenedor-obras');
       container.appendChild(card);
-
-    //console.log("IDcategoria: " + longitudListProducts);
-  
-
-
     }
-
-
 }
 
 
@@ -167,6 +160,58 @@ function createCards(listProducts){
     console.error("Error:", error);
    // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
   });
+
+
+
+
+
+
+  function createCategories(listCategorias){
+    const longitudListCategorias = listCategorias.length;
+    if (longitudListCategorias > 0 ) {
+      for (let i = 0; i < longitudListCategorias; i++) {
+        const category = document.createElement('li');
+        category.className = 'nav-item';
+
+        // Contenido de la categoría
+        category.innerHTML = `
+          <a class="nav-link" href="#">${listCategorias[i].nombreCategoria}</a>
+        `;
+
+        const containerCategories = document.querySelector('.hdrMenuCategorias');
+        containerCategories.appendChild(category);
+      }
+      
+    }
+    
+}
+
+
+
+  //Servicio consultar categorías
+
+   fetch("http://localhost:8080/categoria", {
+  method: "GET"
+
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("No se pudo mostrar las categorías");
+    }
+    return response.text(); // O response.json() si devuelves JSON
+  })
+  .then(data => {
+    console.log("data: " + data);
+    const listCategorias = JSON.parse(data);
+ 
+    createCategories(listCategorias)
+   // mostrarAlerta("Obras mostradas", "success");
+  })
+  .catch(error => {
+    console.error("Error:", error);
+   // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+  });
+
 
 
 
