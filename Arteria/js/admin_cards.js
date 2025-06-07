@@ -141,27 +141,7 @@ if (window.location.pathname.includes('explorar_cards.html')) {
       }
   }
 
-//Funcion crear categorias
 
-  function createCategories(listCategorias){
-    const longitudListCategorias = listCategorias.length;
-    if (longitudListCategorias > 0 ) {
-      for (let i = 0; i < longitudListCategorias; i++) {
-        const category = document.createElement('li');
-        category.className = 'nav-item';
-
-        // Contenido de la categoría
-        category.innerHTML = `
-          <a class="nav-link" onclick="createCardsByIdCategory(${listCategorias[i].idCategoria})">${listCategorias[i].nombreCategoria}</a>
-        `;
-
-        const containerCategories = document.querySelector('.hdrMenuCategorias');
-        containerCategories.appendChild(category);
-      }
-      
-    }
-    
-  }
 
 
 
@@ -175,17 +155,6 @@ if (window.location.pathname.includes('explorar_cards.html')) {
     } 
 
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -257,29 +226,12 @@ if (window.location.pathname.includes('explorar_cards.html')) {
 
 
 
-  //Servicio consultar categorías
+  
 
-   fetch("http://localhost:8080/categoria", {
-  method: "GET"
-
-})
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("No se pudo mostrar las categorías");
-    }
-    return response.text(); // O response.json() si devuelves JSON
-  })
-  .then(data => {
-    console.log("data: " + data);
-    const listCategorias = JSON.parse(data);
+   
  
-    createCategories(listCategorias)
-   // mostrarAlerta("Obras mostradas", "success");
-  })
-  .catch(error => {
-    console.error("Error:", error);
-   // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
-  });
+
+   
 
 
 
@@ -292,7 +244,6 @@ if (window.location.pathname.includes('explorar_cards.html')) {
 /*//Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
 localStorage.clear();
 location.reload();
-
 */
 
 
