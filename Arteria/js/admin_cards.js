@@ -101,7 +101,74 @@ if (window.location.pathname.includes('explorar_cards.html')) {
 }
 
 // Evento personalizado para actualizar filtros
-document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
+//document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
+
+
+function createCards(listProducts){
+    const longitudListProducts = listProducts.length;
+    for (let i = 0; i < longitudListProducts; i++) {
+      const card = document.createElement('a');
+      card.className = 'tarjeta-link';
+      card.href = `producto.html?id=${listProducts[i].id_obra}`;
+
+      const cajaObra = document.createElement('div');
+      cajaObra.className = 'caja-obra';
+
+     // const categoriaNormalizada = normalizarCategoria(product.category);
+      cajaObra.setAttribute('data-categoria', listProducts[i].categoria.idCategoria);
+
+      
+      // Contenido de la tarjeta
+      cajaObra.innerHTML = `
+        <img src="${listProducts[i].imagenes?.imagen_principal_url}" alt="${listProducts[i].nombre_obra}" loading="lazy">
+        <div class="texto-obra">
+          <h3>${listProducts[i].nombre_obra}</h3>
+          <p>${listProducts[i].nombre_artista}</p>
+          <p class="precio-obra">$${listProducts[i].precio_obra.toLocaleString('es-CO')}</p>
+          <p class="description-card">${listProducts[i].descripcion_obra}</p>
+        </div>
+      `;
+
+      card.appendChild(cajaObra);
+      const container = document.querySelector('.contenedor-obras');
+      container.appendChild(card);
+
+    //console.log("IDcategoria: " + longitudListProducts);
+  
+
+
+    }
+
+
+}
+
+
+
+//Servicio consultar obras
+
+ fetch("http://localhost:8080/obras", {
+  method: "GET"
+
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("No se pudo mostrar las obras");
+    }
+    return response.text(); // O response.json() si devuelves JSON
+  })
+  .then(data => {
+    console.log("data: " + data);
+    const listProducts = JSON.parse(data);
+ 
+    createCards(listProducts)
+   // mostrarAlerta("Obras mostradas", "success");
+  })
+  .catch(error => {
+    console.error("Error:", error);
+   // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+  });
+
+
 
 
 
@@ -111,7 +178,9 @@ document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
 /*//Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
 localStorage.clear();
 location.reload();
+
 */
+
 
 
 
