@@ -117,12 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Lógica boton de fltrado del manú lateral
 
-const botonFiltro = document.querySelector('.filtro-btn');
-  const menuLateral = document.querySelector('.menu-lateral');
+// const botonFiltro = document.querySelector('.filtro-btn');
+//   const menuLateral = document.querySelector('.menu-lateral');
 
-  botonFiltro.addEventListener('click', () => {
-    menuLateral.classList.toggle('activo');
-  });
+//   botonFiltro.addEventListener('click', () => {
+//     menuLateral.classList.toggle('activo');
+//   });
 
 
 
@@ -184,7 +184,12 @@ const botonFiltro = document.querySelector('.filtro-btn');
       console.log("List categorias:", listCategorias);
       createCategories(listCategorias);
     }
-    cargarCategorias();
+
+    window.onload = function () {
+      cargarCategorias();
+    };
+
+    
 
   //  if (listCategorias.length > 0) {
   //      createCategories(listCategorias)
