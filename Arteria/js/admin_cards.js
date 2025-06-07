@@ -104,67 +104,44 @@ if (window.location.pathname.includes('explorar_cards.html')) {
 //document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
 
 
-function createCards(listProducts){
-    const longitudListProducts = listProducts.length;
-    for (let i = 0; i < longitudListProducts; i++) {
-      const card = document.createElement('a');
-      card.className = 'tarjeta-link';
-      card.href = `producto.html?id=${listProducts[i].id_obra}`;
 
-      const cajaObra = document.createElement('div');
-      cajaObra.className = 'caja-obra';
+// Función crear cards 
 
-     // const categoriaNormalizada = normalizarCategoria(product.category);
-      cajaObra.setAttribute('data-categoria', listProducts[i].categoria.idCategoria);
-
-      
-      // Contenido de la tarjeta
-      cajaObra.innerHTML = `
-        <img src="${listProducts[i].imagenes?.imagen_principal_url}" alt="${listProducts[i].nombre_obra}" loading="lazy">
-        <div class="texto-obra">
-          <h3>${listProducts[i].nombre_obra}</h3>
-          <p>${listProducts[i].nombre_artista}</p>
-          <p class="precio-obra">$${listProducts[i].precio_obra.toLocaleString('es-CO')}</p>
-          <p class="description-card">${listProducts[i].descripcion_obra}</p>
-        </div>
-      `;
-
-      card.appendChild(cajaObra);
+  function createCards(listProducts){
       const container = document.querySelector('.contenedor-obras');
-      container.appendChild(card);
-    }
-}
+      container.innerHTML = '';
 
+      const longitudListProducts = listProducts.length;
+      for (let i = 0; i < longitudListProducts; i++) {
+        const card = document.createElement('a');
+        card.className = 'tarjeta-link';
+        card.href = `producto.html?id=${listProducts[i].id_obra}`;
 
+        const cajaObra = document.createElement('div');
+        cajaObra.className = 'caja-obra';
 
-//Servicio consultar obras
+      // const categoriaNormalizada = normalizarCategoria(product.category);
+        cajaObra.setAttribute('data-categoria', listProducts[i].categoria.idCategoria);
 
- fetch("http://localhost:8080/obras", {
-  method: "GET"
+        
+        // Contenido de la tarjeta
+        cajaObra.innerHTML = `
+          <img src="${listProducts[i].imagenes?.imagen_principal_url}" alt="${listProducts[i].nombre_obra}" loading="lazy">
+          <div class="texto-obra">
+            <h3>${listProducts[i].nombre_obra}</h3>
+            <p>${listProducts[i].nombre_artista}</p>
+            <p class="precio-obra">$${listProducts[i].precio_obra.toLocaleString('es-CO')}</p>
+            <p class="description-card">${listProducts[i].descripcion_obra}</p>
+          </div>
+        `;
 
-})
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("No se pudo mostrar las obras");
-    }
-    return response.text(); // O response.json() si devuelves JSON
-  })
-  .then(data => {
-    console.log("data: " + data);
-    const listProducts = JSON.parse(data);
- 
-    createCards(listProducts)
-   // mostrarAlerta("Obras mostradas", "success");
-  })
-  .catch(error => {
-    console.error("Error:", error);
-   // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
-  });
+        card.appendChild(cajaObra);
+        const container = document.querySelector('.contenedor-obras');
+        container.appendChild(card);
+      }
+  }
 
-
-
-
-
+//Funcion crear categorias
 
   function createCategories(listCategorias){
     const longitudListCategorias = listCategorias.length;
@@ -175,7 +152,7 @@ function createCards(listProducts){
 
         // Contenido de la categoría
         category.innerHTML = `
-          <a class="nav-link" href="#">${listCategorias[i].nombreCategoria}</a>
+          <a class="nav-link" onclick="createCardsByIdCategory(${listCategorias[i].idCategoria})">${listCategorias[i].nombreCategoria}</a>
         `;
 
         const containerCategories = document.querySelector('.hdrMenuCategorias');
@@ -184,7 +161,99 @@ function createCards(listProducts){
       
     }
     
-}
+  }
+
+
+
+  function createCardsByIdCategory(idCategoria) {
+    switch(idCategoria){
+      case 0: 
+        getAllObras()
+        break;
+      default : 
+        getObrasByIdCategory(idCategoria)
+    } 
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Servicio consultar obras
+
+  function getAllObras(){
+    fetch("http://localhost:8080/obras", {
+    method: "GET"
+
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("No se pudo mostrar las obras");
+        }
+        return response.text(); // O response.json() si devuelves JSON
+      })
+      .then(data => {
+        console.log("data: " + data);
+        const listProducts = JSON.parse(data);
+        if(listProducts.length > 0){
+          createCards(listProducts)
+        } else {
+          const container = document.querySelector('.contenedor-obras');
+           container.innerHTML = '';
+        }
+        
+      // mostrarAlerta("Obras mostradas", "success");
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+      });
+  }
+
+
+
+
+
+  function getObrasByIdCategory(idCategoria){
+    fetch(`http://localhost:8080/obras/byId/${idCategoria}`, {
+    method: "GET"
+
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("No se pudo consultar las obras");
+        }
+        return response.text(); // O response.json() si devuelves JSON
+      })
+      .then(data => {
+        console.log("dataByIdCategory: " + data);
+        const listProducts = JSON.parse(data);
+        if(listProducts.length > 0){
+         createCards(listProducts)
+        } else {
+          const container = document.querySelector('.contenedor-obras');
+          container.innerHTML = '';
+        }
+        
+      // mostrarAlerta("Obras mostradas", "success");
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+      });
+  }
+  
 
 
 
