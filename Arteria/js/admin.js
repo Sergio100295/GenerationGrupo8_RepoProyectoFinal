@@ -3,7 +3,7 @@
 // ------------------------------------------------------------------
 
 // Persistencia -----------------------------------------------------
-let productList = JSON.parse(localStorage.getItem('productList')) || [];
+//let productList = JSON.parse(localStorage.getItem('productList')) || [];
 
 // Elementos del DOM ------------------------------------------------
 const form             = document.getElementById('admin-product-form');
@@ -31,12 +31,12 @@ function showAlert (msg, type = 'success') {
 }
 
 // Lógica “Otro (especificar)” -------------------------------------
-categorySelect.addEventListener('change', () => {
-  const isOther = categorySelect.value === 'otro';
-  otherWrapper.classList.toggle('show', isOther);
-  otherInput.required = isOther;
-  if (!isOther) otherInput.value = '';
-});
+// categorySelect.addEventListener('change', () => {
+//   const isOther = categorySelect.value === 'otro';
+//   otherWrapper.classList.toggle('show', isOther);
+//   otherInput.required = isOther;
+//   if (!isOther) otherInput.value = '';
+// });
 
 // Envío de formulario ---------------------------------------------
 form.addEventListener('submit', function (event) {
@@ -82,11 +82,6 @@ form.addEventListener('submit', function (event) {
     };
 
 
-// Relacion con el back
-//
-//
-//Servicio crear obras
-
     fetch('http://localhost:8080/obras/crear', {
       method: 'POST',
       headers: {
@@ -115,59 +110,6 @@ form.addEventListener('submit', function (event) {
       alert('Hubo un problema al guardar la Obra.');
     });
 });
-
-
-
-    //Crear menu desplegable del formulario 
-
-  function createCategoriesListaDesplegable(listCategorias){
-    const longitudListCategorias = listCategorias.length;
-    if (longitudListCategorias > 0 ) {
-      for (let i = 0; i < longitudListCategorias; i++) {
-        const category = document.createElement('option');
-        category.value = listCategorias[i].idCategoria;
-        category.textContent = listCategorias[i].nombreCategoria;
-        const containerListaDesplegableCategories = document.querySelector('.listaDesplegableCategories');
-        containerListaDesplegableCategories.appendChild(category);
-      }
-      
-    } 
-    
-  }
-
-  // Consultar las categorias
-
-  function consultarCategorias(){
-    return fetch("http://localhost:8080/categoria", {
-    method: "GET"
-
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("No se pudo mostrar las categorías");
-      }
-      return response.json(); // O response.json() si devuelves JSON
-    })
-    .then(data => {
-      console.log("data: " + data);
-      return data;
-    // mostrarAlerta("Obras mostradas", "success");
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
-    });
-  }
-
-
-  // Cargar la lista desplegable
-
-  async function cargarListaDesplegableCategorias() {
-        const listCategorias = await consultarCategorias();
-        console.log("categorias lista desplegable:", listCategorias);
-        createCategoriesListaDesplegable(listCategorias);
-      }
-      cargarListaDesplegableCategorias();
 
 
 

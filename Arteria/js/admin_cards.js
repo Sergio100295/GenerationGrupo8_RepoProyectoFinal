@@ -36,7 +36,34 @@
 //   }
 // });
 
-// Creación de cards
+// // Función centralizada de normalización
+// function normalizarCategoria(categoria) {
+//   const estandares = {
+//     'ilustracion': 'ilustracion',
+//     'pintura': 'pintura',
+//     'fotografia': 'fotografia',
+//     'escultura': 'escultura',
+//     'artesania': 'artesania',
+//     'arte-textil': 'arte-textil',
+//     'artesanía': 'artesania',
+//     'artesanias': 'artesania',
+//     'artetextil': 'arte-textil',
+//     'arte textil': 'arte-textil',
+//     'fotografía': 'fotografia',
+//     'illustracion': 'ilustracion'
+//   };
+
+//   // Normalización completa
+//   let cat = (categoria || 'todos')
+//     .toString()
+//     .toLowerCase()
+//     .trim()
+//     .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Elimina acentos
+//     .replace(/\s+/g, '-') // Espacios a guiones
+//     .replace(/[^a-z-]/g, ''); // Solo letras y guiones
+
+//   return estandares[cat] || 'todos';
+// }
 
 // function createCardElement(product) {
 //   const card = document.createElement('a');
@@ -66,186 +93,155 @@
 //   setTimeout(() => {
 //     const event = new Event('filterUpdate');
 //     document.dispatchEvent(event);
-//   }, 0); // dejar en 0, suficiente para esperar el DOM update
+//   }, 0); // Puedes dejarlo en 0, suficiente para esperar el DOM update
 // }
 
 //   card.appendChild(cajaObra);
 //   return card;
 // }
 
-// Evento personalizado para actualizar filtros
-//document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
+// // Evento personalizado para actualizar filtros
+// //document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
 
-// Función centralizada de normalización
-// function normalizarCategoria(categoria) {
-//   const estandares = {
-//     'ilustracion': 'ilustracion',
-//     'pintura': 'pintura',
-//     'fotografia': 'fotografia',
-//     'escultura': 'escultura',
-//     'artesania': 'artesania',
-//     'arte-textil': 'arte-textil',
-//     'artesanía': 'artesania',
-//     'artesanias': 'artesania',
-//     'artetextil': 'arte-textil',
-//     'arte textil': 'arte-textil',
-//     'fotografía': 'fotografia',
-//     'illustracion': 'ilustracion'
-//   };
 
-//   // Normalización completa
-//   let cat = (categoria || 'todos')
-//     .toString()
-//     .toLowerCase()
-//     .trim()
-//     .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Elimina acentos
-//     .replace(/\s+/g, '-') // Espacios a guiones
-//     .replace(/[^a-z-]/g, ''); // Solo letras y guiones
 
-//   return estandares[cat] || 'todos';
-// }
+// // Función crear cards 
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("Prueba ");
-  const params = new URLSearchParams(window.location.search);
-  const idCategoria = params.get("idcategoria");
+//   function createCards(listProducts){
+//       const container = document.querySelector('.contenedor-obras');
+//       container.innerHTML = '';
 
-  if (idCategoria != null){
-    createCardsByIdCategory(idCategoria);
-  }
-  
-})
+//       const longitudListProducts = listProducts.length;
+//       for (let i = 0; i < longitudListProducts; i++) {
+//         const card = document.createElement('a');
+//         card.className = 'tarjeta-link';
+//         card.href = `producto.html?id=${listProducts[i].id_obra}`;
 
-// Relacion con el back 
-// 
-//
+//         const cajaObra = document.createElement('div');
+//         cajaObra.className = 'caja-obra';
 
-// Función crear cards 
-
-  function createCards(listProducts){
-      const container = document.querySelector('.contenedor-obras');
-      container.innerHTML = '';
-
-      const longitudListProducts = listProducts.length;
-      for (let i = 0; i < longitudListProducts; i++) {
-        const card = document.createElement('a');
-        card.className = 'tarjeta-link';
-        card.href = `producto.html?id=${listProducts[i].id_obra}`;
-
-        const cajaObra = document.createElement('div');
-        cajaObra.className = 'caja-obra';
-
-      // const categoriaNormalizada = normalizarCategoria(product.category);
-        cajaObra.setAttribute('data-categoria', listProducts[i].categoria.idCategoria);
+//       // const categoriaNormalizada = normalizarCategoria(product.category);
+//         cajaObra.setAttribute('data-categoria', listProducts[i].categoria.idCategoria);
 
         
-        // Contenido de la tarjeta
-        cajaObra.innerHTML = `
-          <img src="${listProducts[i].imagenes?.imagen_principal_url}" alt="${listProducts[i].nombre_obra}" loading="lazy">
-          <div class="texto-obra">
-            <h3>${listProducts[i].nombre_obra}</h3>
-            <p>${listProducts[i].nombre_artista}</p>
-            <p class="precio-obra">$${listProducts[i].precio_obra.toLocaleString('es-CO')}</p>
-            <p class="description-card">${listProducts[i].descripcion_obra}</p>
-          </div>
-        `;
+//         // Contenido de la tarjeta
+//         cajaObra.innerHTML = `
+//           <img src="${listProducts[i].imagenes?.imagen_principal_url}" alt="${listProducts[i].nombre_obra}" loading="lazy">
+//           <div class="texto-obra">
+//             <h3>${listProducts[i].nombre_obra}</h3>
+//             <p>${listProducts[i].nombre_artista}</p>
+//             <p class="precio-obra">$${listProducts[i].precio_obra.toLocaleString('es-CO')}</p>
+//             <p class="description-card">${listProducts[i].descripcion_obra}</p>
+//           </div>
+//         `;
 
-        card.appendChild(cajaObra);
-        const container = document.querySelector('.contenedor-obras');
-        container.appendChild(card);
-      }
-  }
-
-
-// Crear cards con categorias
-
-  function createCardsByIdCategory(idCategoria) {
-    switch(idCategoria){
-      case "0": 
-        console.log("Si está lleganado hasta acá 2");
-        getAllObras()
-        break;
-      default : 
-        getObrasByIdCategory(idCategoria)
-    } 
-  
-
-  }
+//         card.appendChild(cajaObra);
+//         const container = document.querySelector('.contenedor-obras');
+//         container.appendChild(card);
+//       }
+//   }
 
 
-//Servicio consultar obras
 
-  function getAllObras(){
-    fetch("http://localhost:8080/obras", {
-    method: "GET"
 
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("No se pudo mostrar las obras");
-        }
-        return response.text(); // O response.json() si devuelves JSON
-      })
-      .then(data => {
-        const listProducts = JSON.parse(data);
-        if(listProducts.length > 0){
-          createCards(listProducts)
-        } else {
-          const container = document.querySelector('.contenedor-obras');
-           container.innerHTML = '';
-        }
+
+//   function createCardsByIdCategory(idCategoria) {
+//     switch(idCategoria){
+//       case 0: 
+//         getAllObras()
+//         break;
+//       default : 
+//         getObrasByIdCategory(idCategoria)
+//     } 
+
+//   }
+
+
+
+
+// //Servicio consultar obras
+
+//   function getAllObras(){
+//     fetch("http://localhost:8080/obras", {
+//     method: "GET"
+
+//     })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error("No se pudo mostrar las obras");
+//         }
+//         return response.text(); // O response.json() si devuelves JSON
+//       })
+//       .then(data => {
+//         console.log("data: " + data);
+//         const listProducts = JSON.parse(data);
+//         if(listProducts.length > 0){
+//           createCards(listProducts)
+//         } else {
+//           const container = document.querySelector('.contenedor-obras');
+//            container.innerHTML = '';
+//         }
         
-      // mostrarAlerta("Obras mostradas", "success");
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
-      });
-  }
+//       // mostrarAlerta("Obras mostradas", "success");
+//       })
+//       .catch(error => {
+//         console.error("Error:", error);
+//       // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+//       });
+//   }
 
 
 
-//Servicio consultar obras por categoria
 
-  function getObrasByIdCategory(idCategoria){
-    fetch(`http://localhost:8080/obras/byId/${idCategoria}`, {
-    method: "GET"
 
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("No se pudo consultar las obras");
-        }
-        return response.text(); // O response.json() si devuelves JSON
-      })
-      .then(data => {
-        const listProducts = JSON.parse(data);
-        if(listProducts.length > 0){
-         createCards(listProducts)
-        } else {
-          const container = document.querySelector('.contenedor-obras');
-          container.innerHTML = '';
-        }
+//   function getObrasByIdCategory(idCategoria){
+//     fetch(`http://localhost:8080/obras/byId/${idCategoria}`, {
+//     method: "GET"
+
+//     })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error("No se pudo consultar las obras");
+//         }
+//         return response.text(); // O response.json() si devuelves JSON
+//       })
+//       .then(data => {
+//         console.log("dataByIdCategory: " + data);
+//         const listProducts = JSON.parse(data);
+//         if(listProducts.length > 0){
+//          createCards(listProducts)
+//         } else {
+//           const container = document.querySelector('.contenedor-obras');
+//           container.innerHTML = '';
+//         }
         
-      // mostrarAlerta("Obras mostradas", "success");
-      })
-      .catch(error => {
-        console.error("Error:", error);
-      // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
-      });
-  }
+//       // mostrarAlerta("Obras mostradas", "success");
+//       })
+//       .catch(error => {
+//         console.error("Error:", error);
+//       // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+//       });
+//   }
   
 
 
 
+  
+
+   
+ 
+
+   
 
 
 
-/*//Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
-localStorage.clear();
-location.reload();
-*/
 
 
 
 
+
+
+// /*//Limpiar LocalStorage (Descomentar el código para limpiar el local Storage)
+// localStorage.clear();
+// location.reload();
+// */
