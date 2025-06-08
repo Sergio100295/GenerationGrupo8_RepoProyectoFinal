@@ -36,6 +36,75 @@
 //   }
 // });
 
+// Creación de cards
+
+// function createCardElement(product) {
+//   const card = document.createElement('a');
+//   card.className = 'tarjeta-link';
+//   card.href = `producto.html?id=${product.id}`;
+
+//   const cajaObra = document.createElement('div');
+//   cajaObra.className = 'caja-obra';
+  
+//   // Aplicar normalización definitiva
+//   const categoriaNormalizada = normalizarCategoria(product.category);
+//   cajaObra.setAttribute('data-categoria', categoriaNormalizada);
+  
+//   // Contenido de la tarjeta
+//   cajaObra.innerHTML = `
+//     <img src="${product.urlImg}" alt="${product.artName}" loading="lazy">
+//     <div class="texto-obra">
+//       <h3>${product.artName}</h3>
+//       <p>${product.artistName}</p>
+//       <p class="precio-obra">$${product.price.toLocaleString('es-CO')}</p>
+//       <p class="description-card">${product.artDescription}</p>
+//     </div>
+//   `;
+
+//   // ... después de agregar todas las tarjetas dinámicas:
+// if (window.location.pathname.includes('explorar_cards.html')) {
+//   setTimeout(() => {
+//     const event = new Event('filterUpdate');
+//     document.dispatchEvent(event);
+//   }, 0); // dejar en 0, suficiente para esperar el DOM update
+// }
+
+//   card.appendChild(cajaObra);
+//   return card;
+// }
+
+// Evento personalizado para actualizar filtros
+//document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
+
+// Función centralizada de normalización
+// function normalizarCategoria(categoria) {
+//   const estandares = {
+//     'ilustracion': 'ilustracion',
+//     'pintura': 'pintura',
+//     'fotografia': 'fotografia',
+//     'escultura': 'escultura',
+//     'artesania': 'artesania',
+//     'arte-textil': 'arte-textil',
+//     'artesanía': 'artesania',
+//     'artesanias': 'artesania',
+//     'artetextil': 'arte-textil',
+//     'arte textil': 'arte-textil',
+//     'fotografía': 'fotografia',
+//     'illustracion': 'ilustracion'
+//   };
+
+//   // Normalización completa
+//   let cat = (categoria || 'todos')
+//     .toString()
+//     .toLowerCase()
+//     .trim()
+//     .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Elimina acentos
+//     .replace(/\s+/g, '-') // Espacios a guiones
+//     .replace(/[^a-z-]/g, ''); // Solo letras y guiones
+
+//   return estandares[cat] || 'todos';
+// }
+
 document.addEventListener('DOMContentLoaded', function() {
   console.log("Prueba ");
   const params = new URLSearchParams(window.location.search);
@@ -47,74 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
 })
 
-// Función centralizada de normalización
-function normalizarCategoria(categoria) {
-  const estandares = {
-    'ilustracion': 'ilustracion',
-    'pintura': 'pintura',
-    'fotografia': 'fotografia',
-    'escultura': 'escultura',
-    'artesania': 'artesania',
-    'arte-textil': 'arte-textil',
-    'artesanía': 'artesania',
-    'artesanias': 'artesania',
-    'artetextil': 'arte-textil',
-    'arte textil': 'arte-textil',
-    'fotografía': 'fotografia',
-    'illustracion': 'ilustracion'
-  };
-
-  // Normalización completa
-  let cat = (categoria || 'todos')
-    .toString()
-    .toLowerCase()
-    .trim()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Elimina acentos
-    .replace(/\s+/g, '-') // Espacios a guiones
-    .replace(/[^a-z-]/g, ''); // Solo letras y guiones
-
-  return estandares[cat] || 'todos';
-}
-
-function createCardElement(product) {
-  const card = document.createElement('a');
-  card.className = 'tarjeta-link';
-  card.href = `producto.html?id=${product.id}`;
-
-  const cajaObra = document.createElement('div');
-  cajaObra.className = 'caja-obra';
-  
-  // Aplicar normalización definitiva
-  const categoriaNormalizada = normalizarCategoria(product.category);
-  cajaObra.setAttribute('data-categoria', categoriaNormalizada);
-  
-  // Contenido de la tarjeta
-  cajaObra.innerHTML = `
-    <img src="${product.urlImg}" alt="${product.artName}" loading="lazy">
-    <div class="texto-obra">
-      <h3>${product.artName}</h3>
-      <p>${product.artistName}</p>
-      <p class="precio-obra">$${product.price.toLocaleString('es-CO')}</p>
-      <p class="description-card">${product.artDescription}</p>
-    </div>
-  `;
-
-  // ... después de agregar todas las tarjetas dinámicas:
-if (window.location.pathname.includes('explorar_cards.html')) {
-  setTimeout(() => {
-    const event = new Event('filterUpdate');
-    document.dispatchEvent(event);
-  }, 0); // Puedes dejarlo en 0, suficiente para esperar el DOM update
-}
-
-  card.appendChild(cajaObra);
-  return card;
-}
-
-// Evento personalizado para actualizar filtros
-//document.addEventListener('filterUpdate', aplicarFiltroDesdeURL);
-
-
+// Relacion con el back 
+// 
+//
 
 // Función crear cards 
 
@@ -153,8 +157,7 @@ if (window.location.pathname.includes('explorar_cards.html')) {
   }
 
 
-
-
+// Crear cards con categorias
 
   function createCardsByIdCategory(idCategoria) {
     switch(idCategoria){
@@ -168,8 +171,6 @@ if (window.location.pathname.includes('explorar_cards.html')) {
   
 
   }
-
-
 
 
 //Servicio consultar obras
@@ -204,7 +205,7 @@ if (window.location.pathname.includes('explorar_cards.html')) {
 
 
 
-
+//Servicio consultar obras por categoria
 
   function getObrasByIdCategory(idCategoria){
     fetch(`http://localhost:8080/obras/byId/${idCategoria}`, {
@@ -234,18 +235,6 @@ if (window.location.pathname.includes('explorar_cards.html')) {
       });
   }
   
-
-
-
-  
-
-   
- 
-
-   
-
-
-
 
 
 

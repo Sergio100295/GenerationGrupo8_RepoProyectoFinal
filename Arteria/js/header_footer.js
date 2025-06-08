@@ -308,6 +308,10 @@ function initProfileMenu() {
 }
 
 
+
+// Relacion con el back
+//
+//
 //Servicio consultar categorías
 
   function consultarCategorias(){
@@ -354,6 +358,8 @@ function initProfileMenu() {
     } 
     
   }
+
+  //Funcion cargar categorias
 
     async function cargarCategorias() {
       const listCategorias = await consultarCategorias();

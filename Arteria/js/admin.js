@@ -82,6 +82,11 @@ form.addEventListener('submit', function (event) {
     };
 
 
+// Relacion con el back
+//
+//
+//Servicio crear obras
+
     fetch('http://localhost:8080/obras/crear', {
       method: 'POST',
       headers: {
@@ -113,6 +118,8 @@ form.addEventListener('submit', function (event) {
 
 
 
+    //Crear menu desplegable del formulario 
+
   function createCategoriesListaDesplegable(listCategorias){
     const longitudListCategorias = listCategorias.length;
     if (longitudListCategorias > 0 ) {
@@ -127,6 +134,8 @@ form.addEventListener('submit', function (event) {
     } 
     
   }
+
+  // Consultar las categorias
 
   function consultarCategorias(){
     return fetch("http://localhost:8080/categoria", {
@@ -151,6 +160,7 @@ form.addEventListener('submit', function (event) {
   }
 
 
+  // Cargar la lista desplegable
 
   async function cargarListaDesplegableCategorias() {
         const listCategorias = await consultarCategorias();
