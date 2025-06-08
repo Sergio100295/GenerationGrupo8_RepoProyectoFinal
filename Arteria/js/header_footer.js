@@ -1,308 +1,189 @@
-// ---------- CARGAR HEADER ----------//
+/**
+ * header_footer.js - Script principal y unificado.
+ * ------------------------------------------------
+ * Carga el header y footer, y luego inicializa todas las funcionalidades:
+ * - Menús desplegables coordinados (perfil, categorías, búsqueda móvil).
+ * - Búsqueda funcional (desktop y móvil).
+ * - Contador del carrito.
+ * - Lógica de filtros de categoría (preservada).
+ * - Menú de perfil dinámico (importado desde navbar-profile.js).
+ */
 
-// fetch('../html/header.html')
-//   .then(response => response.text())
-//   .then(data => {
-//     document.getElementById('header-container').innerHTML = data;
-//     inicializarHeader();
-//     activarFiltroCategorias();
-//     initProfileMenu();  
-//     updateCartCounter();
-
-//     import('./navbar-profile.js')
-//     .then(({ initProfileMenu }) => initProfileMenu())
-//     .catch(err => console.error('navbar-profile.js no se pudo cargar', err));
-    
-//     //  Manejo de clicks en enlaces del header
-//     document.addEventListener('click', function(e) {
-//       // Verifica si se hizo clic en un enlace dentro del header
-//       const link = e.target.closest('#header-container a[href]');
-//       if (!link) return;
-      
-//       // Permite el comportamiento normal para:
-//       // 1. Enlaces externos (http/https)
-//       // 2. Anclas dentro de la página (#seccion)
-//       if (link.href.startsWith('http') || link.getAttribute('href').startsWith('#')) {
-//         return;
-//       }
-      
-//       // Para enlaces internos:
-//       e.preventDefault();
-//       window.location.href = link.getAttribute('href');
-//     });
-//   })
-//   .catch(error => console.error('Error loading header:', error));
-
-// // ---------- CARGAR FOOTER ----------
-// fetch('../html/footer.html')
-//   .then(response => response.text())
-//   .then(data => {
-//     document.getElementById('footer-container').innerHTML = data;
-//   })
-//   .catch(error => console.error('Error loading footer:', error));
-
-  // NUevo orden 
-  
-
-// ---------- INICIALIZAR HEADER ----------
-//  function inicializarHeader() {
-//    const menuCat      = document.getElementById('hdrMenuCategorias');
-//    const searchBar    = document.getElementById('hdrMobileSearchBar');
-//    const profileBtn   = document.getElementById('hdrProfileBtn');  
-//     const profileMenu  = document.getElementById('hdrProfileMenu');
-
-//    function closeAll() {
-//      menuCat.classList.remove('mostrar');
-//      searchBar.classList.remove('activa');
-//      profileMenu.classList.remove('open');   }
-
-//   document.addEventListener('click', function (e) {
-//      const isProfileBtn = !!e.target.closest('#hdrProfileBtn');
-//      const isCatBtn     = !!e.target.closest('#hdrMenuToggle');
-//      const isSearchBtn  = !!e.target.closest('#hdrMobileSearchToggle');
-
-//      // 1) Perfil
-//      if (isProfileBtn) {
-//        e.stopPropagation();
-//        const wasOpen = profileMenu.classList.contains('open');
-//        closeAll();
-//       if (!wasOpen) profileMenu.classList.add('open');
-//        return;
-//      }
-
-//      // 2) Hamburguesa (categorías)
-//      if (isCatBtn) {       e.preventDefault();
-//        const wasOpen = menuCat.classList.contains('mostrar');
-//        closeAll();
-//        if (!wasOpen) menuCat.classList.add('mostrar');
-//        return;
-//      }
-
-//      // 3) Lupa móvil (búsqueda)
-//      if (isSearchBtn) {
-//       e.preventDefault();
-//        const wasOpen = searchBar.classList.contains('activa');
-//       closeAll();
-//        if (!wasOpen) searchBar.classList.add('activa');
-//        return;
-//      }
-    
-//      // 4) Clic fuera de cualquier toggle → cierro todo
-//      closeAll();
-//    });
-//  }
-
-
-
-
-
-// // Función para activar filtro de categorías
-// function activarFiltroCategorias() {
-
-// }
-
-
-
-// // Función que a futuro va a hacer que el ícono de la lupa realmente dispare la búsqueda
-// /* const mobileForm  = document.getElementById('mobile-search-form');
-// const mobileInput = document.getElementById('mobile-search-input');
-
-// mobileForm.addEventListener('submit', function(e) {
-//   e.preventDefault();
-//   const query = mobileInput.value.trim();
-//   if (!query) return;
-
-//    → aquí  se va a llamar a la API / base de datos /  para filtrar el catálogo…
-//    ejemplo de fetch:
-//    fetch(`/api/search?q=${encodeURIComponent(query)}`)
-//   / .then(res => res.json())
-//     .then(renderResultados);
-
-//   console.log('Disparar búsqueda con:', query);
-// }); */
-// // ---------- Funcionalidad botón 'Ver más' en cards ----------
-// document.addEventListener('DOMContentLoaded', function () {
-//   document.querySelectorAll('.ver-mas-btn').forEach((btn) => {
-//     btn.addEventListener('click', function () {
-//       const expanded = this.nextElementSibling;
-//       const isVisible = expanded.style.display === 'block';
-//       expanded.style.display = isVisible ? 'none' : 'block';
-//       this.textContent = isVisible ? 'Ver más' : 'Ver menos';
-//     });
-//   });
-  
-// });
-
-// //==================== CONTADOR DE CARRITO ====================
-// /**
-//  * Actualiza el contador de items en el icono del carrito
-//  * @function updateCartCounter
-//  */
-// function updateCartCounter() {
-//   try {
-//     const cartCounter = document.getElementById('cart-counter');
-//     if (!cartCounter) return;
-
-//     const cart = JSON.parse(localStorage.getItem('carrito')) || [];
-//     const totalItems = cart.reduce((total, item) => total + (item.cantidad || 1), 0);
-
-//     cartCounter.textContent = totalItems > 99 ? '99+' : totalItems;
-//     cartCounter.classList.toggle('show', totalItems > 0);
-//   } catch (error) {
-//     console.error('Error actualizando contador de carrito:', error);
-//   }
-// }
-
-// // Actualización inicial y eventos
-// document.addEventListener('DOMContentLoaded', updateCartCounter);
-
-// // Hacer disponible globalmente
-// if (typeof window.updateCartCounter === 'undefined') {
-//   window.updateCartCounter = updateCartCounter;
-// }
-
-// ---------- CARGAR HEADER ----------
-fetch('../html/header.html')
-  .then(response => response.text())
-  .then(data => {
-    const headerContainer = document.getElementById('header-container');
-    if (!headerContainer) return;
-    
-    // Guardar posición actual del scroll
-    const scrollPosition = window.scrollY;
-    
-    headerContainer.innerHTML = data;
-    
-    // Restaurar scroll después de cargar el header
-    window.scrollTo(0, scrollPosition);
-    
-    inicializarHeader();
-    activarFiltroCategorias();
-    initProfileMenu();  
-    updateCartCounter();
-
-    import('./navbar-profile.js')
-    .then(({ initProfileMenu }) => initProfileMenu())
-    .catch(err => console.error('navbar-profile.js no se pudo cargar', err));
-    
-    // Delegación de eventos mejorada
-    document.addEventListener('click', function(e) {
-      const link = e.target.closest('a[href]');
-      if (!link || !headerContainer.contains(link)) return;
-      
-      if (link.href.startsWith('http') || link.getAttribute('href').startsWith('#')) return;
-      
-      e.preventDefault();
-      window.location.href = link.getAttribute('href');
-    });
-  })
-  .catch(error => console.error('Error loading header:', error));
-
-// ---------- CARGAR FOOTER ----------
-fetch('../html/footer.html')
-  .then(response => response.text())
-  .then(data => {
-    const footerContainer = document.getElementById('footer-container');
-    if (footerContainer) footerContainer.innerHTML = data;
-  })
-  .catch(error => console.error('Error loading footer:', error));
-
-// ==================== CONTADOR DE CARRITO (VERSIÓN SEGURA) ====================
-function updateCartCounter() {
-  const cartCounter = document.getElementById('cart-counter');
-  if (!cartCounter) {
-    console.warn('Contador no encontrado, reintentando...');
-    setTimeout(updateCartCounter, 500); // Reintentar después de 500ms
-    return;
-  }
-
-  try {
-    const cart = JSON.parse(localStorage.getItem('carrito')) || [];
-    const totalItems = cart.reduce((total, item) => total + (item.cantidad || 1), 0);
-    
-    cartCounter.textContent = totalItems > 99 ? '99+' : totalItems;
-    cartCounter.classList.toggle('show', totalItems > 0);
-  } catch (error) {
-    console.error('Error en updateCartCounter:', error);
-  }
-}
-
-// Llamar inicialmente cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-  // Verificar si los contenedores existen
-  if (!document.getElementById('header-container') || !document.getElementById('footer-container')) {
-    console.error('Contenedores principales no encontrados');
-    return;
-  }
-  
-  // Actualizar carrito solo una vez al inicio
-  updateCartCounter();
-  
-  // Configurar botones "Ver más"
-  document.querySelectorAll('.ver-mas-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const expanded = this.nextElementSibling;
-      if (!expanded) return;
-      
-      const isVisible = expanded.style.display === 'block';
-      expanded.style.display = isVisible ? 'none' : 'block';
-      this.textContent = isVisible ? 'Ver más' : 'Ver menos';
-    });
-  });
+document.addEventListener('DOMContentLoaded', () => {
+    // El único punto de entrada: cargar los componentes principales.
+    loadHeaderAndFooter();
 });
 
-// ---------- FUNCIONES ORIGINALES (SIN MODIFICAR) ----------
-function inicializarHeader() {
-   const menuCat      = document.getElementById('hdrMenuCategorias');
-   const searchBar    = document.getElementById('hdrMobileSearchBar');
-   const profileBtn   = document.getElementById('hdrProfileBtn');  
-    const profileMenu  = document.getElementById('hdrProfileMenu');
+/**
+ * Carga el header y el footer desde archivos HTML.
+ * Una vez cargado el header, inicializa todos los scripts que dependen de él.
+ */
+async function loadHeaderAndFooter() {
+    try {
+        const headerContainer = document.getElementById('header-container');
+        if (headerContainer) {
+            const response = await fetch('../html/header.html');
+            if (!response.ok) throw new Error('Header no encontrado');
+            headerContainer.innerHTML = await response.text();
+            
+            // Cuando el header está listo, llamamos al inicializador principal.
+            initializeHeaderComponents(headerContainer);
+        }
 
-   function closeAll() {
-     menuCat.classList.remove('mostrar');
-     searchBar.classList.remove('activa');
-     profileMenu.classList.remove('open');   }
-
-  document.addEventListener('click', function (e) {
-     const isProfileBtn = !!e.target.closest('#hdrProfileBtn');
-     const isCatBtn     = !!e.target.closest('#hdrMenuToggle');
-     const isSearchBtn  = !!e.target.closest('#hdrMobileSearchToggle');
-
-     // 1) Perfil
-     if (isProfileBtn) {
-       e.stopPropagation();
-       const wasOpen = profileMenu.classList.contains('open');
-       closeAll();
-      if (!wasOpen) profileMenu.classList.add('open');
-       return;
-     }
-
-     // 2) Hamburguesa (categorías)
-     if (isCatBtn) {       e.preventDefault();
-       const wasOpen = menuCat.classList.contains('mostrar');
-       closeAll();
-       if (!wasOpen) menuCat.classList.add('mostrar');
-       return;
-     }
-
-     // 3) Lupa móvil (búsqueda)
-     if (isSearchBtn) {
-      e.preventDefault();
-       const wasOpen = searchBar.classList.contains('activa');
-      closeAll();
-       if (!wasOpen) searchBar.classList.add('activa');
-       return;
-     }
-    
-     // 4) Clic fuera de cualquier toggle → cierro todo
-     closeAll();
-   });
- }
-
-function activarFiltroCategorias() {
-  // ... (tu código original)
+        const footerContainer = document.getElementById('footer-container');
+        if (footerContainer) {
+            const response = await fetch('../html/footer.html');
+            if (!response.ok) throw new Error('Footer no encontrado');
+            footerContainer.innerHTML = await response.text();
+        }
+    } catch (error) {
+        console.error('Error al cargar header o footer:', error);
+    }
 }
 
-function initProfileMenu() {
-  // ... (tu código original)
+/**
+ * Función central que orquesta la inicialización de todas las funcionalidades del header.
+ * @param {HTMLElement} headerContainer - El elemento contenedor del header ya cargado.
+ */
+function initializeHeaderComponents(headerContainer) {
+    // 1. Lógica para los menús desplegables (el "Director de Orquesta")
+    inicializarTogglesHeader();
+
+    // 2. Lógica para la barra de búsqueda (desktop y móvil)
+    inicializarBusqueda();
+    
+    // 3. Lógica para el contador del carrito
+    updateCartCounter();
+
+    // 4. Lógica para los filtros de categoría (preservada del script original)
+    inicializarFiltrosCategoria(headerContainer);
+    
+    // 5. Lógica para el menú de perfil dinámico (importado)
+    import('./navbar-profile.js')
+        .then(({ initProfileMenu }) => {
+            if (initProfileMenu) initProfileMenu();
+        })
+        .catch(err => console.error('Error al cargar navbar-profile.js:', err));
+}
+
+// =================================================================
+// DEFINICIONES DE LAS FUNCIONES DE INICIALIZACIÓN
+// =================================================================
+
+/**
+ * Maneja la interactividad de TODOS los menús desplegables del header
+ * para asegurar que solo uno esté abierto a la vez.
+ */
+function inicializarTogglesHeader() {
+    const menuCat = document.getElementById('hdrMenuCategorias');
+    const searchBar = document.getElementById('hdrMobileSearchBar');
+    const profileMenu = document.getElementById('hdrProfileMenu');
+    const profileBtn = document.getElementById('hdrProfileBtn');
+
+    if (!menuCat || !searchBar || !profileMenu || !profileBtn) return;
+    
+    const closeAllMenus = () => {
+        menuCat.classList.remove('mostrar');
+        searchBar.classList.remove('activa');
+        profileMenu.classList.remove('open');
+        profileBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    document.addEventListener('click', function (e) {
+        const isProfileBtn = e.target.closest('#hdrProfileBtn');
+        const isCatBtn = e.target.closest('#hdrMenuToggle');
+        const isSearchBtn = e.target.closest('#hdrMobileSearchToggle');
+        
+        if (isProfileBtn || isCatBtn || isSearchBtn) {
+            e.stopPropagation();
+            let wasOpen = false;
+            if (isProfileBtn) wasOpen = profileMenu.classList.contains('open');
+            if (isCatBtn) wasOpen = menuCat.classList.contains('mostrar');
+            if (isSearchBtn) wasOpen = searchBar.classList.contains('activa');
+            
+            closeAllMenus();
+            
+            if (!wasOpen) {
+                if(isProfileBtn) {
+                    profileMenu.classList.add('open');
+                    profileBtn.setAttribute('aria-expanded', 'true');
+                }
+                if(isCatBtn) menuCat.classList.add('mostrar');
+                if(isSearchBtn) searchBar.classList.add('activa');
+            }
+            return;
+        }
+        
+        const clickedInsideAnyMenu = e.target.closest('#hdrProfileMenu, #hdrMenuCategorias, #hdrMobileSearchBar');
+        if (!clickedInsideAnyMenu) {
+            closeAllMenus();
+        }
+    });
+}
+
+/**
+ * Añade la funcionalidad de redirección a los enlaces de categoría.
+ * @param {HTMLElement} headerContainer - El contenedor del header.
+ */
+function inicializarFiltrosCategoria(headerContainer) {
+    // Este listener se añade al documento para manejar clics en cualquier enlace del header.
+    // Es la lógica original que hacía funcionar tus filtros.
+    headerContainer.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+      
+        // Ignora enlaces externos y anclas internas
+        if (link.href.startsWith('http') || link.getAttribute('href').startsWith('#')) {
+            return;
+        }
+        
+        // Para los enlaces internos (como los de categoría), previene el comportamiento
+        // por defecto y redirige manualmente.
+        e.preventDefault();
+        window.location.href = link.getAttribute('href');
+    });
+}
+
+
+/**
+ * Configura los formularios de búsqueda de escritorio y móvil.
+ */
+function inicializarBusqueda() {
+    const searchFormDesktop = document.getElementById('search-form-desktop');
+    const searchInputDesktop = document.getElementById('search-input-desktop');
+    const searchFormMobile = document.querySelector('#hdrMobileSearchBar form');
+    const searchInputMobile = document.querySelector('#hdrMobileSearchBar input[type="search"]');
+
+    const handleSearch = (event, inputElement) => {
+        event.preventDefault();
+        const terminoBusqueda = inputElement.value.trim();
+        if (terminoBusqueda) {
+            window.location.href = `../html/explorar_cards.html?busqueda=${encodeURIComponent(terminoBusqueda)}`;
+        }
+    };
+
+    if (searchFormDesktop && searchInputDesktop) {
+        searchFormDesktop.addEventListener('submit', (e) => handleSearch(e, searchInputDesktop));
+    }
+    if (searchFormMobile && searchInputMobile) {
+        searchFormMobile.addEventListener('submit', (e) => handleSearch(e, searchInputMobile));
+    }
+}
+
+/**
+ * Actualiza el contador de ítems en el ícono del carrito.
+ */
+function updateCartCounter() {
+    const cartCounter = document.getElementById('cart-counter');
+    if (!cartCounter) return;
+
+    try {
+        const cart = JSON.parse(localStorage.getItem('carrito')) || [];
+        const totalItems = cart.reduce((total, item) => total + (item.cantidad || 1), 0);
+        
+        cartCounter.textContent = totalItems > 99 ? '99+' : totalItems;
+        cartCounter.style.display = totalItems > 0 ? 'flex' : 'none';
+    } catch (error) {
+        console.error('Error en updateCartCounter:', error);
+    }
 }

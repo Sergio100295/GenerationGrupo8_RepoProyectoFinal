@@ -61,12 +61,17 @@
             <nav id="hdrProfileMenu" class="profile-menu" aria-label="Menú de perfil"></nav>
           </div>
 
-          <!-- Plantillas segun sesion -->
+         <!-- Plantillas segun sesion -->
           <template id="tpl-profile-logged-in">
             <ul class="profile-menu-list">
             <!--   <li><a href="../html/Studio.html">Studio</a></li>
               <li><a href="../html/ArtistProfile.html">Ver perfil de artista</a></li>
               <hr> -->
+
+               <li class="user-only-link"><a href="../html/Profile.html">Perfil</a></li>
+               <li id="admin-panel-link" style="display: none;"><a href="../html/admin.html">Panel Admin</a></li>
+
+
               <li><a href="../html/Profile.html">Perfil</a></li>
               <li><a href="../html/Favorites.html">Favoritos</a></li>
               <li><a href="../html/Collections.html">Colecciones</a></li>
@@ -88,14 +93,14 @@
         </div>
 
 
-          <!-- Carrito -->
-         <a href="./carrito.html" class="hdr-icon position-relative" aria-label="Carrito" id="cart-icon">
-            <i class="bi bi-bag"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-              id="cart-counter">
-              0
-            </span>
-          </a>
+        <!-- Carrito -->
+        <a href="./carrito.html" class="hdr-icon position-relative" aria-label="Carrito" id="cart-icon">
+          <i class="bi bi-bag"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            id="cart-counter">
+            0
+          </span>
+        </a>
 
         <!-- Hamburguesa -->
         <button class="hdr-icon d-md-none" id="hdrMenuToggle" aria-label="Menú">
@@ -128,12 +133,18 @@
         <li class="nav-item">
           <a class="nav-link active" href="explorar_cards.html" data-filtro="todos">Explorar</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=pintura" data-filtro="pintura">Pintura</a></li>
-        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=escultura" data-filtro="escultura">Escultura</a></li>
-        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=fotografia" data-filtro="fotografia">Fotografía</a></li>
-        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=ilustracion" data-filtro="ilustracion">Ilustración</a></li>
-        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=artesania" data-filtro="artesania">Artesanías</a></li>
-        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=artetextil" data-filtro="arte-textil">Arte Textil</a></li>
+        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=pintura"
+            data-filtro="pintura">Pintura</a></li>
+        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=escultura"
+            data-filtro="escultura">Escultura</a></li>
+        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=fotografia"
+            data-filtro="fotografia">Fotografía</a></li>
+        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=ilustracion"
+            data-filtro="ilustracion">Ilustración</a></li>
+        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=artesania"
+            data-filtro="artesania">Artesanías</a></li>
+        <li class="nav-item"><a class="nav-link" href="./explorar_cards.html?categoria=artetextil"
+            data-filtro="arte-textil">Arte Textil</a></li>
       </ul>
     </div>
   </nav>
