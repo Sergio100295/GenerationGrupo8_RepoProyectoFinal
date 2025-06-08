@@ -1,4 +1,3 @@
-
 document.getElementById("registro-form").addEventListener("submit", function(event) {
   event.preventDefault();
 
@@ -154,3 +153,4 @@ document.querySelectorAll('.toggle-password').forEach(btn => {
 localStorage.clear();
 location.reload();
 */
+ 
