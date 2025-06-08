@@ -128,6 +128,29 @@ form.addEventListener('submit', function (event) {
     
   }
 
+  function consultarCategorias(){
+    return fetch("http://localhost:8080/categoria", {
+    method: "GET"
+
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("No se pudo mostrar las categorías");
+      }
+      return response.json(); // O response.json() si devuelves JSON
+    })
+    .then(data => {
+      console.log("data: " + data);
+      return data;
+    // mostrarAlerta("Obras mostradas", "success");
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+    });
+  }
+
+
 
   async function cargarListaDesplegableCategorias() {
         const listCategorias = await consultarCategorias();

@@ -115,6 +115,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+    function obtenerObras(){
+      console.log("Obt obras");
+      const rutaActual = window.location.pathname;
+
+      // Verifica si ya estás en la página deseada
+      if (rutaActual.includes("explorar_cards.html")) {
+        history.replaceState(null, "", "?idCategoria=0");
+        createCardsByIdCategory("0");
+      } else {
+        // No estás en pagina2, redirige
+        window.location.href = "explorar_cards.html?idcategoria=0";
+        //createCardsByIdCategory(0);
+      }
+    }
+
+
+
+
+
 // Lógica boton de fltrado del manú lateral
 
 // const botonFiltro = document.querySelector('.filtro-btn');
@@ -134,60 +153,60 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //Servicio consultar categorías
 
-  function consultarCategorias(){
-    return fetch("http://localhost:8080/categoria", {
-    method: "GET"
+  // function consultarCategorias(){
+  //   return fetch("http://localhost:8080/categoria", {
+  //   method: "GET"
 
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("No se pudo mostrar las categorías");
-      }
-      return response.json(); // O response.json() si devuelves JSON
-    })
-    .then(data => {
-      console.log("data: " + data);
-      return data;
-    // mostrarAlerta("Obras mostradas", "success");
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
-    });
-  }
+  //   })
+  //   .then(response => {
+  //     if (!response.ok) {
+  //       throw new Error("No se pudo mostrar las categorías");
+  //     }
+  //     return response.json(); // O response.json() si devuelves JSON
+  //   })
+  //   .then(data => {
+  //     console.log("data: " + data);
+  //     return data;
+  //   // mostrarAlerta("Obras mostradas", "success");
+  //   })
+  //   .catch(error => {
+  //     console.error("Error:", error);
+  //   // mostrarAlerta("Ocurrió un error al mostrar las obras", "danger");
+  //   });
+  // }
 
 
-  //Funcion crear categorias
+  // //Funcion crear categorias
 
-  function createCategories(listCategorias){
-    const longitudListCategorias = listCategorias.length;
-    if (longitudListCategorias > 0 ) {
-      for (let i = 0; i < longitudListCategorias; i++) {
-        const category = document.createElement('li');
-        category.className = 'nav-item';
+  // function createCategories(listCategorias){
+  //   const longitudListCategorias = listCategorias.length;
+  //   if (longitudListCategorias > 0 ) {
+  //     for (let i = 0; i < longitudListCategorias; i++) {
+  //       const category = document.createElement('li');
+  //       category.className = 'nav-item';
 
-        // Contenido de la categoría
-        category.innerHTML = `
-          <a class="nav-link" onclick="createCardsByIdCategory(${listCategorias[i].idCategoria})">${listCategorias[i].nombreCategoria}</a>
-        `;
+  //       // Contenido de la categoría
+  //       category.innerHTML = `
+  //         <a class="nav-link" onclick="createCardsByIdCategory(${listCategorias[i].idCategoria})">${listCategorias[i].nombreCategoria}</a>
+  //       `;
 
-        const containerCategories = document.querySelector('.hdrMenuCategorias');
-        containerCategories.appendChild(category);
-      }
+  //       const containerCategories = document.querySelector('.hdrMenuCategorias');
+  //       containerCategories.appendChild(category);
+  //     }
       
-    } 
+  //   } 
     
-  }
+  // }
 
-    async function cargarCategorias() {
-      const listCategorias = await consultarCategorias();
-      console.log("List categorias:", listCategorias);
-      createCategories(listCategorias);
-    }
+  //   async function cargarCategorias() {
+  //     const listCategorias = await consultarCategorias();
+  //     console.log("List categorias:", listCategorias);
+  //     createCategories(listCategorias);
+  //   }
 
-    window.onload = function () {
-      cargarCategorias();
-    };
+  //   window.onload = function () {
+  //     cargarCategorias();
+  //   };
 
     
 

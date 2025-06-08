@@ -1,40 +1,51 @@
+// document.addEventListener('DOMContentLoaded', function() {
+//   // 1. Normalización exhaustiva de datos existentes
+//   const storedCards = JSON.parse(localStorage.getItem('productList')) || [];
+  
+//   const normalizedCards = storedCards.map(product => {
+//     const categoria = normalizarCategoria(product.category);
+//     return {
+//       ...product,
+//       category: categoria
+//     };
+//   });
+  
+//   localStorage.setItem('productList', JSON.stringify(normalizedCards));
+
+//   // 2. Carga de tarjetas
+//   const container = document.querySelector('.contenedor-obras');
+//   if (!container) return;
+
+//   // Limpiar tarjetas dinámicas existentes (evita duplicados)
+//   const existingDynamicCards = container.querySelectorAll('.tarjeta-link[dynamic]');
+//   existingDynamicCards.forEach(card => card.remove());
+
+//   // Crear nuevas tarjetas
+//   normalizedCards.forEach(product => {
+//     const card = createCardElement(product);
+//     card.setAttribute('dynamic', 'true'); // Marcamos como dinámica
+//     container.appendChild(card);
+//   });
+
+//   // 3. Forzar re-filtrado si es necesario
+//   if (window.location.pathname.includes('explorar_cards.html')) {
+//     setTimeout(() => {
+//       const event = new Event('filterUpdate');
+//       document.dispatchEvent(event);
+//     }, 100);
+//   }
+// });
+
 document.addEventListener('DOMContentLoaded', function() {
-  // 1. Normalización exhaustiva de datos existentes
-  const storedCards = JSON.parse(localStorage.getItem('productList')) || [];
-  
-  const normalizedCards = storedCards.map(product => {
-    const categoria = normalizarCategoria(product.category);
-    return {
-      ...product,
-      category: categoria
-    };
-  });
-  
-  localStorage.setItem('productList', JSON.stringify(normalizedCards));
+  console.log("Prueba ");
+  const params = new URLSearchParams(window.location.search);
+  const idCategoria = params.get("idcategoria");
 
-  // 2. Carga de tarjetas
-  const container = document.querySelector('.contenedor-obras');
-  if (!container) return;
-
-  // Limpiar tarjetas dinámicas existentes (evita duplicados)
-  const existingDynamicCards = container.querySelectorAll('.tarjeta-link[dynamic]');
-  existingDynamicCards.forEach(card => card.remove());
-
-  // Crear nuevas tarjetas
-  normalizedCards.forEach(product => {
-    const card = createCardElement(product);
-    card.setAttribute('dynamic', 'true'); // Marcamos como dinámica
-    container.appendChild(card);
-  });
-
-  // 3. Forzar re-filtrado si es necesario
-  if (window.location.pathname.includes('explorar_cards.html')) {
-    setTimeout(() => {
-      const event = new Event('filterUpdate');
-      document.dispatchEvent(event);
-    }, 100);
+  if (idCategoria != null){
+    createCardsByIdCategory(idCategoria);
   }
-});
+  
+})
 
 // Función centralizada de normalización
 function normalizarCategoria(categoria) {
@@ -147,12 +158,14 @@ if (window.location.pathname.includes('explorar_cards.html')) {
 
   function createCardsByIdCategory(idCategoria) {
     switch(idCategoria){
-      case 0: 
+      case "0": 
+        console.log("Si está lleganado hasta acá 2");
         getAllObras()
         break;
       default : 
         getObrasByIdCategory(idCategoria)
     } 
+  
 
   }
 
@@ -173,7 +186,6 @@ if (window.location.pathname.includes('explorar_cards.html')) {
         return response.text(); // O response.json() si devuelves JSON
       })
       .then(data => {
-        console.log("data: " + data);
         const listProducts = JSON.parse(data);
         if(listProducts.length > 0){
           createCards(listProducts)
@@ -206,7 +218,6 @@ if (window.location.pathname.includes('explorar_cards.html')) {
         return response.text(); // O response.json() si devuelves JSON
       })
       .then(data => {
-        console.log("dataByIdCategory: " + data);
         const listProducts = JSON.parse(data);
         if(listProducts.length > 0){
          createCards(listProducts)
