@@ -35,17 +35,8 @@ window.addEventListener('DOMContentLoaded', () => {
           <div class="flex-grow-1">
             <h5 class="mb-1">${producto.nombre}</h5>
             <p class="mb-0 text-dark">${producto.artista} - ${producto.tipo}</p>
-            <p class="mb-0 text-dark">Tamaño: ${producto.tamano}</p>
           </div>
         </div>
-        <div class="d-flex align-items-center gap-3">
-          <div class="input-group" style="width: 120px;">
-            <button class="btn btn-outline-secondary btn-cantidad" type="button" 
-                    data-index="${index}" data-action="decrement">-</button>
-            <input type="text" class="form-control text-center cantidad-input" 
-                   value="${producto.cantidad}" readonly>
-            <button class="btn btn-outline-secondary btn-cantidad" type="button" 
-                    data-index="${index}" data-action="increment">+</button>
           </div>
           <p class="mb-0 fw-bold text-dark" style="width: 100px;">
             $${subtotal.toLocaleString('es-CO')}
