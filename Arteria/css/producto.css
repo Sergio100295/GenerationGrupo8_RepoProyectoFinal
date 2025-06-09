@@ -1,40 +1,28 @@
-:root {
-  --color-principal: #d93e1b;
-  --color-secundario: #f3b342;
-  --color-fondo: #ffffff;
-  --color-texto: #141b1a;
-  --color-gris-suave: #f4f4f4;
-  --espaciado: 16px;
-  --radio-borde: 8px;
-  --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-body {
-  font-family: 'Arial', sans-serif;
+.producto-page body {
+  font-family: var(--fuente-parrafo);
   background-color: var(--color-fondo);
   color: var(--color-texto);
   margin: 0;
   padding: 0;
 }
 
-.container {
+.producto-page .container {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 var(--espaciado);
 }
 
-h2 {
+.producto-page h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-p {
+.producto-page p {
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
 
-/* Miniaturas más grandes y con mejor separación */
-.miniatura {
+.producto-page .miniatura {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -44,8 +32,7 @@ p {
   box-shadow: var(--sombra-suave);
 }
 
-/* Imagen principal más grande */
-#imagen-principal {
+.producto-page #imagen-principal {
   width: 100%;
   max-height: 600px;
   object-fit: contain;
@@ -54,14 +41,12 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Mejora de espaciado entre columnas */
-.row > div[class^="col-"] {
+.producto-page .row > div[class^="col-"] {
   padding: 1rem;
 }
 
-/* Opcional: evitar miniaturas aplastadas en pantallas medianas */
 @media (min-width: 768px) {
-  .col-md-2 {
+  .producto-page .col-md-2 {
     max-width: 120px;
   }
 }
